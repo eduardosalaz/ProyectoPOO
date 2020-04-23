@@ -13,7 +13,7 @@ public class Prueba {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/base?useUnicode=true&useTimeZone=true&serverTimezone=UTC"
-                    , "Salazar", "FEynman2706");
+                    , "user", "password");
             System.out.println("Database connection Success");
         }
         catch(Exception e){
