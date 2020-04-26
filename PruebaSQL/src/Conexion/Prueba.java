@@ -2,10 +2,9 @@ package Conexion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class Prueba {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         Prueba prueba = new Prueba();
         prueba.createConnection();
     }

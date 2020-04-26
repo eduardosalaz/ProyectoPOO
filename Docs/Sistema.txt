@@ -1,1 +1,8 @@
-
+Función:
+Boletos
+Asientos
+Ventas Boletos
+Detalles Boletos
+Productos de Dulcería
+Ventas Dulcería
+Detalles Dulcería
