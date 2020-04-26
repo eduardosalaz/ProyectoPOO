@@ -18,9 +18,9 @@ Proyecto final POO FIME UANL
 3.- Añadir el [Driver de Conector a Java](https://dev.mysql.com/downloads/connector/j/) a las librerías del Proyecto.
 
 # TODO:
- - [x ] Listado de entidades
+ - [X] Listado de entidades
  
- - [ ] Diagrama entidad relación
+ - [x] Diagrama entidad relación
  
-  - [ ] Diccionario de datos
+ - [ ] Diccionario de datos
 
