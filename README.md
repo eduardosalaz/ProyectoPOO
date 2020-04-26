@@ -1,4 +1,4 @@
-# ProyectoPoo
+# Proyecto POO
 Proyecto final POO FIME UANL
 
 
