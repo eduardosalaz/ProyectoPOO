@@ -78,4 +78,12 @@ public class Login {
         frameLog.getContentPane().add(panel_gris);
 
     }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+            //TODO: Agregar la Query a la BD para poder acceder a las credenciales
+            //TODO: Si es exitosa, pasar al siguiente frame y sacar un messageDialog que lo confirme
+            //TODO: Si no, sacar otro messageDialog que informe que no se encontró y restar uno a la cantidad de intentos
+            //TODO: Una vez que se agoten los intentos, ponerle sleep al hilo por 2 minutos.
+            //https://stackoverflow.com/questions/3797941/how-to-make-a-thread-sleep-for-specific-amount-of-time-in-java
+    }
 }
