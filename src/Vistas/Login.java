@@ -1,13 +1,16 @@
 package Vistas;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Login {
+public class Login implements ActionListener {
 
     private static final long serialVersionUID = 1L;
-    private JFrame frameLog;
-    private JTextField txt_user;
-    private JPasswordField pass_password;
+    protected JFrame frameLog;
+    protected JTextField txt_user;
+    protected JPasswordField pass_password;
+    protected    JButton btn_ingresar;
 
     public static void main(String[] args) {
 
@@ -54,11 +57,12 @@ public class Login {
         pass_password.setBounds(124, 336, 215, 28);
         frameLog.getContentPane().add(pass_password);
 
-        JButton btn_ingresar = new JButton("Ingresar");
+        btn_ingresar = new JButton("Ingresar");
         btn_ingresar.setForeground(new Color(255, 255, 255));
         btn_ingresar.setFont(new Font("Arial", Font.BOLD, 16));
         btn_ingresar.setBackground(new Color(171, 0, 51));
         btn_ingresar.setBounds(166, 433, 131, 56);
+        btn_ingresar.addActionListener(this);
         frameLog.getContentPane().add(btn_ingresar);
 
         Image img = new ImageIcon(Login.class.getResource("img/logoRED.png")).getImage();
@@ -78,12 +82,28 @@ public class Login {
         frameLog.getContentPane().add(panel_gris);
 
     }
+
+
+    /*TODO: Agregar la Query a la BD para poder acceder a las credenciales
+     *TODO: Si es exitosa, pasar al siguiente frame y sacar un messageDialog que lo confirme
+     *TODO: Si no, sacar otro messageDialog que informe que no se encontró y restar uno a la cantidad de intentos
+     *TODO: Una vez que se agoten los intentos, ponerle sleep al hilo por 2 minutos.
+     *https://stackoverflow.com/questions/3797941/how-to-make-a-thread-sleep-for-specific-amount-of-time-in-java
+     * El siguiente pedazo de código es para pasar al siguiente frame, se tiene que modificar para integrar
+     * la conexión a la BD, es TEMPORAL.
+     * Cuando hacer dispose a un frame y cuando sólo hacerlo invisible?
+     * https://stackoverflow.com/questions/13360430/jframe-dispose-vs-system-exit
+     */
+
     @Override
     public void actionPerformed(ActionEvent e) {
-            //TODO: Agregar la Query a la BD para poder acceder a las credenciales
-            //TODO: Si es exitosa, pasar al siguiente frame y sacar un messageDialog que lo confirme
-            //TODO: Si no, sacar otro messageDialog que informe que no se encontró y restar uno a la cantidad de intentos
-            //TODO: Una vez que se agoten los intentos, ponerle sleep al hilo por 2 minutos.
-            //https://stackoverflow.com/questions/3797941/how-to-make-a-thread-sleep-for-specific-amount-of-time-in-java
+        System.out.println("boton puchado");
+        if(e.getSource() == btn_ingresar){
+            System.out.println("boton puchado nice");
+            frameLog.dispose();
+            PrincipalUser principalUser = new PrincipalUser();
+            principalUser.setVisible(true);
+        }
+
     }
 }
