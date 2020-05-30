@@ -17,6 +17,8 @@ Proyecto final POO FIME UANL
 
 3.- Añadir el [Driver de Conector a Java](https://dev.mysql.com/downloads/connector/j/) a las librerías del Proyecto.
 
+4.- Añadir la carpeta de img/ al proyecto de Java como source folder
+
 # TODO:
  - [x] Listado de entidades.
  
@@ -29,3 +31,5 @@ Proyecto final POO FIME UANL
  - [ ] Diseño de Interfaces.
  
  - [ ] Mapa de Navegación.
+ 
+ - [ ] 18 Vistas 
