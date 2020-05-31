@@ -43,7 +43,7 @@ public class menuAdmin implements ActionListener{
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the frame..
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initialize() {
