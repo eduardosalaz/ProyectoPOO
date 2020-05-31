@@ -11,8 +11,8 @@ public class Prueba {
     void createConnection(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/base?useUnicode=true&useTimeZone=true&serverTimezone=UTC"
-                    , "user", "password");
+            Connection con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/zSuTM1gvH0"
+                    , "zSuTM1gvH0", "Q8XYDv9Lmv");
             System.out.println("Database connection Success");
         }
         catch(Exception e){
