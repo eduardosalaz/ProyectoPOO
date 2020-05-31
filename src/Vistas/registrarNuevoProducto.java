@@ -149,7 +149,7 @@ public class registrarNuevoProducto implements ActionListener{
 			
 			menuInventario.frame.setVisible(true);
 			
-			frame.setVisible(false);
+			frame.dispose();
 		}
 		else if(e.getSource()==btnRegistrar) {
 			
