@@ -24,6 +24,8 @@ public class usuarioEspecifico implements ActionListener{
 	private JButton btnVolver, btnBuscar;
 	private JFrame frame;
 	private JTextField textIdUsuario;
+	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -75,7 +77,7 @@ public class usuarioEspecifico implements ActionListener{
 		JLabel lblRango = new JLabel("Rango de d\u00EDas:");
 		lblRango.setForeground(Color.WHITE);
 		lblRango.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblRango.setBounds(529, 194, 149, 16);
+		lblRango.setBounds(480, 186, 149, 31);
 		frame.getContentPane().add(lblRango);
 		
 		JList list = new JList();
@@ -87,7 +89,7 @@ public class usuarioEspecifico implements ActionListener{
 		frame.getContentPane().add(scrollPane);
 		
 		textIdUsuario = new JTextField();
-		textIdUsuario.setBounds(163, 195, 96, 19);
+		textIdUsuario.setBounds(163, 195, 229, 19);
 		frame.getContentPane().add(textIdUsuario);
 		textIdUsuario.setColumns(10);
 		
@@ -106,8 +108,30 @@ public class usuarioEspecifico implements ActionListener{
 		btnBuscar.setFocusPainted(false);
 		btnBuscar.setBorderPainted(false);
 		btnBuscar.setBackground(new Color(171, 0, 51));
-		btnBuscar.setBounds(367, 279, 139, 31);
+		btnBuscar.setBounds(411, 277, 139, 31);
 		frame.getContentPane().add(btnBuscar);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(650, 193, 96, 19);
+		frame.getContentPane().add(textField);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(792, 193, 97, 19);
+		frame.getContentPane().add(textField_1);
+		
+		JLabel lblA = new JLabel("a");
+		lblA.setForeground(Color.WHITE);
+		lblA.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblA.setBounds(770, 193, 30, 16);
+		frame.getContentPane().add(lblA);
+		
+		JLabel lblDe = new JLabel("De");
+		lblDe.setForeground(Color.WHITE);
+		lblDe.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblDe.setBounds(619, 193, 30, 16);
+		frame.getContentPane().add(lblDe);
 	}
 
 	@Override
