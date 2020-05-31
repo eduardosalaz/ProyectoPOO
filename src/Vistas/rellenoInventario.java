@@ -122,7 +122,7 @@ public class rellenoInventario implements ActionListener{
 		
 		}
 		else if(e.getSource()==btnActualizar) {
-			int opcion = JOptionPane.showConfirmDialog(null, "Actualizado correctamente!, quiere rellenar otro producto?","Actualizado",JOptionPane.YES_NO_OPTION);
+			int opcion = JOptionPane.showConfirmDialog(null, "Se ha actualizado correctamente!. ¿Quiere rellenar otro producto?","Actualizado",JOptionPane.YES_NO_OPTION);
 			
 			if(opcion == JOptionPane.YES_OPTION) {
 				textClave.setText("");
