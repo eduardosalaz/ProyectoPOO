@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 public class menuInventario implements ActionListener{
 	
 	public JFrame frame;
-	public JButton btnVolver, btnRegistrar, btnRellenar, btnEliminar;
+	private JButton btnVolver, btnRegistrar, btnRellenar, btnEliminar;
 
 	/**
 	 * Launch the application.
@@ -121,15 +121,12 @@ public class menuInventario implements ActionListener{
 			eliminar.frame.setVisible(true);
 			
 		}
-		else{
+		else if(e.getSource()==btnVolver){
 			menuAdmin menuAdmin = new menuAdmin();
 			menuAdmin.frame.setVisible(true);
 		}
 		
 		
 		frame.dispose();
-		
-		
 	}
-
 }
