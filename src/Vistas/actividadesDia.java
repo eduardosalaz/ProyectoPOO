@@ -26,7 +26,7 @@ public class actividadesDia implements ActionListener {
 	private JTextField textPrecio;
 
 	/**
-	 * Launch the application.
+	 * Launch the application..
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -160,7 +160,7 @@ public class actividadesDia implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource()==btnAgregar) {
-			int opcion = JOptionPane.showConfirmDialog(null, "  Se ha agregado exitosamente!.\n\n ¿Quiere agregar otro producto?\n","Agregado",JOptionPane.YES_NO_OPTION);
+			int opcion = JOptionPane.showConfirmDialog(null, "  Se ha agregado exitosamente!.\n\n Â¿Quiere agregar otro producto?\n","Agregado",JOptionPane.YES_NO_OPTION);
 			
 			if(opcion==JOptionPane.YES_OPTION) {
 				textIdSup.setText("");
@@ -173,7 +173,7 @@ public class actividadesDia implements ActionListener {
 		
 		else if(e.getSource()==btnCrear) {
 			
-			int opcion = JOptionPane.showConfirmDialog(null, "Se ha creado correctamente. \n\n¿Quiere crear otro?\n","Creado",JOptionPane.YES_NO_OPTION);
+			int opcion = JOptionPane.showConfirmDialog(null, "Se ha creado correctamente. \n\nÂ¿Quiere crear otro?\n","Creado",JOptionPane.YES_NO_OPTION);
 			
 			if(opcion==JOptionPane.YES_OPTION) {
 				textIdSup.setText("");
