@@ -101,7 +101,7 @@ public class eliminarFuncion implements ActionListener{
 		funciones funcion = new funciones();
 		
 		if(e.getSource()==btnEliminar) {
-			int opcion = JOptionPane.showConfirmDialog(null, "Se ha eliminado exitosamente la funcion!. \n\n¿Quiere eliminar otra funcion?\n", "Eliminado", JOptionPane.YES_NO_OPTION);
+			int opcion = JOptionPane.showConfirmDialog(null, "Se ha eliminado exitosamente la funcion!. \n\nÂ¿Quiere eliminar otra funcion?\n", "Eliminado", JOptionPane.YES_NO_OPTION);
 			
 			if(opcion==JOptionPane.YES_OPTION) {
 				textNumero.setText("");
@@ -115,7 +115,5 @@ public class eliminarFuncion implements ActionListener{
 			funcion.frame.setVisible(true);
 			frame.dispose();
 		}
-		
 	}
-
 }
