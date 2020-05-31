@@ -6,22 +6,37 @@ import java.awt.event.ActionListener;
 
 public class Login implements ActionListener {
 
-    private static final long serialVersionUID = 1L;
     protected JFrame frameLog;
     protected JTextField txt_user;
     protected JPasswordField pass_password;
-    protected    JButton btn_ingresar;
+    protected JButton btn_ingresar;
 
     public static void main(String[] args) {
-
-        Login login = new Login();
-        login.crearGUI();
-    /*Initialize the contents of the frame.
-     *GRIS: 72, 81, 84
-     * ROJO:171, 0, 51
-                */
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    Login window = new Login();
+                    window.frameLog.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
-    public void crearGUI(){
+
+    /**
+     * Create the application.
+     */
+    public Login() {
+        initialize();
+    }
+
+    /**
+     * Initialize the contents of the frame.
+     * GRIS: 72,81,84
+     * ROJO: 171, 0, 51
+     */
+    private void initialize() {
         frameLog = new JFrame();
         frameLog.getContentPane().setBackground(new Color(72,81,84));
         frameLog.setBounds(100, 100, 480, 460);
@@ -65,7 +80,8 @@ public class Login implements ActionListener {
         btn_ingresar.addActionListener(this);
         frameLog.getContentPane().add(btn_ingresar);
 
-        Image img = new ImageIcon(Login.class.getResource("img/logoRED.png")).getImage();
+        Image img;
+        img = new ImageIcon(Login.class.getResource("/IMGS/login.png")).getImage();
 
         JPanel panel_red = new JPanel();
         panel_red.setBackground(new Color(171, 0, 51));
