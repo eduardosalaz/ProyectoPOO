@@ -1,4 +1,4 @@
-# Proyecto POO
+﻿# Proyecto POO
 Proyecto final POO FIME UANL
 
 
@@ -31,5 +31,7 @@ Proyecto final POO FIME UANL
  - [ ] Diseño de Interfaces.
  
  - [ ] Mapa de Navegación.
+
+ - [x] Conección exitosa a la Base de Datos.
  
  - [ ] 18 Vistas 
