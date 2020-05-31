@@ -26,12 +26,12 @@ Proyecto final POO FIME UANL
  
  - [x] Diccionario de datos.
 
+ - [x] Conexión exitosa a la Base de Datos.
+
  - [ ] Diagrama de procesos.
 
  - [ ] Diseño de Interfaces.
  
  - [ ] Mapa de Navegación.
-
- - [x] Conección exitosa a la Base de Datos.
  
  - [ ] 18 Vistas 
