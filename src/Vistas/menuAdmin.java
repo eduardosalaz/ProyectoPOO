@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class menuAdmin implements ActionListener{
-	JButton btnContratar, btnSalir;
+	private JButton btnContratar, btnSalir;
 	public JFrame frame;
 	private JButton btnInforme;
 	private JButton btnFunciones;
@@ -43,7 +43,7 @@ public class menuAdmin implements ActionListener{
 	}
 
 	/**
-	 * Initialize the contents of the frame..
+	 * Initialize the contents of the frame.
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initialize() {
@@ -59,10 +59,10 @@ public class menuAdmin implements ActionListener{
 		
 		
 		
-		JLabel lblRegistrar = new JLabel("Registrar nuevo producto");
+		JLabel lblRegistrar = new JLabel("Men\u00FA Admin");
 		lblRegistrar.setForeground(Color.WHITE);
 		lblRegistrar.setFont(new Font("Arial", Font.BOLD, 40));
-		lblRegistrar.setBounds(232, 32, 511, 72);
+		lblRegistrar.setBounds(370, 31, 238, 72);
 		frame.getContentPane().add(lblRegistrar);
 		
 		btnContratar = new JButton("Contratar");
@@ -141,7 +141,8 @@ public class menuAdmin implements ActionListener{
 			
 		}
 		else if(e.getSource()==btnFunciones) {
-			
+			menuFunciones menuF = new menuFunciones();
+			menuF.frame.setVisible(true);
 		}
 		else if(e.getSource()==btnRelleno) {
 			menuInventario menu = new menuInventario();
@@ -153,7 +154,5 @@ public class menuAdmin implements ActionListener{
 		}
 		
 		frame.dispose();
-		
 	}
-
 }
