@@ -26,6 +26,10 @@ public class usuarioEspecifico implements ActionListener{
 	private JTextField textIdUsuario;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
 
 	/**
 	 * Launch the application.
@@ -74,10 +78,10 @@ public class usuarioEspecifico implements ActionListener{
 		lblIdUsuario.setBounds(58, 193, 149, 16);
 		frame.getContentPane().add(lblIdUsuario);
 		
-		JLabel lblRango = new JLabel("Rango de d\u00EDas:");
+		JLabel lblRango = new JLabel("Rango de d\u00EDas");
 		lblRango.setForeground(Color.WHITE);
-		lblRango.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblRango.setBounds(480, 186, 149, 31);
+		lblRango.setFont(new Font("Arial", Font.BOLD, 20));
+		lblRango.setBounds(636, 132, 149, 31);
 		frame.getContentPane().add(lblRango);
 		
 		JList list = new JList();
@@ -113,25 +117,81 @@ public class usuarioEspecifico implements ActionListener{
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(650, 193, 96, 19);
+		textField.setBounds(828, 189, 61, 19);
 		frame.getContentPane().add(textField);
+		
+		JLabel lblAaaa = new JLabel("/ AAAA");
+		lblAaaa.setForeground(Color.WHITE);
+		lblAaaa.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblAaaa.setBounds(758, 185, 68, 24);
+		frame.getContentPane().add(lblAaaa);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(792, 193, 97, 19);
+		textField_1.setBounds(687, 189, 61, 19);
 		frame.getContentPane().add(textField_1);
 		
-		JLabel lblA = new JLabel("a");
-		lblA.setForeground(Color.WHITE);
-		lblA.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblA.setBounds(770, 193, 30, 16);
-		frame.getContentPane().add(lblA);
+		JLabel lblMm = new JLabel("/ MM");
+		lblMm.setForeground(Color.WHITE);
+		lblMm.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblMm.setBounds(636, 185, 68, 24);
+		frame.getContentPane().add(lblMm);
 		
-		JLabel lblDe = new JLabel("De");
+		JLabel lblDd = new JLabel("DD");
+		lblDd.setForeground(Color.WHITE);
+		lblDd.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblDd.setBounds(531, 185, 68, 24);
+		frame.getContentPane().add(lblDd);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(565, 189, 61, 19);
+		frame.getContentPane().add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(828, 247, 61, 19);
+		frame.getContentPane().add(textField_3);
+		
+		JLabel lblAaaa_1 = new JLabel("/ AAAA");
+		lblAaaa_1.setForeground(Color.WHITE);
+		lblAaaa_1.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblAaaa_1.setBounds(758, 243, 68, 24);
+		frame.getContentPane().add(lblAaaa_1);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(687, 247, 61, 19);
+		frame.getContentPane().add(textField_4);
+		
+		JLabel lblMm_1 = new JLabel("/ MM");
+		lblMm_1.setForeground(Color.WHITE);
+		lblMm_1.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblMm_1.setBounds(636, 243, 68, 24);
+		frame.getContentPane().add(lblMm_1);
+		
+		JLabel lblDd_1 = new JLabel("DD");
+		lblDd_1.setForeground(Color.WHITE);
+		lblDd_1.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblDd_1.setBounds(531, 243, 68, 24);
+		frame.getContentPane().add(lblDd_1);
+		
+		textField_5 = new JTextField();
+		textField_5.setColumns(10);
+		textField_5.setBounds(565, 247, 61, 19);
+		frame.getContentPane().add(textField_5);
+		
+		JLabel lblDe = new JLabel("De:");
 		lblDe.setForeground(Color.WHITE);
 		lblDe.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblDe.setBounds(619, 193, 30, 16);
+		lblDe.setBounds(496, 180, 42, 31);
 		frame.getContentPane().add(lblDe);
+		
+		JLabel lblA = new JLabel("A:");
+		lblA.setForeground(Color.WHITE);
+		lblA.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblA.setBounds(496, 238, 42, 31);
+		frame.getContentPane().add(lblA);
 	}
 
 	@Override
