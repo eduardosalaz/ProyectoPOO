@@ -153,7 +153,7 @@ public class registrarNuevoProducto implements ActionListener{
 		}
 		else if(e.getSource()==btnRegistrar) {
 			
-			int opcion = JOptionPane.showConfirmDialog(null, "Se ha registrado exitosamente el producto!, desdea agregar otro producto?","Registrado",JOptionPane.YES_NO_OPTION);
+			int opcion = JOptionPane.showConfirmDialog(null, "Se ha registrado exitosamente!. \n\n¿Quiere agregar otro producto?\n", "Registrado", JOptionPane.YES_NO_OPTION);
 			
 			if(opcion==JOptionPane.YES_OPTION) {
 				textPrecio.setText("");
@@ -162,10 +162,6 @@ public class registrarNuevoProducto implements ActionListener{
 				menuInventario.frame.setVisible(true);
 				frame.dispose();
 			}
-			
 		}
-		
 	}
-	
-	
 }
