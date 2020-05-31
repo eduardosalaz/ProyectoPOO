@@ -26,7 +26,7 @@ public class actividadesDia implements ActionListener {
 	private JTextField textPrecio;
 
 	/**
-	 * Launch the application..
+	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -191,6 +191,5 @@ public class actividadesDia implements ActionListener {
 		else {
 			
 		}
-		
 	}
 }
