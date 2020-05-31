@@ -15,12 +15,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class eliminarProducto implements ActionListener{
-	JButton btnVolver,btnEliminar;
+	private JButton btnVolver,btnEliminar;
 	public JFrame frame;
 	private JTextField textClave;
 
 	/**
-	 * Launch the application..
+	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -107,7 +107,7 @@ public class eliminarProducto implements ActionListener{
 			frame.dispose();
 		}
 		else {
-			int opcion=JOptionPane.showConfirmDialog(null, "El producto se ha eliminado exitosamente!, quiere eliminar otro producto?","Eliminado",JOptionPane.YES_NO_OPTION);
+			int opcion = JOptionPane.showConfirmDialog(null, "Se ha eliminado exitosamente el producto!. \n\n¿Quiere eliminar otro producto?\n", "Eliminado", JOptionPane.YES_NO_OPTION);
 			
 			if(opcion == JOptionPane.YES_OPTION) {
 				textClave.setText("");
@@ -118,8 +118,6 @@ public class eliminarProducto implements ActionListener{
 				frame.dispose();
 			}
 		}
-		
-		
 	}
-
 }
+
