@@ -1,4 +1,4 @@
-package Interfaces;
+package Vistas;
 
 import java.awt.Color;
 import java.awt.Cursor;
