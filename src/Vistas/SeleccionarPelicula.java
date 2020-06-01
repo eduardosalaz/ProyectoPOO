@@ -441,44 +441,140 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         }else if(e.getSource() == btn_peli1_hora1){
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            dispose();
+
 
         }else if(e.getSource() == btn_peli1_hora2){
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            dispose();
 
         }else if(e.getSource() == btn_peli1_hora3){
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            dispose();
 
         }else if(e.getSource() == btn_peli2_hora1){
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            dispose();
 
         }else if(e.getSource() == btn_peli2_hora2){
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            dispose();
 
         }else if(e.getSource() == btn_peli2_hora3){
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            dispose();
 
         }else if(e.getSource() == btn_peli3_hora1){
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            dispose();
 
         }else if(e.getSource() == btn_peli3_hora2){
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            dispose();
 
         }else if(e.getSource() == btn_peli3_hora3){
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            dispose();
 
         }else if(e.getSource() == btn_peli4_hora1){
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            dispose();
 
+        }else if(e.getSource() == btn_peli4_hora2){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+            dispose();
+
+        }else if(e.getSource() == btn_peli4_hora3){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+            dispose();
+
+        }else if(e.getSource() == btn_peli5_hora1){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+            dispose();
+
+        }else if(e.getSource() == btn_peli5_hora2){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+            dispose();
+
+        }else if(e.getSource() == btn_peli5_hora3){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+            dispose();
+
+        }else if(e.getSource() == btn_peli6_hora1){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+            dispose();
+
+        }else if(e.getSource() == btn_peli6_hora2){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+            dispose();
+
+        }else if(e.getSource() == btn_peli6_hora3){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+            dispose();
+
+        }else if(e.getSource() == btn_peli7_hora1){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+            dispose();
+
+        }else if(e.getSource() == btn_peli7_hora2){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+            dispose();
+
+        }else if(e.getSource() == btn_peli7_hora3){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+            dispose();
+
+        }else if(e.getSource() == btn_peli8_hora1){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+            dispose();
+
+        }else if(e.getSource() == btn_peli8_hora2){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+            dispose();
+
+        }else if(e.getSource() == btn_peli8_hora3){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+            dispose();
+
+        }else if(e.getSource() == btn_peli9_hora1){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+            dispose();
+
+        }else if(e.getSource() == btn_peli9_hora2){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+            dispose();
+
+        }else if(e.getSource() == btn_peli9_hora3){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+            dispose();
         }
+
     }
 
     public void switchPane(JPanel panel){

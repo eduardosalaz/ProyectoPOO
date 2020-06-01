@@ -2,13 +2,15 @@ package Vistas;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 @SuppressWarnings("ALL")
-public class SeleccionarAsiento extends JFrame implements ActionListener {
+public class SeleccionarAsiento extends JFrame implements ActionListener, ChangeListener {
 
     /**
      *
@@ -18,6 +20,7 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
     private String[] categorias = new String[] {"Niño", "Adulto", "VIP"};
     JButton btn_agregarAsiento, btn_volver, btn_continuar;
     private JLabel lbl_numAsiento, lbl_precio_dinero;
+    private JSpinner spinner;
     private SpinnerListModel lista = new SpinnerListModel(categorias);
     private BotonPersonalizado btn_A1, btn_A2, btn_A3, btn_A4, btn_A5, btn_A6, btn_A7, btn_A8, btn_A9, btn_A10;
     private BotonPersonalizado btn_B1, btn_B2, btn_B3, btn_B4, btn_B5, btn_B6, btn_B7, btn_B8, btn_B9, btn_B10;
@@ -66,11 +69,12 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
         lblNewLabel.setBounds(246, 11, 223, 43);
         contentPane.add(lblNewLabel);
 
-        JSpinner spinner = new JSpinner();
+        spinner = new JSpinner();
         spinner.setForeground(Color.WHITE);
         spinner.setBackground(new Color(171, 0, 51));
         spinner.setModel(lista);
         spinner.setBounds(439, 15, 223, 43);
+        spinner.addChangeListener(this);
         JTextField ftf = getTextField(spinner);
         if (ftf != null ) {
             ftf.setColumns(8);
@@ -103,10 +107,10 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
         lbl_precio_txt.setBounds(814, 60, 76, 43);
         contentPane.add(lbl_precio_txt);
 
-        lbl_precio_dinero = new JLabel("$$$");
+        lbl_precio_dinero = new JLabel("$80");
         lbl_precio_dinero.setForeground(new Color(46, 48, 48));
         lbl_precio_dinero.setFont(new Font("Arial", Font.PLAIN, 20));
-        lbl_precio_dinero.setBounds(896, 60, 38, 43);
+        lbl_precio_dinero.setBounds(886, 60, 50, 43);
         contentPane.add(lbl_precio_dinero);
 
         btn_agregarAsiento = new JButton("Agregar Asiento");
@@ -1004,27 +1008,35 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
     }
 
     //TODO: EL CÓDIGO QUE SIGUE NO SIRVE, HAY QUE MODIFICARLO, sobre todo la parte de checar si un botón ya fue incluido
-    //TODO: En la clase de boton personalizado hay una variable booleana para saber si fue presionado o no, pero no lo
-    //TODO: he implementado bien. CREO QUE YA SIRVE, NOT SO SURE TBH.
+    //TODO: En la clase de boton personalizado hay una variable booleana para saber si fue presionado o no y su tipo
+    //TODO: TODAVIA NO FUNCIONA TBH ES UN PEDAZO DE CODIGO REVUELTO QUE TENGO QUE ARREGLARLO.
     //TODO: LOS BOTONES SE TIENEN QUE DESACTIVAR CONFORME ESTÉ SU ESTADO EN SQL.
-    //TODO: Reflejar el precio con el Jspinner
+    //TODO: Reflejar el precio con el JSpinner
+
     @Override
     public void actionPerformed(ActionEvent e) {
         BotonPersonalizado botonDesactivar;
 
         if(e.getSource() == btn_agregarAsiento){
             for(BotonPersonalizado boton: botones){
-                if(boton.isPresionado()){
-                    botonesSeleccionados.add(boton);
-                    botonDesactivar = boton;
-                    botonDesactivar.setEnabled(false);
-                    botonDesactivar.setPresionado(true);
-                }else{
-                    boton.setEnabled(true);
+                if(boton.isPresionado()) {
+                    if (!boton.isYaAgregado()) {
+                        botonesSeleccionados.add(boton);
+                        botonDesactivar = boton;
+                        botonDesactivar.setEnabled(false);
+                        botonDesactivar.setPresionado(true);
+                        for (BotonPersonalizado bot : botonesSeleccionados) {
+                            if (!bot.equals(botonDesactivar)) {
+                                String tipo = (String) spinner.getValue();
+                                boton.setTipo(tipo);
+                                System.out.println(boton.getTipo());
+                            }
+                        }
+                        boton.setYaAgregado(true);
+                    }
                 }
             }
             lbl_numAsiento.setText("");
-            lbl_precio_dinero.setText("");
         }else if(e.getSource() == btn_volver){
             SeleccionarPelicula seleccionarPelicula = new SeleccionarPelicula();
             seleccionarPelicula.setVisible(true);
@@ -1037,7 +1049,6 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
 
             if(!bot.isPresionado()){
                 lbl_numAsiento.setText(((JComponent) e.getSource()).getName());
-                lbl_precio_dinero.setText("$80");
                 bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo2.png"));
                 bot.setBorderPainted(false);
                 bot.setFocusPainted(false);
@@ -1045,6 +1056,7 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
                 for(JButton boton: botones){
                     if(!boton.equals(bot)){
                         boton.setEnabled(false);
+                        bot.setPresionado(false);
                     }
                 }
             }else{
@@ -1053,14 +1065,14 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
                 lbl_precio_dinero.setText("");
                 bot.setPresionado(false);
                 for(JButton boton: botones){
-                        boton.setEnabled(true);
+                    boton.setEnabled(true);
+                    bot.setPresionado(false);
                 }
             }
         }else if(e.getSource() == btn_A2){
             BotonPersonalizado bot =(BotonPersonalizado) e.getSource();
             if(!bot.isPresionado()){
                 lbl_numAsiento.setText(((JComponent) e.getSource()).getName());
-                lbl_precio_dinero.setText("$80");
                 bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo2.png"));
                 bot.setBorderPainted(false);
                 bot.setFocusPainted(false);
@@ -1068,6 +1080,7 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
                 for(JButton boton: botones){
                     if(!boton.equals(bot)){
                         boton.setEnabled(false);
+                        bot.setPresionado(false);
                     }
                 }
             }else{
@@ -1075,7 +1088,7 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
                 lbl_numAsiento.setText("");
                 lbl_precio_dinero.setText("");
                 bot.setPresionado(false);
-                 for(JButton boton: botones){
+                for(JButton boton: botones){
                     boton.setEnabled(true);
                 }
             }
@@ -1084,7 +1097,6 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
             BotonPersonalizado bot =(BotonPersonalizado) e.getSource();
             if(!bot.isPresionado()){
                 lbl_numAsiento.setText(((JComponent) e.getSource()).getName());
-                lbl_precio_dinero.setText("$80");
                 bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo2.png"));
                 bot.setBorderPainted(false);
                 bot.setFocusPainted(false);
@@ -1092,6 +1104,7 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
                 for(JButton boton: botones){
                     if(!boton.equals(bot)){
                         boton.setEnabled(false);
+                        bot.setPresionado(false);
                     }
                 }
             }else{
@@ -1108,7 +1121,6 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
             BotonPersonalizado bot =(BotonPersonalizado) e.getSource();
             if(!bot.isPresionado()){
                 lbl_numAsiento.setText(((JComponent) e.getSource()).getName());
-                lbl_precio_dinero.setText("$80");
                 bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo2.png"));
                 bot.setBorderPainted(false);
                 bot.setFocusPainted(false);
@@ -1116,6 +1128,7 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
                 for(JButton boton: botones){
                     if(!boton.equals(bot)){
                         boton.setEnabled(false);
+                        bot.setPresionado(false);
                     }
                 }
             }else{
@@ -1132,7 +1145,6 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
             BotonPersonalizado bot =(BotonPersonalizado) e.getSource();
             if(!bot.isPresionado()){
                 lbl_numAsiento.setText(((JComponent) e.getSource()).getName());
-                lbl_precio_dinero.setText("$80");
                 bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo2.png"));
                 bot.setBorderPainted(false);
                 bot.setFocusPainted(false);
@@ -1156,7 +1168,6 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
             BotonPersonalizado bot =(BotonPersonalizado) e.getSource();
             if(!bot.isPresionado()){
                 lbl_numAsiento.setText(((JComponent) e.getSource()).getName());
-                lbl_precio_dinero.setText("$80");
                 bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo2.png"));
                 bot.setBorderPainted(false);
                 bot.setFocusPainted(false);
@@ -1366,5 +1377,21 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
         }else if(e.getSource() == btn_J10){
 
         }
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        String tipo = (String) spinner.getValue();
+        if(tipo.equals("Niño")){
+            lbl_precio_dinero.setText("$80");
+            getTipo(tipo);
+        }else if(tipo.equals("Adulto")){
+            lbl_precio_dinero.setText("$100");
+        }else if(tipo.equals("VIP")){
+            lbl_precio_dinero.setText("$130");
+        }
+    }
+    public String getTipo(String tipo){
+        return tipo;
     }
 }
