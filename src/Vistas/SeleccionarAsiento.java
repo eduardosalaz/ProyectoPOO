@@ -1,9 +1,11 @@
 package Vistas;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 @SuppressWarnings("ALL")
 public class SeleccionarAsiento extends JFrame implements ActionListener {
@@ -15,17 +17,21 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
     private JPanel contentPane;
     private String[] categorias = new String[] {"Niño", "Adulto", "VIP"};
     JButton btn_agregarAsiento, btn_volver, btn_continuar;
+    private JLabel lbl_numAsiento, lbl_precio_dinero;
     private SpinnerListModel lista = new SpinnerListModel(categorias);
-    private JButton btn_A1, btn_A2, btn_A3, btn_A4, btn_A5, btn_A6, btn_A7, btn_A8, btn_A9, btn_A10;
-    private JButton btn_B1, btn_B2, btn_B3, btn_B4, btn_B5, btn_B6, btn_B7, btn_B8, btn_B9, btn_B10;
-    private JButton btn_C1, btn_C2, btn_C3, btn_C4, btn_C5, btn_C6, btn_C7, btn_C8, btn_C9, btn_C10;
-    private JButton btn_D1, btn_D2, btn_D3, btn_D4, btn_D5, btn_D6, btn_D7, btn_D8, btn_D9, btn_D10;
-    private JButton btn_E1, btn_E2, btn_E3, btn_E4, btn_E5, btn_E6, btn_E7, btn_E8, btn_E9, btn_E10;
-    private JButton btn_F1, btn_F2, btn_F3, btn_F4, btn_F5, btn_F6, btn_F7, btn_F8, btn_F9, btn_F10;
-    private JButton btn_G1, btn_G2, btn_G3, btn_G4, btn_G5, btn_G6, btn_G7, btn_G8, btn_G9, btn_G10;
-    private JButton btn_H1, btn_H2, btn_H3, btn_H4, btn_H5, btn_H6, btn_H7, btn_H8, btn_H9, btn_H10;
-    private JButton btn_J1, btn_J2, btn_J3, btn_J4, btn_J5, btn_J6, btn_J7, btn_J8, btn_J9, btn_J10;
-    private JButton btn_K1, btn_K2, btn_K3, btn_K4, btn_K5, btn_K6, btn_K7, btn_K8, btn_K9, btn_K10;
+    private BotonPersonalizado btn_A1, btn_A2, btn_A3, btn_A4, btn_A5, btn_A6, btn_A7, btn_A8, btn_A9, btn_A10;
+    private BotonPersonalizado btn_B1, btn_B2, btn_B3, btn_B4, btn_B5, btn_B6, btn_B7, btn_B8, btn_B9, btn_B10;
+    private BotonPersonalizado btn_C1, btn_C2, btn_C3, btn_C4, btn_C5, btn_C6, btn_C7, btn_C8, btn_C9, btn_C10;
+    private BotonPersonalizado btn_D1, btn_D2, btn_D3, btn_D4, btn_D5, btn_D6, btn_D7, btn_D8, btn_D9, btn_D10;
+    private BotonPersonalizado btn_E1, btn_E2, btn_E3, btn_E4, btn_E5, btn_E6, btn_E7, btn_E8, btn_E9, btn_E10;
+    private BotonPersonalizado btn_F1, btn_F2, btn_F3, btn_F4, btn_F5, btn_F6, btn_F7, btn_F8, btn_F9, btn_F10;
+    private BotonPersonalizado btn_G1, btn_G2, btn_G3, btn_G4, btn_G5, btn_G6, btn_G7, btn_G8, btn_G9, btn_G10;
+    private BotonPersonalizado btn_H1, btn_H2, btn_H3, btn_H4, btn_H5, btn_H6, btn_H7, btn_H8, btn_H9, btn_H10;
+    private BotonPersonalizado btn_I1, btn_I2, btn_I3, btn_I4, btn_I5, btn_I6, btn_I7, btn_I8, btn_I9, btn_I10;
+    private BotonPersonalizado btn_J1, btn_J2, btn_J3, btn_J4, btn_J5, btn_J6, btn_J7, btn_J8, btn_J9, btn_J10;
+    ArrayList<BotonPersonalizado> botones = new ArrayList<BotonPersonalizado>();
+    ArrayList<BotonPersonalizado> botonesSeleccionados = new ArrayList<BotonPersonalizado>();
+
     /**
      * Launch the application.
      */
@@ -83,7 +89,7 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
         lbl_asiento.setBounds(10, 60, 76, 43);
         contentPane.add(lbl_asiento);
 
-        JLabel lbl_numAsiento = new JLabel("NumAsiento");
+        lbl_numAsiento = new JLabel("NumAsiento");
         lbl_numAsiento.setForeground(new Color(46, 48, 48));
         lbl_numAsiento.setBackground(new Color(46, 48, 48));
         lbl_numAsiento.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -97,7 +103,7 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
         lbl_precio_txt.setBounds(814, 60, 76, 43);
         contentPane.add(lbl_precio_txt);
 
-        JLabel lbl_precio_dinero = new JLabel("$$$");
+        lbl_precio_dinero = new JLabel("$$$");
         lbl_precio_dinero.setForeground(new Color(46, 48, 48));
         lbl_precio_dinero.setFont(new Font("Arial", Font.PLAIN, 20));
         lbl_precio_dinero.setBounds(896, 60, 38, 43);
@@ -108,6 +114,7 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
         btn_agregarAsiento.setFont(new Font("Arial Black", Font.BOLD, 18));
         btn_agregarAsiento.setBackground(new Color(171, 0, 51));
         btn_agregarAsiento.setBounds(368, 73, 207, 35);
+        btn_agregarAsiento.addActionListener(this);
         contentPane.add(btn_agregarAsiento);
 
         btn_volver = new JButton("Volver");
@@ -115,6 +122,7 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
         btn_volver.setFont(new Font("Arial", Font.BOLD, 14));
         btn_volver.setBackground(new Color(171, 0, 51));
         btn_volver.setBounds(10, 567, 120, 23);
+        btn_volver.addActionListener(this);
         contentPane.add(btn_volver);
 
         btn_continuar = new JButton("Continuar");
@@ -122,6 +130,7 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
         btn_continuar.setFont(new Font("Arial", Font.BOLD, 14));
         btn_continuar.setBackground(new Color(171, 0, 51));
         btn_continuar.setBounds(814, 567, 120, 23);
+        btn_continuar.addActionListener(this);
         contentPane.add(btn_continuar);
 
         JPanel panel = new JPanel();
@@ -172,15 +181,15 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
         lbl_filaH.setBounds(10, 91, 22, 30);
         panel.add(lbl_filaH);
 
+        JLabel lbl_filaI = new JLabel("I");
+        lbl_filaI.setFont(new Font("Arial", Font.PLAIN, 15));
+        lbl_filaI.setBounds(10, 50, 22, 30);
+        panel.add(lbl_filaI);
+
         JLabel lbl_filaJ = new JLabel("J");
         lbl_filaJ.setFont(new Font("Arial", Font.PLAIN, 15));
-        lbl_filaJ.setBounds(10, 50, 22, 30);
+        lbl_filaJ.setBounds(10, 11, 22, 30);
         panel.add(lbl_filaJ);
-
-        JLabel lbl_filaK = new JLabel("K");
-        lbl_filaK.setFont(new Font("Arial", Font.PLAIN, 15));
-        lbl_filaK.setBounds(10, 11, 22, 30);
-        panel.add(lbl_filaK);
 
         JButton pantalla = new JButton();
         pantalla.setEnabled(false);
@@ -241,123 +250,133 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
 
         //FILA A
 
-        btn_A1 = new JButton();
+        btn_A1 = new BotonPersonalizado();
         btn_A1.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_A1.setBounds(137, 385, 20, 23);
         btn_A1.setBorder(BorderFactory.createEmptyBorder());
+        btn_A1.setName("A1");
         panel.add(btn_A1);
 
-        btn_A2 = new JButton();
+        btn_A2 = new BotonPersonalizado();
         btn_A2.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_A2.setBorder(BorderFactory.createEmptyBorder());
         btn_A2.setBounds(187, 383, 20, 23);
+        btn_A2.setName("A2");
         panel.add(btn_A2);
 
-        btn_A3 = new JButton();
+        btn_A3 = new BotonPersonalizado();
         btn_A3.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_A3.setBorder(BorderFactory.createEmptyBorder());
         btn_A3.setBounds(237, 383, 20, 23);
+        btn_A3.setName("A3");
         panel.add(btn_A3);
 
-        btn_A4 = new JButton();
+        btn_A4 = new BotonPersonalizado();
         btn_A4.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_A4.setBorder(BorderFactory.createEmptyBorder());
         btn_A4.setBounds(287, 383, 20, 23);
+        btn_A4.setName("A4");
         panel.add(btn_A4);
 
-        btn_A5 = new JButton();
+        btn_A5 = new BotonPersonalizado();
         btn_A5.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_A5.setBorder(BorderFactory.createEmptyBorder());
         btn_A5.setBounds(337, 383, 20, 23);
+        btn_A5.setName("A5");
         panel.add(btn_A5);
 
-        btn_A6 = new JButton();
+        btn_A6 = new BotonPersonalizado();
         btn_A6.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_A6.setBorder(BorderFactory.createEmptyBorder());
         btn_A6.setBounds(387, 383, 20, 23);
+        btn_A6.setName("A6");
         panel.add(btn_A6);
 
-        btn_A7 = new JButton();
+        btn_A7 = new BotonPersonalizado();
         btn_A7.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_A7.setBorder(BorderFactory.createEmptyBorder());
         btn_A7.setBounds(437, 383, 20, 23);
+        btn_A7.setName("A7");
         panel.add(btn_A7);
 
-        btn_A8 = new JButton();
+        btn_A8 = new BotonPersonalizado();
         btn_A8.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_A8.setBorder(BorderFactory.createEmptyBorder());
         btn_A8.setBounds(487, 383, 20, 23);
+        btn_A8.setName("A8");
         panel.add(btn_A8);
 
-        btn_A9 = new JButton();
+        btn_A9 = new BotonPersonalizado();
         btn_A9.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_A9.setBorder(BorderFactory.createEmptyBorder());
         btn_A9.setBounds(537, 383, 20, 23);
+        btn_A9.setName("A9");
         panel.add(btn_A9);
 
-        btn_A10 = new JButton();
+        btn_A10 = new BotonPersonalizado();
         btn_A10.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_A10.setBorder(BorderFactory.createEmptyBorder());
         btn_A10.setBounds(600, 383, 20, 23);
+        btn_A10.setName("A10");
         panel.add(btn_A10);
 
         //FILA B
 
-        btn_B1 = new JButton();
+        btn_B1 = new BotonPersonalizado();
         btn_B1.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_B1.setBorder(BorderFactory.createEmptyBorder());
         btn_B1.setBounds(137, 342, 20, 23);
         panel.add(btn_B1);
 
-        btn_B2 = new JButton();
+        btn_B2 = new BotonPersonalizado();
         btn_B2.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_B2.setBorder(BorderFactory.createEmptyBorder());
         btn_B2.setBounds(187, 342, 20, 23);
         panel.add(btn_B2);
 
-        btn_B3 = new JButton();
+        btn_B3 = new BotonPersonalizado();
         btn_B3.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_B3.setBorder(BorderFactory.createEmptyBorder());
         btn_B3.setBounds(237, 342, 20, 23);
         panel.add(btn_B3);
 
-        btn_B4 = new JButton();
+        btn_B4 = new BotonPersonalizado();
         btn_B4.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_B4.setBorder(BorderFactory.createEmptyBorder());
         btn_B4.setBounds(287, 342, 20, 23);
         panel.add(btn_B4);
 
-        btn_B5 = new JButton();
+        btn_B5 = new BotonPersonalizado();
         btn_B5.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_B5.setBorder(BorderFactory.createEmptyBorder());
         btn_B5.setBounds(337, 342, 20, 23);
         panel.add(btn_B5);
 
-        btn_B6 = new JButton();
+        btn_B6 = new BotonPersonalizado();
         btn_B6.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_B6.setBorder(BorderFactory.createEmptyBorder());
         btn_B6.setBounds(387, 342, 20, 23);
         panel.add(btn_B6);
 
-        btn_B7 = new JButton();
+        btn_B7 = new BotonPersonalizado();
         btn_B7.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_B7.setBorder(BorderFactory.createEmptyBorder());
         btn_B7.setBounds(437, 342, 20, 23);
         panel.add(btn_B7);
 
-        btn_B8 = new JButton();
+        btn_B8 = new BotonPersonalizado();
         btn_B8.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_B8.setBorder(BorderFactory.createEmptyBorder());
         btn_B8.setBounds(487, 342, 20, 23);
         panel.add(btn_B8);
 
-        btn_B9 = new JButton();
+        btn_B9 = new BotonPersonalizado();
         btn_B9.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_B9.setBorder(BorderFactory.createEmptyBorder());
         btn_B9.setBounds(537, 342, 20, 23);
         panel.add(btn_B9);
 
-        btn_B10 = new JButton();
+        btn_B10 = new BotonPersonalizado();
         btn_B10.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_B10.setBorder(BorderFactory.createEmptyBorder());
         btn_B10.setBounds(600, 342, 20, 23);
@@ -365,61 +384,61 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
 
         //FILA C
 
-        btn_C1 = new JButton();
+        btn_C1 = new BotonPersonalizado();
         btn_C1.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_C1.setBorder(BorderFactory.createEmptyBorder());
         btn_C1.setBounds(137, 301, 20, 23);
         panel.add(btn_C1);
 
-        btn_C2 = new JButton();
+        btn_C2 = new BotonPersonalizado();
         btn_C2.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_C2.setBorder(BorderFactory.createEmptyBorder());
         btn_C2.setBounds(187, 301, 20, 23);
         panel.add(btn_C2);
 
-        btn_C3 = new JButton();
+        btn_C3 = new BotonPersonalizado();
         btn_C3.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_C3.setBorder(BorderFactory.createEmptyBorder());
         btn_C3.setBounds(237, 301, 20, 23);
         panel.add(btn_C3);
 
-        btn_C4 = new JButton();
+        btn_C4 = new BotonPersonalizado();
         btn_C4.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_C4.setBorder(BorderFactory.createEmptyBorder());
         btn_C4.setBounds(287, 301, 20, 23);
         panel.add(btn_C4);
 
-        btn_C5 = new JButton();
+        btn_C5 = new BotonPersonalizado();
         btn_C5.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_C5.setBorder(BorderFactory.createEmptyBorder());
         btn_C5.setBounds(337, 301, 20, 23);
         panel.add(btn_C5);
 
-        btn_C6 = new JButton();
+        btn_C6 = new BotonPersonalizado();
         btn_C6.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_C6.setBorder(BorderFactory.createEmptyBorder());
         btn_C6.setBounds(387, 301, 20, 23);
         panel.add(btn_C6);
 
-        btn_C7 = new JButton();
+        btn_C7 = new BotonPersonalizado();
         btn_C7.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_C7.setBorder(BorderFactory.createEmptyBorder());
         btn_C7.setBounds(437, 301, 20, 23);
         panel.add(btn_C7);
 
-        btn_C8 = new JButton();
+        btn_C8 = new BotonPersonalizado();
         btn_C8.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_C8.setBorder(BorderFactory.createEmptyBorder());
         btn_C8.setBounds(487, 301, 20, 23);
         panel.add(btn_C8);
 
-        btn_C9 = new JButton();
+        btn_C9 = new BotonPersonalizado();
         btn_C9.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_C9.setBorder(BorderFactory.createEmptyBorder());
         btn_C9.setBounds(537, 301, 20, 23);
         panel.add(btn_C9);
 
-        btn_C10 = new JButton();
+        btn_C10 = new BotonPersonalizado();
         btn_C10.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_C10.setBorder(BorderFactory.createEmptyBorder());
         btn_C10.setBounds(600, 301, 20, 23);
@@ -427,61 +446,61 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
 
         //FILA D
 
-        btn_D1 = new JButton();
+        btn_D1 = new BotonPersonalizado();
         btn_D1.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_D1.setBorder(BorderFactory.createEmptyBorder());
         btn_D1.setBounds(137, 260, 20, 23);
         panel.add(btn_D1);
 
-        btn_D2 = new JButton();
+        btn_D2 = new BotonPersonalizado();
         btn_D2.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_D2.setBorder(BorderFactory.createEmptyBorder());
         btn_D2.setBounds(187, 260, 20, 23);
         panel.add(btn_D2);
 
-        btn_D3 = new JButton();
+        btn_D3 = new BotonPersonalizado();
         btn_D3.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_D3.setBorder(BorderFactory.createEmptyBorder());
         btn_D3.setBounds(237, 260, 20, 23);
         panel.add(btn_D3);
 
-        btn_D4 = new JButton();
+        btn_D4 = new BotonPersonalizado();
         btn_D4.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_D4.setBorder(BorderFactory.createEmptyBorder());
         btn_D4.setBounds(287, 260, 20, 23);
         panel.add(btn_D4);
 
-        btn_D5 = new JButton();
+        btn_D5 = new BotonPersonalizado();
         btn_D5.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_D5.setBorder(BorderFactory.createEmptyBorder());
         btn_D5.setBounds(337, 260, 20, 23);
         panel.add(btn_D5);
 
-        btn_D6 = new JButton();
+        btn_D6 = new BotonPersonalizado();
         btn_D6.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_D6.setBorder(BorderFactory.createEmptyBorder());
         btn_D6.setBounds(387, 260, 20, 23);
         panel.add(btn_D6);
 
-        btn_D7 = new JButton();
+        btn_D7 = new BotonPersonalizado();
         btn_D7.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_D7.setBorder(BorderFactory.createEmptyBorder());
         btn_D7.setBounds(437, 260, 20, 23);
         panel.add(btn_D7);
 
-        btn_D8 = new JButton();
+        btn_D8 = new BotonPersonalizado();
         btn_D8.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_D8.setBorder(BorderFactory.createEmptyBorder());
         btn_D8.setBounds(487, 260, 20, 23);
         panel.add(btn_D8);
 
-        btn_D9 = new JButton();
+        btn_D9 = new BotonPersonalizado();
         btn_D9.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_D9.setBorder(BorderFactory.createEmptyBorder());
         btn_D9.setBounds(537, 260, 20, 23);
         panel.add(btn_D9);
 
-        btn_D10 = new JButton();
+        btn_D10 = new BotonPersonalizado();
         btn_D10.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_D10.setBorder(BorderFactory.createEmptyBorder());
         btn_D10.setBounds(600, 260, 20, 23);
@@ -489,61 +508,61 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
 
         //FILA E
 
-        btn_E1 = new JButton("");
+        btn_E1 = new BotonPersonalizado();
         btn_E1.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_E1.setBorder(BorderFactory.createEmptyBorder());
         btn_E1.setBounds(137, 219, 20, 23);
         panel.add(btn_E1);
 
-        btn_E2 = new JButton("");
+        btn_E2 = new BotonPersonalizado();
         btn_E2.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_E2.setBorder(BorderFactory.createEmptyBorder());
         btn_E2.setBounds(187, 219, 20, 23);
         panel.add(btn_E2);
 
-        btn_E3 = new JButton("");
+        btn_E3 = new BotonPersonalizado();
         btn_E3.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_E3.setBorder(BorderFactory.createEmptyBorder());
         btn_E3.setBounds(237, 219, 20, 23);
         panel.add(btn_E3);
 
-        btn_E4 = new JButton("");
+        btn_E4 = new BotonPersonalizado();
         btn_E4.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_E4.setBorder(BorderFactory.createEmptyBorder());
         btn_E4.setBounds(287, 219, 20, 23);
         panel.add(btn_E4);
 
-        btn_E5 = new JButton("");
+        btn_E5 = new BotonPersonalizado();
         btn_E5.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_E5.setBorder(BorderFactory.createEmptyBorder());
         btn_E5.setBounds(337, 219, 20, 23);
         panel.add(btn_E5);
 
-        btn_E6 = new JButton("");
+        btn_E6 = new BotonPersonalizado();
         btn_E6.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_E6.setBorder(BorderFactory.createEmptyBorder());
         btn_E6.setBounds(387, 219, 20, 23);
         panel.add(btn_E6);
 
-        btn_E7 = new JButton("");
+        btn_E7 = new BotonPersonalizado();
         btn_E7.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_E7.setBorder(BorderFactory.createEmptyBorder());
         btn_E7.setBounds(437, 219, 20, 23);
         panel.add(btn_E7);
 
-        btn_E8 = new JButton("");
+        btn_E8 = new BotonPersonalizado();
         btn_E8.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_E8.setBorder(BorderFactory.createEmptyBorder());
         btn_E8.setBounds(487, 219, 20, 23);
         panel.add(btn_E8);
 
-        btn_E9 = new JButton("");
+        btn_E9 = new BotonPersonalizado();
         btn_E9.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_E9.setBorder(BorderFactory.createEmptyBorder());
         btn_E9.setBounds(537, 219, 20, 23);
         panel.add(btn_E9);
 
-        btn_E10 = new JButton("");
+        btn_E10 = new BotonPersonalizado();
         btn_E10.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_E10.setBorder(BorderFactory.createEmptyBorder());
         btn_E10.setBounds(600, 219, 20, 23);
@@ -551,61 +570,61 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
 
         //FILA F
 
-        btn_F1 = new JButton("");
+        btn_F1 = new BotonPersonalizado();
         btn_F1.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_F1.setBorder(BorderFactory.createEmptyBorder());
         btn_F1.setBounds(137, 178, 20, 23);
         panel.add(btn_F1);
 
-        btn_F2 = new JButton("");
+        btn_F2 = new BotonPersonalizado();
         btn_F2.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_F2.setBorder(BorderFactory.createEmptyBorder());
         btn_F2.setBounds(187, 178, 20, 23);
         panel.add(btn_F2);
 
-        btn_F3 = new JButton("");
+        btn_F3 = new BotonPersonalizado();
         btn_F3.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_F3.setBorder(BorderFactory.createEmptyBorder());
         btn_F3.setBounds(237, 178, 20, 23);
         panel.add(btn_F3);
 
-        btn_F4 = new JButton("");
+        btn_F4 = new BotonPersonalizado();
         btn_F4.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_F4.setBorder(BorderFactory.createEmptyBorder());
         btn_F4.setBounds(287, 178, 20, 23);
         panel.add(btn_F4);
 
-        btn_F5 = new JButton("");
+        btn_F5 = new BotonPersonalizado();
         btn_F5.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_F5.setBorder(BorderFactory.createEmptyBorder());
         btn_F5.setBounds(337, 178, 20, 23);
         panel.add(btn_F5);
 
-        btn_F6 = new JButton("");
+        btn_F6 = new BotonPersonalizado();
         btn_F6.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_F6.setBorder(BorderFactory.createEmptyBorder());
         btn_F6.setBounds(387, 178, 20, 23);
         panel.add(btn_F6);
 
-        btn_F7 = new JButton("");
+        btn_F7 = new BotonPersonalizado();
         btn_F7.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_F7.setBorder(BorderFactory.createEmptyBorder());
         btn_F7.setBounds(437, 178, 20, 23);
         panel.add(btn_F7);
 
-        btn_F8 = new JButton("");
+        btn_F8 = new BotonPersonalizado();
         btn_F8.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_F8.setBorder(BorderFactory.createEmptyBorder());
         btn_F8.setBounds(487, 178, 20, 23);
         panel.add(btn_F8);
 
-        btn_F9 = new JButton("");
+        btn_F9 = new BotonPersonalizado();
         btn_F9.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_F9.setBorder(BorderFactory.createEmptyBorder());
         btn_F9.setBounds(537, 178, 20, 23);
         panel.add(btn_F9);
 
-        btn_F10 = new JButton("");
+        btn_F10 = new BotonPersonalizado();
         btn_F10.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_F10.setBorder(BorderFactory.createEmptyBorder());
         btn_F10.setBounds(600, 178, 20, 23);
@@ -613,61 +632,61 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
 
         //FILA G
 
-        btn_G1 = new JButton("");
+        btn_G1 = new BotonPersonalizado();
         btn_G1.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_G1.setBorder(BorderFactory.createEmptyBorder());
         btn_G1.setBounds(137, 137, 20, 23);
         panel.add(btn_G1);
 
-        btn_G2 = new JButton("");
+        btn_G2 = new BotonPersonalizado();
         btn_G2.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_G2.setBorder(BorderFactory.createEmptyBorder());
         btn_G2.setBounds(187, 137, 20, 23);
         panel.add(btn_G2);
 
-        btn_G3 = new JButton("");
+        btn_G3 = new BotonPersonalizado();
         btn_G3.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_G3.setBorder(BorderFactory.createEmptyBorder());
         btn_G3.setBounds(237, 137, 20, 23);
         panel.add(btn_G3);
 
-        btn_G4 = new JButton("");
+        btn_G4 = new BotonPersonalizado();
         btn_G4.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_G4.setBorder(BorderFactory.createEmptyBorder());
         btn_G4.setBounds(287, 137, 20, 23);
         panel.add(btn_G4);
 
-        btn_G5 = new JButton("");
+        btn_G5 = new BotonPersonalizado();
         btn_G5.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_G5.setBorder(BorderFactory.createEmptyBorder());
         btn_G5.setBounds(337, 137, 20, 23);
         panel.add(btn_G5);
 
-        btn_G6 = new JButton("");
+        btn_G6 = new BotonPersonalizado();
         btn_G6.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_G6.setBorder(BorderFactory.createEmptyBorder());
         btn_G6.setBounds(387, 137, 20, 23);
         panel.add(btn_G6);
 
-        btn_G7 = new JButton("");
+        btn_G7 = new BotonPersonalizado();
         btn_G7.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_G7.setBorder(BorderFactory.createEmptyBorder());
         btn_G7.setBounds(437, 137, 20, 23);
         panel.add(btn_G7);
 
-        btn_G8 = new JButton("");
+        btn_G8 = new BotonPersonalizado();
         btn_G8.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_G8.setBorder(BorderFactory.createEmptyBorder());
         btn_G8.setBounds(487, 137, 20, 23);
         panel.add(btn_G8);
 
-        btn_G9 = new JButton("");
+        btn_G9 = new BotonPersonalizado();
         btn_G9.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_G9.setBorder(BorderFactory.createEmptyBorder());
         btn_G9.setBounds(537, 137, 20, 23);
         panel.add(btn_G9);
 
-        btn_G10 = new JButton("");
+        btn_G10 = new BotonPersonalizado();
         btn_G10.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_G10.setBorder(BorderFactory.createEmptyBorder());
         btn_G10.setBounds(600, 137, 20, 23);
@@ -675,189 +694,300 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
 
         //FILA H
 
-        btn_H1 = new JButton("");
+        btn_H1 = new BotonPersonalizado();
         btn_H1.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_H1.setBorder(BorderFactory.createEmptyBorder());
         btn_H1.setBounds(137, 96, 20, 23);
         panel.add(btn_H1);
 
-        btn_H2 = new JButton("");
+        btn_H2 = new BotonPersonalizado();
         btn_H2.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_H2.setBorder(BorderFactory.createEmptyBorder());
         btn_H2.setBounds(187, 96, 20, 23);
         panel.add(btn_H2);
 
-        btn_H3 = new JButton("");
+        btn_H3 = new BotonPersonalizado();
         btn_H3.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_H3.setBorder(BorderFactory.createEmptyBorder());
         btn_H3.setBounds(237, 96, 20, 23);
         panel.add(btn_H3);
 
-        btn_H4 = new JButton("");
+        btn_H4 = new BotonPersonalizado();
         btn_H4.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_H4.setBorder(BorderFactory.createEmptyBorder());
         btn_H4.setBounds(287, 96, 20, 23);
         panel.add(btn_H4);
 
-        btn_H5 = new JButton("");
+        btn_H5 = new BotonPersonalizado();
         btn_H5.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_H5.setBorder(BorderFactory.createEmptyBorder());
         btn_H5.setBounds(337, 96, 20, 23);
         panel.add(btn_H5);
 
-        btn_H6 = new JButton("");
+        btn_H6 = new BotonPersonalizado();
         btn_H6.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_H6.setBorder(BorderFactory.createEmptyBorder());
         btn_H6.setBounds(387, 96, 20, 23);
         panel.add(btn_H6);
 
-        btn_H7 = new JButton("");
+        btn_H7 = new BotonPersonalizado();
         btn_H7.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_H7.setBorder(BorderFactory.createEmptyBorder());
         btn_H7.setBounds(437, 96, 20, 23);
         panel.add(btn_H7);
 
-        btn_H8 = new JButton("");
+        btn_H8 = new BotonPersonalizado();
         btn_H8.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_H8.setBorder(BorderFactory.createEmptyBorder());
         btn_H8.setBounds(487, 96, 20, 23);
         panel.add(btn_H8);
 
-        btn_H9 = new JButton("");
+        btn_H9 = new BotonPersonalizado();
         btn_H9.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_H9.setBorder(BorderFactory.createEmptyBorder());
         btn_H9.setBounds(537, 96, 20, 23);
         panel.add(btn_H9);
 
-        btn_H10 = new JButton("");
+        btn_H10 = new BotonPersonalizado();
         btn_H10.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
         btn_H10.setBorder(BorderFactory.createEmptyBorder());
         btn_H10.setBounds(600, 96, 20, 23);
         panel.add(btn_H10);
 
-        //FILA J
+        //FILA I
 
-        btn_J1 = new JButton("");
-        btn_J1.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_J1.setBorder(BorderFactory.createEmptyBorder());
-        btn_J1.setBounds(137, 55, 20, 23);
-        panel.add(btn_J1);
+        btn_I1 = new BotonPersonalizado();
+        btn_I1.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_I1.setBorder(BorderFactory.createEmptyBorder());
+        btn_I1.setBounds(137, 55, 20, 23);
+        panel.add(btn_I1);
 
-        btn_J2 = new JButton("");
-        btn_J2.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_J2.setBorder(BorderFactory.createEmptyBorder());
-        btn_J2.setBounds(187, 55, 20, 23);
-        panel.add(btn_J2);
+        btn_I2 = new BotonPersonalizado();
+        btn_I2.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_I2.setBorder(BorderFactory.createEmptyBorder());
+        btn_I2.setBounds(187, 55, 20, 23);
+        panel.add(btn_I2);
 
-        btn_J3 = new JButton("");
-        btn_J3.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_J3.setBorder(BorderFactory.createEmptyBorder());
-        btn_J3.setBounds(237, 55, 20, 23);
-        panel.add(btn_J3);
+        btn_I3 = new BotonPersonalizado();
+        btn_I3.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_I3.setBorder(BorderFactory.createEmptyBorder());
+        btn_I3.setBounds(237, 55, 20, 23);
+        panel.add(btn_I3);
 
-        btn_J4 = new JButton("");
-        btn_J4.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_J4.setBorder(BorderFactory.createEmptyBorder());
-        btn_J4.setBounds(287, 55, 20, 23);
-        panel.add(btn_J4);
+        btn_I4 = new BotonPersonalizado();
+        btn_I4.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_I4.setBorder(BorderFactory.createEmptyBorder());
+        btn_I4.setBounds(287, 55, 20, 23);
+        panel.add(btn_I4);
 
-        btn_J5 = new JButton("");
-        btn_J5.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_J5.setBorder(BorderFactory.createEmptyBorder());
-        btn_J5.setBounds(337, 55, 20, 23);
-        panel.add(btn_J5);
+        btn_I5 = new BotonPersonalizado();
+        btn_I5.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_I5.setBorder(BorderFactory.createEmptyBorder());
+        btn_I5.setBounds(337, 55, 20, 23);
+        panel.add(btn_I5);
 
-        btn_J6 = new JButton("");
-        btn_J6.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_J6.setBorder(BorderFactory.createEmptyBorder());
-        btn_J6.setBounds(387, 55, 20, 23);
-        panel.add(btn_J6);
+        btn_I6 = new BotonPersonalizado();
+        btn_I6.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_I6.setBorder(BorderFactory.createEmptyBorder());
+        btn_I6.setBounds(387, 55, 20, 23);
+        panel.add(btn_I6);
 
-        btn_J7 = new JButton("");
-        btn_J7.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_J7.setBorder(BorderFactory.createEmptyBorder());
-        btn_J7.setBounds(437, 55, 20, 23);
-        panel.add(btn_J7);
+        btn_I7 = new BotonPersonalizado();
+        btn_I7.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_I7.setBorder(BorderFactory.createEmptyBorder());
+        btn_I7.setBounds(437, 55, 20, 23);
+        panel.add(btn_I7);
 
-        btn_J8 = new JButton("");
-        btn_J8.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_J8.setBorder(BorderFactory.createEmptyBorder());
-        btn_J8.setBounds(487, 55, 20, 23);
-        panel.add(btn_J8);
+        btn_I8 = new BotonPersonalizado();
+        btn_I8.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_I8.setBorder(BorderFactory.createEmptyBorder());
+        btn_I8.setBounds(487, 55, 20, 23);
+        panel.add(btn_I8);
 
-        btn_J9 = new JButton("");
-        btn_J9.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_J9.setBorder(BorderFactory.createEmptyBorder());
-        btn_J9.setBounds(537, 55, 20, 23);
-        panel.add(btn_J9);
+        btn_I9 = new BotonPersonalizado();
+        btn_I9.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_I9.setBorder(BorderFactory.createEmptyBorder());
+        btn_I9.setBounds(537, 55, 20, 23);
+        panel.add(btn_I9);
 
-        btn_J10 = new JButton("");
-        btn_J10.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_J10.setBorder(BorderFactory.createEmptyBorder());
-        btn_J10.setBounds(600, 55, 20, 23);
-        panel.add(btn_J10);
+        btn_I10 = new BotonPersonalizado();
+        btn_I10.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_I10.setBorder(BorderFactory.createEmptyBorder());
+        btn_I10.setBounds(600, 55, 20, 23);
+        panel.add(btn_I10);
 
         //FILA K
 
-        btn_K1 = new JButton("");
-        btn_K1.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_K1.setBorder(BorderFactory.createEmptyBorder());
-        btn_K1.setBounds(137, 16, 20, 23);
-        panel.add(btn_K1);
+        btn_J1 = new BotonPersonalizado();
+        btn_J1.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_J1.setBorder(BorderFactory.createEmptyBorder());
+        btn_J1.setBounds(137, 16, 20, 23);
+        panel.add(btn_J1);
 
-        btn_K2 = new JButton("");
-        btn_K2.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_K2.setBorder(BorderFactory.createEmptyBorder());
-        btn_K2.setBounds(187, 16, 20, 23);
-        panel.add(btn_K2);
+        btn_J2 = new BotonPersonalizado();
+        btn_J2.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_J2.setBorder(BorderFactory.createEmptyBorder());
+        btn_J2.setBounds(187, 16, 20, 23);
+        panel.add(btn_J2);
 
-        btn_K3 = new JButton("");
-        btn_K3.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_K3.setBorder(BorderFactory.createEmptyBorder());
-        btn_K3.setBounds(237, 16, 20, 23);
-        panel.add(btn_K3);
+        btn_J3 = new BotonPersonalizado();
+        btn_J3.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_J3.setBorder(BorderFactory.createEmptyBorder());
+        btn_J3.setBounds(237, 16, 20, 23);
+        panel.add(btn_J3);
 
-        btn_K4 = new JButton("");
-        btn_K4.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_K4.setBorder(BorderFactory.createEmptyBorder());
-        btn_K4.setBounds(287, 16, 20, 23);
-        panel.add(btn_K4);
+        btn_J4 = new BotonPersonalizado();
+        btn_J4.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_J4.setBorder(BorderFactory.createEmptyBorder());
+        btn_J4.setBounds(287, 16, 20, 23);
+        panel.add(btn_J4);
 
-        btn_K5 = new JButton("");
-        btn_K5.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_K5.setBorder(BorderFactory.createEmptyBorder());
-        btn_K5.setBounds(337, 16, 20, 23);
-        panel.add(btn_K5);
+        btn_J5 = new BotonPersonalizado();
+        btn_J5.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_J5.setBorder(BorderFactory.createEmptyBorder());
+        btn_J5.setBounds(337, 16, 20, 23);
+        panel.add(btn_J5);
 
-        btn_K6 = new JButton("");
-        btn_K6.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_K6.setBorder(BorderFactory.createEmptyBorder());
-        btn_K6.setBounds(387, 16, 20, 23);
-        panel.add(btn_K6);
+        btn_J6 = new BotonPersonalizado();
+        btn_J6.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_J6.setBorder(BorderFactory.createEmptyBorder());
+        btn_J6.setBounds(387, 16, 20, 23);
+        panel.add(btn_J6);
 
-        btn_K7 = new JButton("");
-        btn_K7.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_K7.setBorder(BorderFactory.createEmptyBorder());
-        btn_K7.setBounds(437, 16, 20, 23);
-        panel.add(btn_K7);
+        btn_J7 = new BotonPersonalizado();
+        btn_J7.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_J7.setBorder(BorderFactory.createEmptyBorder());
+        btn_J7.setBounds(437, 16, 20, 23);
+        panel.add(btn_J7);
 
-        btn_K8 = new JButton("");
-        btn_K8.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_K8.setBorder(BorderFactory.createEmptyBorder());
-        btn_K8.setBounds(487, 16, 20, 23);
-        panel.add(btn_K8);
+        btn_J8 = new BotonPersonalizado();
+        btn_J8.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_J8.setBorder(BorderFactory.createEmptyBorder());
+        btn_J8.setBounds(487, 16, 20, 23);
+        panel.add(btn_J8);
 
-        btn_K9 = new JButton("");
-        btn_K9.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_K9.setBorder(BorderFactory.createEmptyBorder());
-        btn_K9.setBounds(537, 16, 20, 23);
-        panel.add(btn_K9);
+        btn_J9 = new BotonPersonalizado();
+        btn_J9.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_J9.setBorder(BorderFactory.createEmptyBorder());
+        btn_J9.setBounds(537, 16, 20, 23);
+        panel.add(btn_J9);
 
-        btn_K10 = new JButton("");
-        btn_K10.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
-        btn_K10.setBorder(BorderFactory.createEmptyBorder());
-        btn_K10.setBounds(600, 16, 20, 23);
-        panel.add(btn_K10);
+        btn_J10 = new BotonPersonalizado();
+        btn_J10.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+        btn_J10.setBorder(BorderFactory.createEmptyBorder());
+        btn_J10.setBounds(600, 16, 20, 23);
+        panel.add(btn_J10);
+
+        //Se me olvidaron los action listeners, probablemente debería meter los botones en un array y luego hacer foreach pero  ¯\_(ツ)_/¯
+        //al final lo tuve que hacer
+        botones.add(btn_A1);
+        botones.add(btn_A2);
+        botones.add(btn_A3);
+        botones.add(btn_A4);
+        botones.add(btn_A5);
+        botones.add(btn_A6);
+        botones.add(btn_A7);
+        botones.add(btn_A8);
+        botones.add(btn_A9);
+        botones.add(btn_A10);
+        botones.add(btn_B1);
+        botones.add( btn_B2);
+        botones.add( btn_B3);
+        botones.add( btn_B4);
+        botones.add( btn_B5);
+        botones.add( btn_B6);
+        botones.add( btn_B7);
+        botones.add( btn_B8);
+        botones.add( btn_B9);
+        botones.add(btn_B10);
+        botones.add( btn_C1);
+        botones.add( btn_C2);
+        botones.add( btn_C3);
+        botones.add( btn_C4);
+        botones.add( btn_C5);
+        botones.add (btn_C6);
+        botones.add( btn_C7);
+        botones.add( btn_C8);
+        botones.add( btn_C9);
+        botones.add(btn_C10);
+        botones.add( btn_D1);
+        botones.add( btn_D2);
+        botones.add( btn_D3);
+        botones.add (btn_D4);
+        botones.add( btn_D5);
+        botones.add( btn_D6);
+        botones.add( btn_D7);
+        botones.add( btn_D8);
+        botones.add( btn_D9);
+        botones.add(btn_D10);
+        botones.add( btn_E1);
+        botones.add( btn_E2);
+        botones.add( btn_E3);
+        botones.add( btn_E4);
+        botones.add( btn_E5);
+        botones.add( btn_E6);
+        botones.add( btn_E7);
+        botones.add( btn_E8);
+        botones.add(btn_E9);
+        botones.add(btn_E10);
+        botones.add(btn_F1);
+        botones.add(btn_F2);
+        botones.add(btn_F3);
+        botones.add(btn_F4);
+        botones.add(btn_F5);
+        botones.add(btn_F6);
+        botones.add(btn_F7);
+        botones.add(btn_F8);
+        botones.add (btn_F9);
+        botones.add(btn_F10);
+        botones.add(btn_G1);
+        botones.add(btn_G2);
+        botones.add(btn_G3);
+        botones.add(btn_G4);
+        botones.add(btn_G5);
+        botones.add(btn_G6);
+        botones.add(btn_G7);
+        botones.add(btn_G8);
+        botones.add(btn_G9);
+        botones.add(btn_G10);
+        botones.add(btn_H1);
+        botones.add(btn_H2);
+        botones.add(btn_H3);
+        botones.add(btn_H4);
+        botones.add(btn_H5);
+        botones.add(btn_H6);
+        botones.add(btn_H7);
+        botones.add(btn_H8);
+        botones.add(btn_H9);
+        botones.add(btn_H10);
+        botones.add( btn_I1);
+        botones.add( btn_I2);
+        botones.add( btn_I3);
+        botones.add( btn_I4);
+        botones.add( btn_I5);
+        botones.add( btn_I6);
+        botones.add( btn_I7);
+        botones.add( btn_I8);
+        botones.add( btn_I9);
+        botones.add(btn_I10);
+        botones.add(btn_J1);
+        botones.add( btn_J2);
+        botones.add( btn_J3);
+        botones.add( btn_J4);
+        botones.add( btn_J5);
+        botones.add( btn_J6);
+        botones.add( btn_J7);
+        botones.add( btn_J8);
+        botones.add( btn_J9);
+        botones.add(btn_J10);
+
+        for(JButton boton: botones){
+            boton.addActionListener(this);
+        }
+
+
+
+
 
 
     }
@@ -873,27 +1003,181 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
         }
     }
 
+    //TODO: EL CÓDIGO QUE SIGUE NO SIRVE, HAY QUE MODIFICARLO, sobre todo la parte de checar si un botón ya fue incluido
+    //TODO: En la clase de boton personalizado hay una variable booleana para saber si fue presionado o no, pero no lo
+    //TODO: he implementado bien. CREO QUE YA SIRVE, NOT SO SURE TBH.
+    //TODO: LOS BOTONES SE TIENEN QUE DESACTIVAR CONFORME ESTÉ SU ESTADO EN SQL.
+    //TODO: Reflejar el precio con el Jspinner
     @Override
     public void actionPerformed(ActionEvent e) {
+        BotonPersonalizado botonDesactivar;
+
         if(e.getSource() == btn_agregarAsiento){
-
+            for(BotonPersonalizado boton: botones){
+                if(boton.isPresionado()){
+                    botonesSeleccionados.add(boton);
+                    botonDesactivar = boton;
+                    botonDesactivar.setEnabled(false);
+                    botonDesactivar.setPresionado(true);
+                }else{
+                    boton.setEnabled(true);
+                }
+            }
+            lbl_numAsiento.setText("");
+            lbl_precio_dinero.setText("");
         }else if(e.getSource() == btn_volver){
-
+            SeleccionarPelicula seleccionarPelicula = new SeleccionarPelicula();
+            seleccionarPelicula.setVisible(true);
         }else if(e.getSource() == btn_continuar){
+
 
         }else if(e.getSource() == btn_A1){
 
+            BotonPersonalizado bot =(BotonPersonalizado) e.getSource();
+
+            if(!bot.isPresionado()){
+                lbl_numAsiento.setText(((JComponent) e.getSource()).getName());
+                lbl_precio_dinero.setText("$80");
+                bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo2.png"));
+                bot.setBorderPainted(false);
+                bot.setFocusPainted(false);
+                bot.setPresionado(true);
+                for(JButton boton: botones){
+                    if(!boton.equals(bot)){
+                        boton.setEnabled(false);
+                    }
+                }
+            }else{
+                bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+                lbl_numAsiento.setText("");
+                lbl_precio_dinero.setText("");
+                bot.setPresionado(false);
+                for(JButton boton: botones){
+                        boton.setEnabled(true);
+                }
+            }
         }else if(e.getSource() == btn_A2){
+            BotonPersonalizado bot =(BotonPersonalizado) e.getSource();
+            if(!bot.isPresionado()){
+                lbl_numAsiento.setText(((JComponent) e.getSource()).getName());
+                lbl_precio_dinero.setText("$80");
+                bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo2.png"));
+                bot.setBorderPainted(false);
+                bot.setFocusPainted(false);
+                bot.setPresionado(true);
+                for(JButton boton: botones){
+                    if(!boton.equals(bot)){
+                        boton.setEnabled(false);
+                    }
+                }
+            }else{
+                bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+                lbl_numAsiento.setText("");
+                lbl_precio_dinero.setText("");
+                bot.setPresionado(false);
+                 for(JButton boton: botones){
+                    boton.setEnabled(true);
+                }
+            }
 
         }else if(e.getSource() == btn_A3){
+            BotonPersonalizado bot =(BotonPersonalizado) e.getSource();
+            if(!bot.isPresionado()){
+                lbl_numAsiento.setText(((JComponent) e.getSource()).getName());
+                lbl_precio_dinero.setText("$80");
+                bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo2.png"));
+                bot.setBorderPainted(false);
+                bot.setFocusPainted(false);
+                bot.setPresionado(true);
+                for(JButton boton: botones){
+                    if(!boton.equals(bot)){
+                        boton.setEnabled(false);
+                    }
+                }
+            }else{
+                bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+                lbl_numAsiento.setText("");
+                lbl_precio_dinero.setText("");
+                bot.setPresionado(false);
+                for(JButton boton: botones){
+                    boton.setEnabled(true);
+                }
+            }
 
         }else if(e.getSource() == btn_A4){
+            BotonPersonalizado bot =(BotonPersonalizado) e.getSource();
+            if(!bot.isPresionado()){
+                lbl_numAsiento.setText(((JComponent) e.getSource()).getName());
+                lbl_precio_dinero.setText("$80");
+                bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo2.png"));
+                bot.setBorderPainted(false);
+                bot.setFocusPainted(false);
+                bot.setPresionado(true);
+                for(JButton boton: botones){
+                    if(!boton.equals(bot)){
+                        boton.setEnabled(false);
+                    }
+                }
+            }else{
+                bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+                lbl_numAsiento.setText("");
+                lbl_precio_dinero.setText("");
+                bot.setPresionado(false);
+                for(JButton boton: botones){
+                    boton.setEnabled(true);
+                }
+            }
 
         }else if(e.getSource() == btn_A5){
+            BotonPersonalizado bot =(BotonPersonalizado) e.getSource();
+            if(!bot.isPresionado()){
+                lbl_numAsiento.setText(((JComponent) e.getSource()).getName());
+                lbl_precio_dinero.setText("$80");
+                bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo2.png"));
+                bot.setBorderPainted(false);
+                bot.setFocusPainted(false);
+                bot.setPresionado(true);
+                for(JButton boton: botones){
+                    if(!boton.equals(bot)){
+                        boton.setEnabled(false);
+                    }
+                }
+            }else{
+                bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+                lbl_numAsiento.setText("");
+                lbl_precio_dinero.setText("");
+                bot.setPresionado(false);
+                for(JButton boton: botones){
+                    boton.setEnabled(true);
+                }
+            }
 
         }else if(e.getSource() == btn_A6){
+            BotonPersonalizado bot =(BotonPersonalizado) e.getSource();
+            if(!bot.isPresionado()){
+                lbl_numAsiento.setText(((JComponent) e.getSource()).getName());
+                lbl_precio_dinero.setText("$80");
+                bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo2.png"));
+                bot.setBorderPainted(false);
+                bot.setFocusPainted(false);
+                bot.setPresionado(true);
+                for(JButton boton: botones){
+                    if(!boton.equals(bot)){
+                        boton.setEnabled(false);
+                    }
+                }
+            }else{
+                bot.setIcon(new ImageIcon("C:\\Users\\eduar\\IdeaProjects\\Modulo2\\IMGS\\fondo1.png"));
+                lbl_numAsiento.setText("");
+                lbl_precio_dinero.setText("");
+                bot.setPresionado(false);
+                for(JButton boton: botones){
+                    boton.setEnabled(true);
+                }
+            }
 
         }else if(e.getSource() == btn_A7){
+
 
         }else if(e.getSource() == btn_A8){
 
@@ -1041,6 +1325,26 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
 
         }else if(e.getSource() == btn_H10){
 
+        }else if(e.getSource() == btn_I1){
+
+        }else if(e.getSource() == btn_I2){
+
+        }else if(e.getSource() == btn_I3){
+
+        }else if(e.getSource() == btn_I4){
+
+        }else if(e.getSource() == btn_J5){
+
+        }else if(e.getSource() == btn_J6){
+
+        }else if(e.getSource() == btn_J7){
+
+        }else if(e.getSource() == btn_J8){
+
+        }else if(e.getSource() == btn_J9){
+
+        }else if(e.getSource() == btn_J10){
+
         }else if(e.getSource() == btn_J1){
 
         }else if(e.getSource() == btn_J2){
@@ -1060,26 +1364,6 @@ public class SeleccionarAsiento extends JFrame implements ActionListener {
         }else if(e.getSource() == btn_J9){
 
         }else if(e.getSource() == btn_J10){
-
-        }else if(e.getSource() == btn_K1){
-
-        }else if(e.getSource() == btn_K2){
-
-        }else if(e.getSource() == btn_K3){
-
-        }else if(e.getSource() == btn_K4){
-
-        }else if(e.getSource() == btn_K5){
-
-        }else if(e.getSource() == btn_K6){
-
-        }else if(e.getSource() == btn_K7){
-
-        }else if(e.getSource() == btn_K8){
-
-        }else if(e.getSource() == btn_K9){
-
-        }else if(e.getSource() == btn_K10){
 
         }
     }

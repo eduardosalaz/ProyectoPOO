@@ -88,9 +88,9 @@ public class Login implements ActionListener {
         panel_red.setBounds(38, 75, 387, 61);
         frameLog.getContentPane().add(panel_red);
 
-        JLabel txt_img = new JLabel("");
-        panel_red.add(txt_img);
-        txt_img.setIcon(new ImageIcon(img));
+        JLabel lbl_img_login = new JLabel("");
+        panel_red.add(lbl_img_login);
+        lbl_img_login.setIcon(new ImageIcon(img));
 
         JPanel panel_gris = new JPanel();
         panel_gris.setBackground(new Color(46,48,48));
@@ -113,13 +113,10 @@ public class Login implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("boton puchado");
         if(e.getSource() == btn_ingresar){
-            System.out.println("boton puchado nice");
             frameLog.dispose();
             PrincipalUser principalUser = new PrincipalUser();
             principalUser.setVisible(true);
         }
 
     }
-}

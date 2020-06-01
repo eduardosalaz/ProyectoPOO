@@ -8,8 +8,11 @@ import java.awt.event.ActionListener;
 
 public class SeleccionarPelicula extends JFrame implements ActionListener {
 
-    private JButton btn_1, btn_2, btn_3;
+    private JButton btn_1, btn_2, btn_3, btn_cambiarDulcería, btn_corteBoleto;
     private JPanel panel1, panel2, panel3;
+    public JButton btn_peli1_hora1, btn_peli1_hora2, btn_peli1_hora3, btn_peli2_hora1, btn_peli2_hora2, btn_peli2_hora3, btn_peli3_hora1, btn_peli3_hora2, btn_peli3_hora3;
+    public JButton btn_peli4_hora1, btn_peli4_hora2, btn_peli4_hora3, btn_peli5_hora1, btn_peli5_hora2, btn_peli5_hora3, btn_peli6_hora1, btn_peli6_hora2, btn_peli6_hora3;
+    public JButton btn_peli7_hora1, btn_peli7_hora2, btn_peli7_hora3,btn_peli8_hora1, btn_peli8_hora2, btn_peli8_hora3, btn_peli9_hora1, btn_peli9_hora2, btn_peli9_hora3;
     private static final long serialVersionUID = 1L;
     public JLayeredPane layeredPane;
     public static void main(String[] args) {
@@ -60,17 +63,17 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         lbl_titulo.setBounds(194, 11, 555, 57);
         contentPane.add(lbl_titulo);
 
-        JButton btnNewButton_6_1 = new JButton("Cambiar a Dulcer\u00EDa");
-        btnNewButton_6_1.setFont(new Font("Arial Black", Font.BOLD, 12));
-        btnNewButton_6_1.setBackground(new Color(171, 0 ,51));
-        btnNewButton_6_1.setBounds(10, 558, 175, 32);
-        contentPane.add(btnNewButton_6_1);
+        btn_cambiarDulcería = new JButton("Cambiar a Dulcer\u00EDa");
+        btn_cambiarDulcería.setFont(new Font("Arial Black", Font.BOLD, 12));
+        btn_cambiarDulcería.setBackground(new Color(171, 0 ,51));
+        btn_cambiarDulcería.setBounds(10, 558, 175, 32);
+        contentPane.add(btn_cambiarDulcería);
 
-        JButton btnNewButton_6_1_1 = new JButton("Corte de Boleto");
-        btnNewButton_6_1_1.setFont(new Font("Arial Black", Font.BOLD, 12));
-        btnNewButton_6_1_1.setBackground(new Color(171, 0, 51));
-        btnNewButton_6_1_1.setBounds(759, 558, 175, 32);
-        contentPane.add(btnNewButton_6_1_1);
+        btn_corteBoleto = new JButton("Corte de Boleto");
+        btn_corteBoleto.setFont(new Font("Arial Black", Font.BOLD, 12));
+        btn_corteBoleto.setBackground(new Color(171, 0, 51));
+        btn_corteBoleto.setBounds(759, 558, 175, 32);
+        contentPane.add(btn_corteBoleto);
 
         btn_1 = new JButton("Página 1");
         btn_1.setBounds(329, 560, 90, 20);
@@ -90,7 +93,6 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         btn_3.addActionListener(this);
         contentPane.add(btn_3);
 
-
         //Contenidos Panel1
 
         JLabel lbl_peli1_img = new JLabel("Imagen Pel\u00EDcula 1");
@@ -105,17 +107,17 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         lbl_peli1_nombre.setBounds(120, 11, 212, 32);
         panel1.add(lbl_peli1_nombre);
 
-        JButton btn_peli1_hora1 = new JButton("Horario 1");
+        btn_peli1_hora1 = new JButton("Horario 1");
         btn_peli1_hora1.setBackground(new Color(171, 0,51));
         btn_peli1_hora1.setBounds(230, 45, 161, 66);
         panel1.add(btn_peli1_hora1);
 
-        JButton btn_peli1_hora2 = new JButton("Horario 2");
+        btn_peli1_hora2 = new JButton("Horario 2");
         btn_peli1_hora2.setBackground(new Color(171, 50, 51));
         btn_peli1_hora2.setBounds(390, 45, 161, 66);
         panel1.add(btn_peli1_hora2);
 
-        JButton btn_peli1_hora3 = new JButton("Horario 3");
+        btn_peli1_hora3 = new JButton("Horario 3");
         btn_peli1_hora3.setBackground(new Color(171, 0,51));
         btn_peli1_hora3.setBounds(550, 45, 152, 66);
         panel1.add(btn_peli1_hora3);
@@ -138,17 +140,17 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         lbl_peli2_nombre.setBounds(120, 137, 212, 32);
         panel1.add(lbl_peli2_nombre);
 
-        JButton btn_peli2_hora1 = new JButton("Horario 1");
+        btn_peli2_hora1 = new JButton("Horario 1");
         btn_peli2_hora1.setBackground(new Color(171, 0,51));
         btn_peli2_hora1.setBounds(230, 171, 161, 66);
         panel1.add(btn_peli2_hora1);
 
-        JButton btn_peli2_hora2 = new JButton("Horario 2");
+        btn_peli2_hora2 = new JButton("Horario 2");
         btn_peli2_hora2.setBackground(new Color(171, 50, 51));
         btn_peli2_hora2.setBounds(390, 171, 161, 66);
         panel1.add(btn_peli2_hora2);
 
-        JButton btn_peli2_hora3 = new JButton("Horario 3");
+        btn_peli2_hora3 = new JButton("Horario 3");
         btn_peli2_hora3.setBackground(new Color(171, 0,51));
         btn_peli2_hora3.setBounds(550, 171, 152, 66);
         panel1.add(btn_peli2_hora3);
@@ -171,17 +173,17 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         lbl_peli3_nombre.setBounds(120, 266, 212, 32);
         panel1.add(lbl_peli3_nombre);
 
-        JButton btn_peli3_hora1 = new JButton("Horario 1");
+        btn_peli3_hora1 = new JButton("Horario 1");
         btn_peli3_hora1.setBackground(new Color(171, 0,51));
         btn_peli3_hora1.setBounds(230, 300, 161, 66);
         panel1.add(btn_peli3_hora1);
 
-        JButton btn_peli3_hora2 = new JButton("Horario 2");
+        btn_peli3_hora2 = new JButton("Horario 2");
         btn_peli3_hora2.setBackground(new Color(171, 50, 51));
         btn_peli3_hora2.setBounds(390, 300, 161, 66);
         panel1.add(btn_peli3_hora2);
 
-        JButton btn_peli3_hora3 = new JButton("Horario 3");
+        btn_peli3_hora3 = new JButton("Horario 3");
         btn_peli3_hora3.setBackground(new Color(171, 0,51));
         btn_peli3_hora3.setBounds(550, 300, 152, 66);
         panel1.add(btn_peli3_hora3);
@@ -206,17 +208,17 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         lbl_peli4_nombre.setBounds(120, 11, 212, 32);
         panel2.add(lbl_peli4_nombre);
 
-        JButton btn_peli4_hora1 = new JButton("Horario 1");
+        btn_peli4_hora1 = new JButton("Horario 1");
         btn_peli4_hora1.setBackground(new Color(171, 0,51));
         btn_peli4_hora1.setBounds(230, 45, 161, 66);
         panel2.add(btn_peli4_hora1);
 
-        JButton btn_peli4_hora2 = new JButton("Horario 2");
+        btn_peli4_hora2 = new JButton("Horario 2");
         btn_peli4_hora2.setBackground(new Color(171, 50, 51));
         btn_peli4_hora2.setBounds(390, 45, 161, 66);
         panel2.add(btn_peli4_hora2);
 
-        JButton btn_peli4_hora3 = new JButton("Horario 3");
+        btn_peli4_hora3 = new JButton("Horario 3");
         btn_peli4_hora3.setBackground(new Color(171, 0,51));
         btn_peli4_hora3.setBounds(550, 45, 152, 66);
         panel2.add(btn_peli4_hora3);
@@ -239,17 +241,17 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         lbl_peli5_nombre.setBounds(120, 137, 212, 32);
         panel2.add(lbl_peli5_nombre);
 
-        JButton btn_peli5_hora1 = new JButton("Horario 1");
+        btn_peli5_hora1 = new JButton("Horario 1");
         btn_peli5_hora1.setBackground(new Color(171, 0,51));
         btn_peli5_hora1.setBounds(230, 171, 161, 66);
         panel2.add(btn_peli5_hora1);
 
-        JButton btn_peli5_hora2 = new JButton("Horario 2");
+        btn_peli5_hora2 = new JButton("Horario 2");
         btn_peli5_hora2.setBackground(new Color(171, 50, 51));
         btn_peli5_hora2.setBounds(390, 171, 161, 66);
         panel2.add(btn_peli5_hora2);
 
-        JButton btn_peli5_hora3 = new JButton("Horario 3");
+        btn_peli5_hora3 = new JButton("Horario 3");
         btn_peli5_hora3.setBackground(new Color(171, 0,51));
         btn_peli5_hora3.setBounds(550, 171, 152, 66);
         panel2.add(btn_peli5_hora3);
@@ -272,17 +274,17 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         lbl_peli6_nombre.setBounds(120, 266, 212, 32);
         panel2.add(lbl_peli6_nombre);
 
-        JButton btn_peli6_hora1 = new JButton("Horario 1");
+        btn_peli6_hora1 = new JButton("Horario 1");
         btn_peli6_hora1.setBackground(new Color(171, 0,51));
         btn_peli6_hora1.setBounds(230, 300, 161, 66);
         panel2.add(btn_peli6_hora1);
 
-        JButton btn_peli6_hora2 = new JButton("Horario 2");
+        btn_peli6_hora2 = new JButton("Horario 2");
         btn_peli6_hora2.setBackground(new Color(171, 50, 51));
         btn_peli6_hora2.setBounds(390, 300, 161, 66);
         panel2.add(btn_peli6_hora2);
 
-        JButton btn_peli6_hora3 = new JButton("Horario 3");
+        btn_peli6_hora3 = new JButton("Horario 3");
         btn_peli6_hora3.setBackground(new Color(171, 0,51));
         btn_peli6_hora3.setBounds(550, 300, 152, 66);
         panel2.add(btn_peli6_hora3);
@@ -307,17 +309,17 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         lbl_peli7_nombre.setBounds(120, 11, 212, 32);
         panel3.add(lbl_peli7_nombre);
 
-        JButton btn_peli7_hora1 = new JButton("Horario 1");
+        btn_peli7_hora1 = new JButton("Horario 1");
         btn_peli7_hora1.setBackground(new Color(171, 0,51));
         btn_peli7_hora1.setBounds(230, 45, 161, 66);
         panel3.add(btn_peli7_hora1);
 
-        JButton btn_peli7_hora2 = new JButton("Horario 2");
+        btn_peli7_hora2 = new JButton("Horario 2");
         btn_peli7_hora2.setBackground(new Color(171, 50, 51));
         btn_peli7_hora2.setBounds(390, 45, 161, 66);
         panel3.add(btn_peli7_hora2);
 
-        JButton btn_peli7_hora3 = new JButton("Horario 3");
+        btn_peli7_hora3 = new JButton("Horario 3");
         btn_peli7_hora3.setBackground(new Color(171, 0,51));
         btn_peli7_hora3.setBounds(550, 45, 152, 66);
         panel3.add(btn_peli7_hora3);
@@ -340,17 +342,17 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         lbl_peli8_nombre.setBounds(120, 137, 212, 32);
         panel3.add(lbl_peli8_nombre);
 
-        JButton btn_peli8_hora1= new JButton("Horario 1");
+        btn_peli8_hora1= new JButton("Horario 1");
         btn_peli8_hora1.setBackground(new Color(171, 0,51));
         btn_peli8_hora1.setBounds(230, 171, 161, 66);
         panel3.add(btn_peli8_hora1);
 
-        JButton btn_peli8_hora2 = new JButton("Horario 2");
+        btn_peli8_hora2 = new JButton("Horario 2");
         btn_peli8_hora2.setBackground(new Color(171, 50, 51));
         btn_peli8_hora2.setBounds(390, 171, 161, 66);
         panel3.add(btn_peli8_hora2);
 
-        JButton btn_peli8_hora3 = new JButton("Horario 3");
+        btn_peli8_hora3 = new JButton("Horario 3");
         btn_peli8_hora3.setBackground(new Color(171, 0,51));
         btn_peli8_hora3.setBounds(550, 171, 152, 66);
         panel3.add(btn_peli8_hora3);
@@ -373,17 +375,17 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         lbl_peli9_nombre.setBounds(120, 266, 212, 32);
         panel3.add(lbl_peli9_nombre);
 
-        JButton btn_peli9_hora1 = new JButton("Horario 1");
+        btn_peli9_hora1 = new JButton("Horario 1");
         btn_peli9_hora1.setBackground(new Color(171, 0,51));
         btn_peli9_hora1.setBounds(230, 300, 161, 66);
         panel3.add(btn_peli9_hora1);
 
-        JButton btn_peli9_hora2 = new JButton("Horario 2");
+        btn_peli9_hora2 = new JButton("Horario 2");
         btn_peli9_hora2.setBackground(new Color(171, 50, 51));
         btn_peli9_hora2.setBounds(390, 300, 161, 66);
         panel3.add(btn_peli9_hora2);
 
-        JButton btn_peli9_hora3 = new JButton("Horario 3");
+        btn_peli9_hora3 = new JButton("Horario 3");
         btn_peli9_hora3.setBackground(new Color(171, 0,51));
         btn_peli9_hora3.setBounds(550, 300, 152, 66);
         panel3.add(btn_peli9_hora3);
@@ -394,19 +396,88 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         lbl_peli9_horarios.setBounds(120, 319, 101, 23);
         panel3.add(lbl_peli9_horarios);
 
+        //Se me olvidaron los action listeners.
+        btn_corteBoleto.addActionListener(this);
+        btn_cambiarDulcería.addActionListener(this);
+        btn_peli1_hora1.addActionListener(this);
+        btn_peli1_hora2.addActionListener(this);
+        btn_peli1_hora3.addActionListener(this);
+        btn_peli2_hora1.addActionListener(this);
+        btn_peli2_hora2.addActionListener(this);
+        btn_peli2_hora3.addActionListener(this);
+        btn_peli3_hora1.addActionListener(this);
+        btn_peli3_hora2.addActionListener(this);
+        btn_peli3_hora3.addActionListener(this);
+        btn_peli4_hora1.addActionListener(this);
+        btn_peli4_hora2.addActionListener(this);
+        btn_peli4_hora3.addActionListener(this);
+        btn_peli5_hora1.addActionListener(this);
+        btn_peli5_hora2.addActionListener(this);
+        btn_peli5_hora3.addActionListener(this);
+        btn_peli6_hora1.addActionListener(this);
+        btn_peli6_hora2.addActionListener(this);
+        btn_peli6_hora3.addActionListener(this);
+        btn_peli7_hora1.addActionListener(this);
+        btn_peli7_hora2.addActionListener(this);
+        btn_peli7_hora3.addActionListener(this);
+        btn_peli8_hora1.addActionListener(this);
+        btn_peli8_hora2.addActionListener(this);
+        btn_peli8_hora3.addActionListener(this);
+        btn_peli9_hora1.addActionListener(this);
+        btn_peli9_hora2.addActionListener(this);
+        btn_peli9_hora3.addActionListener(this);
+
     }
 
     @Override
+    //TODO: Realizar la conexion a SQL para mostrar de manera actualizada los asientos de la siguiente interfaz.
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==btn_1){
-            System.out.println("very gud");
             switchPane(panel1);
         }else if(e.getSource() == btn_2){
             switchPane(panel2);
-            System.out.println("amazing");
         }else if(e.getSource() == btn_3){
             switchPane(panel3);
-            System.out.println("good nice i see");
+        }else if(e.getSource() == btn_peli1_hora1){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+
+        }else if(e.getSource() == btn_peli1_hora2){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+
+        }else if(e.getSource() == btn_peli1_hora3){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+
+        }else if(e.getSource() == btn_peli2_hora1){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+
+        }else if(e.getSource() == btn_peli2_hora2){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+
+        }else if(e.getSource() == btn_peli2_hora3){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+
+        }else if(e.getSource() == btn_peli3_hora1){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+
+        }else if(e.getSource() == btn_peli3_hora2){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+
+        }else if(e.getSource() == btn_peli3_hora3){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+
+        }else if(e.getSource() == btn_peli4_hora1){
+            SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
+            seleccionarAsiento.setVisible(true);
+
         }
     }
 
