@@ -1,4 +1,4 @@
-package Vistas;
+package Interfaces;
 import java.awt.*;
 
 import javax.swing.*;

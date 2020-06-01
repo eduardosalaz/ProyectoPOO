@@ -1,7 +1,8 @@
-package Vistas;
+package Interfaces;
+
 import javax.swing.*;
 
-public class BotonPersonalizado extends JButton {
+public class BotonPersonalizado extends JButton{
     public boolean presionado = false;
     public String tipo;
     public boolean yaAgregado = false;

@@ -1,4 +1,6 @@
-package Vistas;
+package Interfaces;
+
+
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -7,11 +9,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
+public class PrincipalUser extends JFrame implements ActionListener {
 
-public class PrincipalUser extends JFrame {
-    
     private static final long serialVersionUID = 1L;
+    private JButton btn_taquilla, btn_dulceria;
     private JPanel contentPane;
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -52,18 +56,36 @@ public class PrincipalUser extends JFrame {
         lbl_bienvenida.setBounds(224, 11, 496, 130);
         contentPane.add(lbl_bienvenida);
 
-        JButton btn_dulceria = new JButton("Dulcer\u00EDa");
+        btn_dulceria = new JButton("Dulcer\u00EDa");
         btn_dulceria.setForeground(Color.WHITE);
         btn_dulceria.setFont(new Font("Arial", Font.PLAIN, 30));
         btn_dulceria.setBounds(549, 260, 359, 130);
         btn_dulceria.setBackground(new Color(171, 0, 51));
+        btn_dulceria.addActionListener(this);
         contentPane.add(btn_dulceria);
 
-        JButton btn_taquilla = new JButton("Taquilla de Boletos");
+        btn_taquilla = new JButton("Taquilla de Boletos");
         btn_taquilla.setForeground(Color.WHITE);
         btn_taquilla.setFont(new Font("Arial", Font.PLAIN, 30));
         btn_taquilla.setBounds(36, 260, 359, 130);
         btn_taquilla.setBackground(new Color(171, 0, 51));
+        btn_taquilla.addActionListener(this);
         contentPane.add(btn_taquilla);
+
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == btn_dulceria){
+            System.out.println("a la dulcería");
+            dispose();
+        }else if(e.getSource() == btn_taquilla){
+            System.out.println("a la taquilla");
+            dispose();
+            SeleccionarPelicula seleccionarPelicula = new SeleccionarPelicula();
+            seleccionarPelicula.setVisible(true);
+        }
+
     }
 }
