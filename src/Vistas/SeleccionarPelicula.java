@@ -438,6 +438,12 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
             switchPane(panel2);
         }else if(e.getSource() == btn_3){
             switchPane(panel3);
+        }else if(e.getSource() == btn_corteBoleto){
+            CorteBoleto corteBoleto = new CorteBoleto();
+            corteBoleto.setVisible(true);
+            dispose();
+        }else if(e.getSource() == btn_cambiarDulcería){
+
         }else if(e.getSource() == btn_peli1_hora1){
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);

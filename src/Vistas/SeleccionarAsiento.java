@@ -1016,6 +1016,8 @@ public class SeleccionarAsiento extends JFrame implements ActionListener, Change
             SeleccionarPelicula seleccionarPelicula = new SeleccionarPelicula();
             seleccionarPelicula.setVisible(true);
         }else if (e.getSource() == btn_continuar) {
+            VentaBoleto ventaBoleto = new VentaBoleto();
+            ventaBoleto.setVisible(true);
 
         }else if (e.getSource() == btn_A1) {
 
@@ -1025,215 +1027,215 @@ public class SeleccionarAsiento extends JFrame implements ActionListener, Change
 
         } else if (e.getSource() == btn_A4) {
 
-        } else if (e.getSource() == btn_A5) {
+                } else if (e.getSource() == btn_A5) {
 
-        } else if (e.getSource() == btn_A6) {
+                } else if (e.getSource() == btn_A6) {
 
-        } else if (e.getSource() == btn_A7) {
+                } else if (e.getSource() == btn_A7) {
 
 
-        } else if (e.getSource() == btn_A8) {
+                } else if (e.getSource() == btn_A8) {
 
-        } else if (e.getSource() == btn_A9) {
+                } else if (e.getSource() == btn_A9) {
 
-        } else if (e.getSource() == btn_A10) {
+                } else if (e.getSource() == btn_A10) {
 
-        } else if (e.getSource() == btn_B1) {
+                } else if (e.getSource() == btn_B1) {
 
-        } else if (e.getSource() == btn_B2) {
+                } else if (e.getSource() == btn_B2) {
 
-        } else if (e.getSource() == btn_B3) {
+                } else if (e.getSource() == btn_B3) {
 
-        } else if (e.getSource() == btn_B4) {
+                } else if (e.getSource() == btn_B4) {
 
-        } else if (e.getSource() == btn_B5) {
+                } else if (e.getSource() == btn_B5) {
 
-        } else if (e.getSource() == btn_B6) {
+                } else if (e.getSource() == btn_B6) {
 
-        } else if (e.getSource() == btn_B7) {
+                } else if (e.getSource() == btn_B7) {
 
-        } else if (e.getSource() == btn_B8) {
+                } else if (e.getSource() == btn_B8) {
 
-        } else if (e.getSource() == btn_B9) {
+                } else if (e.getSource() == btn_B9) {
 
-        } else if (e.getSource() == btn_B10) {
+                } else if (e.getSource() == btn_B10) {
 
-        } else if (e.getSource() == btn_C1) {
+                } else if (e.getSource() == btn_C1) {
 
-        } else if (e.getSource() == btn_C2) {
+                } else if (e.getSource() == btn_C2) {
 
-        } else if (e.getSource() == btn_C3) {
+                } else if (e.getSource() == btn_C3) {
 
-        } else if (e.getSource() == btn_C4) {
+                } else if (e.getSource() == btn_C4) {
 
-        } else if (e.getSource() == btn_C5) {
+                } else if (e.getSource() == btn_C5) {
 
-        } else if (e.getSource() == btn_C6) {
+                } else if (e.getSource() == btn_C6) {
 
-        } else if (e.getSource() == btn_C7) {
+                } else if (e.getSource() == btn_C7) {
 
-        } else if (e.getSource() == btn_C8) {
+                } else if (e.getSource() == btn_C8) {
 
-        } else if (e.getSource() == btn_C9) {
+                } else if (e.getSource() == btn_C9) {
 
-        } else if (e.getSource() == btn_C10) {
+                } else if (e.getSource() == btn_C10) {
 
-        } else if (e.getSource() == btn_D1) {
+                } else if (e.getSource() == btn_D1) {
 
-        } else if (e.getSource() == btn_D2) {
+                } else if (e.getSource() == btn_D2) {
 
-        } else if (e.getSource() == btn_D3) {
+                } else if (e.getSource() == btn_D3) {
 
-        } else if (e.getSource() == btn_D4) {
+                } else if (e.getSource() == btn_D4) {
 
-        } else if (e.getSource() == btn_D5) {
+                } else if (e.getSource() == btn_D5) {
 
-        } else if (e.getSource() == btn_D6) {
+                } else if (e.getSource() == btn_D6) {
 
-        } else if (e.getSource() == btn_D7) {
+                } else if (e.getSource() == btn_D7) {
 
-        } else if (e.getSource() == btn_D8) {
+                } else if (e.getSource() == btn_D8) {
 
-        } else if (e.getSource() == btn_D9) {
+                } else if (e.getSource() == btn_D9) {
 
-        } else if (e.getSource() == btn_D10) {
+                } else if (e.getSource() == btn_D10) {
 
-        } else if (e.getSource() == btn_E1) {
+                } else if (e.getSource() == btn_E1) {
 
-        } else if (e.getSource() == btn_E2) {
+                } else if (e.getSource() == btn_E2) {
 
-        } else if (e.getSource() == btn_E3) {
+                } else if (e.getSource() == btn_E3) {
 
-        } else if (e.getSource() == btn_E4) {
+                } else if (e.getSource() == btn_E4) {
 
-        } else if (e.getSource() == btn_E5) {
+                } else if (e.getSource() == btn_E5) {
 
-        } else if (e.getSource() == btn_E6) {
+                } else if (e.getSource() == btn_E6) {
 
-        } else if (e.getSource() == btn_E7) {
+                } else if (e.getSource() == btn_E7) {
 
-        } else if (e.getSource() == btn_E8) {
+                } else if (e.getSource() == btn_E8) {
 
-        } else if (e.getSource() == btn_E9) {
+                } else if (e.getSource() == btn_E9) {
 
-        } else if (e.getSource() == btn_E10) {
+                } else if (e.getSource() == btn_E10) {
 
-        } else if (e.getSource() == btn_F1) {
+                } else if (e.getSource() == btn_F1) {
 
-        } else if (e.getSource() == btn_F2) {
+                } else if (e.getSource() == btn_F2) {
 
-        } else if (e.getSource() == btn_F3) {
+                } else if (e.getSource() == btn_F3) {
 
-        } else if (e.getSource() == btn_F4) {
+                } else if (e.getSource() == btn_F4) {
 
-        } else if (e.getSource() == btn_F5) {
+                } else if (e.getSource() == btn_F5) {
 
-        } else if (e.getSource() == btn_F6) {
+                } else if (e.getSource() == btn_F6) {
 
-        } else if (e.getSource() == btn_F7) {
+                } else if (e.getSource() == btn_F7) {
 
-        } else if (e.getSource() == btn_F8) {
+                } else if (e.getSource() == btn_F8) {
 
-        } else if (e.getSource() == btn_F9) {
+                } else if (e.getSource() == btn_F9) {
 
-        } else if (e.getSource() == btn_F10) {
+                } else if (e.getSource() == btn_F10) {
 
-        } else if (e.getSource() == btn_G1) {
+                } else if (e.getSource() == btn_G1) {
 
-        } else if (e.getSource() == btn_G2) {
+                } else if (e.getSource() == btn_G2) {
 
-        } else if (e.getSource() == btn_G3) {
+                } else if (e.getSource() == btn_G3) {
 
-        } else if (e.getSource() == btn_G4) {
+                } else if (e.getSource() == btn_G4) {
 
-        } else if (e.getSource() == btn_G5) {
+                } else if (e.getSource() == btn_G5) {
 
-        } else if (e.getSource() == btn_G6) {
+                } else if (e.getSource() == btn_G6) {
 
-        } else if (e.getSource() == btn_G7) {
+                } else if (e.getSource() == btn_G7) {
 
-        } else if (e.getSource() == btn_G8) {
+                } else if (e.getSource() == btn_G8) {
 
-        } else if (e.getSource() == btn_G9) {
+                } else if (e.getSource() == btn_G9) {
 
-        } else if (e.getSource() == btn_G10) {
+                } else if (e.getSource() == btn_G10) {
 
-        } else if (e.getSource() == btn_H1) {
+                } else if (e.getSource() == btn_H1) {
 
-        } else if (e.getSource() == btn_H2) {
+                } else if (e.getSource() == btn_H2) {
 
-        } else if (e.getSource() == btn_H3) {
+                } else if (e.getSource() == btn_H3) {
 
-        } else if (e.getSource() == btn_H4) {
+                } else if (e.getSource() == btn_H4) {
 
-        } else if (e.getSource() == btn_H5) {
+                } else if (e.getSource() == btn_H5) {
 
-        } else if (e.getSource() == btn_H6) {
+                } else if (e.getSource() == btn_H6) {
 
-        } else if (e.getSource() == btn_H7) {
+                } else if (e.getSource() == btn_H7) {
 
-        } else if (e.getSource() == btn_H8) {
+                } else if (e.getSource() == btn_H8) {
 
-        } else if (e.getSource() == btn_H9) {
+                } else if (e.getSource() == btn_H9) {
 
-        } else if (e.getSource() == btn_H10) {
+                } else if (e.getSource() == btn_H10) {
 
-        } else if (e.getSource() == btn_I1) {
+                } else if (e.getSource() == btn_I1) {
 
-        } else if (e.getSource() == btn_I2) {
+                } else if (e.getSource() == btn_I2) {
 
-        } else if (e.getSource() == btn_I3) {
+                } else if (e.getSource() == btn_I3) {
 
-        } else if (e.getSource() == btn_I4) {
+                } else if (e.getSource() == btn_I4) {
 
-        } else if (e.getSource() == btn_J5) {
+                } else if (e.getSource() == btn_J5) {
 
-        } else if (e.getSource() == btn_J6) {
+                } else if (e.getSource() == btn_J6) {
 
-        } else if (e.getSource() == btn_J7) {
+                } else if (e.getSource() == btn_J7) {
 
-        } else if (e.getSource() == btn_J8) {
+                } else if (e.getSource() == btn_J8) {
 
-        } else if (e.getSource() == btn_J9) {
+                } else if (e.getSource() == btn_J9) {
 
-        } else if (e.getSource() == btn_J10) {
+                } else if (e.getSource() == btn_J10) {
 
-        } else if (e.getSource() == btn_J1) {
+                } else if (e.getSource() == btn_J1) {
 
-        } else if (e.getSource() == btn_J2) {
+                } else if (e.getSource() == btn_J2) {
 
-        } else if (e.getSource() == btn_J3) {
+                } else if (e.getSource() == btn_J3) {
 
-        } else if (e.getSource() == btn_J4) {
+                } else if (e.getSource() == btn_J4) {
 
-        } else if (e.getSource() == btn_J5) {
+                } else if (e.getSource() == btn_J5) {
 
-        } else if (e.getSource() == btn_J6) {
+                } else if (e.getSource() == btn_J6) {
 
-        } else if (e.getSource() == btn_J7) {
+                } else if (e.getSource() == btn_J7) {
 
-        } else if (e.getSource() == btn_J8) {
+                } else if (e.getSource() == btn_J8) {
 
-        } else if (e.getSource() == btn_J9) {
+                } else if (e.getSource() == btn_J9) {
 
-        } else if (e.getSource() == btn_J10) {
+                } else if (e.getSource() == btn_J10) {
 
-        }
-    }
+                }
+            }
 
-    @Override
-    public void stateChanged (ChangeEvent e){
-        String tipo = (String) spinner.getValue();
-        if (tipo.equals("Niño")) {
-            lbl_precio_dinero.setText("$80");
-            getTipo(tipo);
-        } else if (tipo.equals("Adulto")) {
-            lbl_precio_dinero.setText("$100");
-        } else if (tipo.equals("VIP")) {
-            lbl_precio_dinero.setText("$130");
-        }
-    }
-    public String getTipo (String tipo){
-        return tipo;
-    }
+            @Override
+            public void stateChanged (ChangeEvent e){
+                String tipo = (String) spinner.getValue();
+                if (tipo.equals("Niño")) {
+                    lbl_precio_dinero.setText("$80");
+                    getTipo(tipo);
+                } else if (tipo.equals("Adulto")) {
+                    lbl_precio_dinero.setText("$100");
+                } else if (tipo.equals("VIP")) {
+                    lbl_precio_dinero.setText("$130");
+                }
+            }
+            public String getTipo (String tipo){
+                return tipo;
+            }
 }

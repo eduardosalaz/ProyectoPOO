@@ -1,4 +1,5 @@
 package Vistas;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -80,14 +81,13 @@ public class Login implements ActionListener {
         btn_ingresar.addActionListener(this);
         frameLog.getContentPane().add(btn_ingresar);
 
-        Image img;
-        img = new ImageIcon(Login.class.getResource("/IMGS/login.png")).getImage();
-
         JPanel panel_red = new JPanel();
         panel_red.setBackground(new Color(171, 0, 51));
         panel_red.setBounds(38, 75, 387, 61);
         frameLog.getContentPane().add(panel_red);
 
+        Image img;
+        img = new ImageIcon(Login.class.getResource("/IMGS/login.png")).getImage();
         JLabel lbl_img_login = new JLabel("");
         panel_red.add(lbl_img_login);
         lbl_img_login.setIcon(new ImageIcon(img));
@@ -120,3 +120,4 @@ public class Login implements ActionListener {
         }
 
     }
+}
