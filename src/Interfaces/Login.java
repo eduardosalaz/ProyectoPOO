@@ -20,9 +20,10 @@ public class Login extends ConexionBD implements ActionListener {
     protected JButton btn_ingresar;
     protected Timer timer, cuenta;
     boolean permiso = false; //TIENE PERMISO O NO PARA ACCESAR
-    boolean type_user = false; //0 user normal, 1 admin
+    public static boolean TYPE_USER = false; //0 user normal, 1 admin
 	int cont_int=5; //CONTADOR DE INTENTOS
-	
+	public static  int ID_USUARIO;
+	public static String USUARIO;
     public static void main(String[] args) {
 
         EventQueue.invokeLater(new Runnable() {
@@ -127,7 +128,7 @@ public class Login extends ConexionBD implements ActionListener {
     		if (permiso)
     		{
     			frameLog.dispose(); //DUERME
-    			if(type_user) //ADMIN O USER?
+    			if(TYPE_USER) //ADMIN O USER?
     			{
                     menuAdmin menuAdmin = new menuAdmin();
                     menuAdmin.frame.setVisible(true);
@@ -173,7 +174,7 @@ public class Login extends ConexionBD implements ActionListener {
 		boolean nivel = false;
 		boolean pase = false;
 		try {
-			//CONSEGUIMOS LO QUE SE ESCRIBÕO	
+			//CONSEGUIMOS LO QUE SE ESCRIB√çO	
 			String valorPass = new String(pass_password.getPassword()); //se tiene que convertir a String, sino regresa char
 			int valorUser = Integer.parseInt(txt_user.getText());
 			query = "SELECT * FROM Usuario WHERE ID_Usuario = ?";
@@ -190,6 +191,9 @@ public class Login extends ConexionBD implements ActionListener {
 				//VALIDACION DE CONTRASENA
 				if(rs.next())
 				{	
+					//OBTENEMOS INFO NECESARIA
+					this.ID_USUARIO = Integer.parseInt(valorPass);
+					this.USUARIO = rs.getString("Nombre");
 					showMessageDialog(null, "BIENVENIDO");
 					int nivelopc = Integer.parseInt(rs.getString("Admin"));
 					if (nivelopc==1)
@@ -215,7 +219,7 @@ public class Login extends ConexionBD implements ActionListener {
 			e1.printStackTrace();	
 		}
 		this.permiso = pase;
-		this.type_user = nivel;
+		this.TYPE_USER = nivel;
 	}
 	
 }
