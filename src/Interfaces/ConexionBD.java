@@ -6,10 +6,10 @@ import java.sql.*;
 
 public class ConexionBD 
 {
-	//LO DEJO ASI EN DADO CASO QUE SI QUIERAN HACER UNA INTERFAZ PIDIENDO EL USUARIO Y CONTRASEÑA
+	//LO DEJO ASI EN DADO CASO QUE SI QUIERAN HACER UNA INTERFAZ PIDIENDO EL USUARIO Y CONTRASEÃ‘A
 	//DE LA BASE DE DATOS O INCLUSIVE QUE SEA CON OTRO SERVER 
 	//NO SE SI SE TENGA QUE CREAR UNA INTERFAZ PARA ESTO, COMO QUIERA DEJO LA CONEXION AQUI
-	//variables que se usaran en todos los javas
+	//variables que se usaran en todos los javas.
 	public static PreparedStatement pstm = null;
 	ResultSet rs = null;
 	String query="";
