@@ -1,6 +1,8 @@
 package Interfaces;
 
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -11,13 +13,23 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import javax.swing.JButton;
 public class PrincipalUser extends JFrame implements ActionListener {
+    
+	private Connection con = ConexionBD.conectar();
 
     private static final long serialVersionUID = 1L;
+    
     private JButton btn_taquilla, btn_dulceria;
     private JPanel contentPane;
+    
+    
+    
     public static void main(String[] args) {
+
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -33,6 +45,8 @@ public class PrincipalUser extends JFrame implements ActionListener {
     /**
      * Create the frame.
      */
+    
+ 
     public PrincipalUser() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 960, 640);
@@ -49,7 +63,7 @@ public class PrincipalUser extends JFrame implements ActionListener {
         lbl_titulo.setBounds(36, 119, 872, 130);
         contentPane.add(lbl_titulo);
 
-        JLabel lbl_bienvenida = new JLabel("\u00A1Bienvenido {USER} !");
+        JLabel lbl_bienvenida = new JLabel("\u00A1Bienvenido "+ Login.USUARIO + "!");
         lbl_bienvenida.setForeground(Color.WHITE);
         lbl_bienvenida.setFont(new Font("Arial Black", Font.BOLD, 40));
         lbl_bienvenida.setBackground(Color.CYAN);
