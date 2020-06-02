@@ -1,18 +1,30 @@
 package Interfaces;
 
 import javax.swing.*;
+
+import static javax.swing.JOptionPane.showMessageDialog;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
+import java.util.TimerTask;
+import java.util.Timer;
 
-public class Login implements ActionListener {
-
+public class Login extends ConexionBD implements ActionListener {
+	//CONECTA A LA BASE DE DATOS Y CONSIGUE EL CON
+    Connection con = ConexionBD.conectar();
     protected JFrame frameLog;
     protected JTextField txt_user;
     protected JPasswordField pass_password;
     protected JButton btn_ingresar;
-
+    protected Timer timer, cuenta;
+    boolean permiso = false; //TIENE PERMISO O NO PARA ACCESAR
+    boolean type_user = false; //0 user normal, 1 admin
+	int cont_int=5; //CONTADOR DE INTENTOS
+	
     public static void main(String[] args) {
+
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -30,6 +42,7 @@ public class Login implements ActionListener {
      */
     public Login() {
         initialize();
+      
     }
 
     /**
@@ -87,7 +100,7 @@ public class Login implements ActionListener {
         frameLog.getContentPane().add(panel_red);
 
         Image img;
-        img = new ImageIcon(Login.class.getResource("/IMGS/login.png")).getImage();
+        img = new ImageIcon(Login.class.getResource("/images/logoRED.png")).getImage();
         JLabel lbl_img_login = new JLabel("");
         panel_red.add(lbl_img_login);
         lbl_img_login.setIcon(new ImageIcon(img));
@@ -100,24 +113,109 @@ public class Login implements ActionListener {
     }
 
 
-    /*TODO: Agregar la Query a la BD para poder acceder a las credenciales
-     *TODO: Si es exitosa, pasar al siguiente frame y sacar un messageDialog que lo confirme
-     *TODO: Si no, sacar otro messageDialog que informe que no se encontr贸 y restar uno a la cantidad de intentos
-     *TODO: Una vez que se agoten los intentos, ponerle sleep al hilo por 2 minutos.
-     *https://stackoverflow.com/questions/3797941/how-to-make-a-thread-sleep-for-specific-amount-of-time-in-java
-     * El siguiente pedazo de c贸digo es para pasar al siguiente frame, se tiene que modificar para integrar
-     * la conexi贸n a la BD, es TEMPORAL.
-     * Cuando hacer dispose a un frame y cuando s贸lo hacerlo invisible?
-     * https://stackoverflow.com/questions/13360430/jframe-dispose-vs-system-exit
-     */
-
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == btn_ingresar){
-            frameLog.dispose();
-            PrincipalUser principalUser = new PrincipalUser();
-            principalUser.setVisible(true);
-        }
-
+    public void actionPerformed(ActionEvent e) 
+    {
+    	//VALIDACION SI ESTAN VACIOS
+    	if(txt_user.getText().isEmpty() || pass_password.getPassword().length == 0)
+    	{
+    		showMessageDialog(null, "Rellene todos los datos");
+    	}
+    	else
+    	{
+    		loginSQL();
+    		if (permiso)
+    		{
+    			frameLog.dispose(); //DUERME
+    			if(type_user) //ADMIN O USER?
+    			{
+                    menuAdmin menuAdmin = new menuAdmin();
+                    menuAdmin.frame.setVisible(true);
+    			} else {
+    				
+                    PrincipalUser principalUser = new PrincipalUser();
+                    principalUser.setVisible(true);
+    			}
+    				
+    		}else {
+    			if(cont_int!=0)
+    			{
+    				cont_int --;
+        			showMessageDialog(null, "Intentos restantes: "+cont_int);
+    			} else {
+    				
+    				showMessageDialog(null, "INTENTOS GASTADOS. BLOQUEANDO VENTANA");
+    				txt_user.setEnabled(false);
+					pass_password.setEnabled(false);
+					btn_ingresar.setEnabled(false);
+					try {
+					Thread.sleep(12000);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					txt_user.setEnabled(true);
+					pass_password.setEnabled(true);
+					btn_ingresar.setEnabled(true);
+					}
+    			
+    			
+    		}
+    	}
     }
+     
+
+
+    
+	private void loginSQL() {
+		
+		//EMPEZAMOS LA COMPROBACION
+		boolean nivel = false;
+		boolean pase = false;
+		try {
+			//CONSEGUIMOS LO QUE SE ESCRIB蚈	
+			String valorPass = new String(pass_password.getPassword()); //se tiene que convertir a String, sino regresa char
+			int valorUser = Integer.parseInt(txt_user.getText());
+			query = "SELECT * FROM Usuario WHERE ID_Usuario = ?";
+			pstm = con.prepareStatement(query);
+			pstm.setInt(1, valorUser);
+			rs = pstm.executeQuery();
+			//VALIDACION DE USUARIO
+			if(rs.next())
+			{	
+				query = "SELECT *  FROM Usuario WHERE Contrasena = ?";
+				pstm = con.prepareStatement(query);
+				pstm.setString(1, valorPass);
+				rs = pstm.executeQuery();
+				//VALIDACION DE CONTRASENA
+				if(rs.next())
+				{	
+					showMessageDialog(null, "BIENVENIDO");
+					int nivelopc = Integer.parseInt(rs.getString("Admin"));
+					if (nivelopc==1)
+					{
+						nivel = true;
+					}else {
+						nivel = false;
+					}
+					pase = true;
+				}else
+				{
+					showMessageDialog(null, "CONTRASENA INCORRECTA");
+					 pase = false;
+				}
+				
+			}else
+			{
+				showMessageDialog(null, "NO EXISTE TAL USUARIO");
+				pase = false;
+			}
+		} catch (SQLException e1)
+		{
+			e1.printStackTrace();	
+		}
+		this.permiso = pase;
+		this.type_user = nivel;
+	}
+	
 }
