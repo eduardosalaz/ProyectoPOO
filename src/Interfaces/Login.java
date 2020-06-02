@@ -8,8 +8,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
-import java.util.TimerTask;
-import java.util.Timer;
 
 public class Login extends ConexionBD implements ActionListener {
 	//CONECTA A LA BASE DE DATOS Y CONSIGUE EL CON
@@ -18,7 +16,6 @@ public class Login extends ConexionBD implements ActionListener {
     protected JTextField txt_user;
     protected JPasswordField pass_password;
     protected JButton btn_ingresar;
-    protected Timer timer, cuenta;
     boolean permiso = false; //TIENE PERMISO O NO PARA ACCESAR
     public static boolean TYPE_USER = false; //0 user normal, 1 admin
 	int cont_int=5; //CONTADOR DE INTENTOS
@@ -34,16 +31,16 @@ public class Login extends ConexionBD implements ActionListener {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                
+                
             }
         });
     }
-
-    /**
+	/**
      * Create the application.
      */
     public Login() {
         initialize();
-      
     }
 
     /**
@@ -139,7 +136,7 @@ public class Login extends ConexionBD implements ActionListener {
     			}
     				
     		}else {
-    			if(cont_int!=0)
+    			if(cont_int!=1)
     			{
     				cont_int --;
         			showMessageDialog(null, "Intentos restantes: "+cont_int);
@@ -158,6 +155,7 @@ public class Login extends ConexionBD implements ActionListener {
 					txt_user.setEnabled(true);
 					pass_password.setEnabled(true);
 					btn_ingresar.setEnabled(true);
+					cont_int = 5;
 					}
     			
     			
@@ -192,7 +190,7 @@ public class Login extends ConexionBD implements ActionListener {
 				if(rs.next())
 				{	
 					//OBTENEMOS INFO NECESARIA
-					this.ID_USUARIO = Integer.parseInt(valorPass);
+					this.ID_USUARIO = valorUser;
 					this.USUARIO = rs.getString("Nombre");
 					showMessageDialog(null, "BIENVENIDO");
 					int nivelopc = Integer.parseInt(rs.getString("Admin"));
