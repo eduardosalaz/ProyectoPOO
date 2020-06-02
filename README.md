@@ -34,4 +34,4 @@ Proyecto final POO FIME UANL
  
  - [ ] Mapa de Navegación.
  
- - [ ] 18 Vistas 
+ - [ ] 28 Vistas 
