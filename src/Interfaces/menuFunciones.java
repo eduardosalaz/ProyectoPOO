@@ -119,7 +119,7 @@ public class menuFunciones implements ActionListener{
 			frame.dispose();
 		}
 		else if(e.getSource() == btnVolver) {
-			menuAdmin menu = new menuAdmin();
+			menuPeliculas menu = new menuPeliculas();
 			menu.frame.setVisible(true);
 		}
 		
