@@ -202,7 +202,7 @@ public class editarFuncion implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		funciones funcion = new funciones();
+		menuFunciones menuFunciones = new menuFunciones();
 		
 		
 		if(e.getSource()==comboBoxMm) {
@@ -246,7 +246,7 @@ public class editarFuncion implements ActionListener{
 			}
 		}
 		else if(e.getSource()==btnVolver) {
-			funcion.frame.setVisible(true);
+			menuFunciones.frame.setVisible(true);
 			frame.dispose();
 		}
 		else if(e.getSource()==btnActualizar) {
@@ -257,12 +257,12 @@ public class editarFuncion implements ActionListener{
 		
 			}
 			else {
-				funcion.frame.setVisible(true);
+				menuFunciones.frame.setVisible(true);
 				frame.dispose();
 			}
 		}
 		else {
-			funcion.frame.setVisible(true);
+			menuFunciones.frame.setVisible(true);
 			frame.dispose();
 		}
 		
