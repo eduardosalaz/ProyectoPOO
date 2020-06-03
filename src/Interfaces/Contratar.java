@@ -2,12 +2,27 @@ package Interfaces;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.JOptionPane;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Contratar extends JFrame implements ActionListener{
 
+	private static final long serialVersionUID = 1L;
+
+	// CONECTA A LA BASE DE DATOS Y CONSIGUE EL CON
+    private Connection con = ConexionBD.conectar();
+    public PreparedStatement pstm = null;
+	ResultSet rs = null;
+	String query="";
+    
     private JPanel contentPane;
     private JTextField txt_nombre;
     private JTextField txt_telefono;
@@ -130,9 +145,58 @@ public class Contratar extends JFrame implements ActionListener{
         if(e.getSource() == btn_volver){
             menuAdmin menuAdmin = new menuAdmin();
             menuAdmin.frame.setVisible(true);
-            dispose();
+            dispose(); //Elimina este JFrame por completo, dejando el del MenuAdmin
+            
+            
+            
+            
         }else if(e.getSource() == btn_enviar){
-            JOptionPane.showMessageDialog(null, "nice");
+        	
+        	if (txt_nombre.getText().isEmpty() || txt_telefono.getText().isEmpty() || txt_direccion.getText().isEmpty() ) {
+        		
+                showMessageDialog(null, "Rellene todos los datos.");
+                
+            } else {
+            		int id = Integer.parseInt(JOptionPane.showInputDialog("id"));
+            		String contrasena = JOptionPane.showInputDialog("contraseña");
+            		
+            		if(id == 0 || contrasena == null)
+            		{
+            			showMessageDialog(null,"Introducir valores");
+            		}else {
+            			String nombre = txt_nombre.getText();
+                		int telefono = Integer.parseInt(txt_telefono.getText());
+                		String direccion = txt_direccion.getText();
+                		String nivel = (String)comboBox.getSelectedItem();
+                		int nivelBool;
+                		if(nivel=="Admin")
+                		{
+                			nivelBool = 1;
+                		} else {
+                			nivelBool = 0;
+                		}
+                		try {
+                		query = "INSERT INTO Usuario (ID_Usuario, Admin, Contrasena, Nombre, Telefono, Direccion) VALUES (?, ?, ?, ?, ?, ?)";
+                		pstm = con.prepareStatement(query);
+                		pstm.setInt(1, id);
+                		pstm.setInt(2,nivelBool);
+                		pstm.setString(3,contrasena);
+                		pstm.setString(4,nombre);
+                		pstm.setInt(5,telefono);
+                		pstm.setString(6,direccion);
+                		pstm.executeUpdate();
+                		showMessageDialog(null,"Empujado con exito");
+                	} catch (SQLException e1) {
+                		
+                	}
+                		
+            	}
+            }
+
+            
+            
+            
+            
         }else if(e.getSource() == comboBox){
 
         }
