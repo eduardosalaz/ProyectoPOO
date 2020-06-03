@@ -23,7 +23,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-public class usuarioEspecifico implements ActionListener{
+public class usuarioEspecifico extends JFrame implements ActionListener{
 	int contDe30 = 1;
 	int contDe31 = 1;
 	int contA30 = 1;

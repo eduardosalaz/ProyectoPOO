@@ -90,7 +90,7 @@ public class Informe extends JFrame implements ActionListener {
             dispose();
         }else if(e.getSource() == btn_usuarioEsp){
             usuarioEspecifico usuarioEspecifico = new usuarioEspecifico();
-            usuarioEspecifico.frame.setVisible(true);
+            usuarioEspecifico.setVisible(true);
             dispose();
         }else if(e.getSource() == btn_volver){
             menuAdmin menuAdmin = new menuAdmin();
