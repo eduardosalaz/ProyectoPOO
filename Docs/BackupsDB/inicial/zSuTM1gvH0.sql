@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 31-05-2020 a las 03:57:43
+-- Tiempo de generación: 03-06-2020 a las 00:46:08
 -- Versión del servidor: 8.0.13-4
 -- Versión de PHP: 7.2.24-0ubuntu0.18.04.6
 
@@ -123,8 +123,8 @@ CREATE TABLE `Funcion` (
 CREATE TABLE `Pelicula` (
   `ID_Pelicula` int(11) NOT NULL,
   `Clasificacion` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
-  `Version` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `Duracion(mins)` smallint(4) NOT NULL
+  `Version` tinyint(1) NOT NULL,
+  `Duracion` smallint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -171,12 +171,21 @@ CREATE TABLE `Sala` (
 
 CREATE TABLE `Usuario` (
   `ID_Usuario` int(11) NOT NULL,
-  `Nivel` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `Contrasena` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `Admin` tinyint(1) NOT NULL,
+  `Contrasena` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Telefono` smallint(12) NOT NULL,
   `Direccion` varchar(60) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `Usuario`
+--
+
+INSERT INTO `Usuario` (`ID_Usuario`, `Admin`, `Contrasena`, `Nombre`, `Telefono`, `Direccion`) VALUES
+(20, 1, 'holaaa', 'fyuyt', 980, 'uytfuytf'),
+(1234, 0, 'pedro', 'juan', 4683, 'reghppiuohpiuyhp'),
+(1865021, 1, '31', 'Rogelio', 123, 'San Pedro');
 
 -- --------------------------------------------------------
 
@@ -239,6 +248,12 @@ ALTER TABLE `Sala`
   ADD UNIQUE KEY `Num_Sala` (`Num_Sala`);
 
 --
+-- Indices de la tabla `Usuario`
+--
+ALTER TABLE `Usuario`
+  ADD UNIQUE KEY `ID_Usuario` (`ID_Usuario`);
+
+--
 -- Indices de la tabla `Venta Boleto`
 --
 ALTER TABLE `Venta Boleto`
@@ -259,6 +274,12 @@ ALTER TABLE `Venta Dulceria`
 --
 ALTER TABLE `Funcion`
   MODIFY `ID_Funcion` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `Usuario`
+--
+ALTER TABLE `Usuario`
+  MODIFY `ID_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1865023;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
