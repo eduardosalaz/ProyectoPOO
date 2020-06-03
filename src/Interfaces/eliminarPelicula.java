@@ -5,12 +5,20 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class eliminarPelicula implements ActionListener{
 	
@@ -20,6 +28,13 @@ public class eliminarPelicula implements ActionListener{
 	/**
 	 * Launch the application.
 	 */
+	
+	// CONECTA A LA BASE DE DATOS Y CONSIGUE EL CON
+    private Connection con = ConexionBD.conectar();
+    public PreparedStatement pstm = null;
+	ResultSet rs = null;
+	String query="";
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -99,8 +114,36 @@ public class eliminarPelicula implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		menuFunciones menu = new menuFunciones();
+		int opcion;
 		if(e.getSource()==btnEliminar) {
-			int opcion = JOptionPane.showConfirmDialog(null, "Se ha eliminado exitosamente!. \n\n�Quiere eliminar otra pelicula?\n","Eliminado",JOptionPane.YES_NO_OPTION);
+			
+			if(textNombre.getText().isEmpty())
+			{
+				JOptionPane.showMessageDialog(null, "Introducir un nombre");
+			} else {
+				String nombre = textNombre.getText();
+				
+				try {
+					query = "SELECT * FROM Pelicula WHERE Nombre = ?";
+	        		pstm = con.prepareStatement(query);
+	        		pstm.setString(1,nombre);
+	        		rs = pstm.executeQuery();
+	        		if(rs.next()) {
+	        			query ="DELETE FROM Pelicula WHERE Nombre = ?";
+	        			pstm = con.prepareStatement(query);
+		        		pstm.setString(1,nombre);
+		        		pstm.execute();
+		        		opcion = JOptionPane.showConfirmDialog(null, "Se ha eliminado exitosamente!. \n\n�Quiere eliminar otra pelicula?\n","Eliminado",JOptionPane.YES_NO_OPTION);
+	        		} else {
+	        			JOptionPane.showMessageDialog(null, "No se encuentra pelicula");
+	        		}
+					
+				} catch (SQLException e1) {
+					
+				}
+				
+			}
+			opcion=JOptionPane.NO_OPTION;
 			
 			if(opcion==JOptionPane.YES_OPTION) {
 				textNombre.setText("");
