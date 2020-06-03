@@ -70,7 +70,7 @@ public class menuFunciones implements ActionListener{
 		frame.getContentPane().add(btnVolver);
 		btnVolver.addActionListener(this);
 		
-		btnRegistrar = new JButton("Registrar nueva funciÃ³n");
+		btnRegistrar = new JButton("Registrar nueva función");
 		btnRegistrar.setForeground(Color.WHITE);
 		btnRegistrar.setFont(new Font("Arial", Font.PLAIN, 24));
 		btnRegistrar.setFocusPainted(false);
@@ -90,7 +90,7 @@ public class menuFunciones implements ActionListener{
 		frame.getContentPane().add(btnEditar);
 		btnEditar.addActionListener(this);
 		
-		btnEliminar = new JButton("Eliminar funciÃ³n");
+		btnEliminar = new JButton("Eliminar función");
 		btnEliminar.setForeground(Color.WHITE);
 		btnEliminar.setFont(new Font("Arial", Font.PLAIN, 24));
 		btnEliminar.setFocusPainted(false);
