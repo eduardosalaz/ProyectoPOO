@@ -1,10 +1,13 @@
 package Interfaces;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,18 +15,23 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class usuarioEspecifico implements ActionListener{
-	
+	int contDe30 = 1;
+	int contDe31 = 1;
+	int contA30 = 1;
+	int contA31 = 1;
+	private JComboBox comboBoxDeMm,comboBoxDeAaaa,comboBoxAAaaa,comboBoxAMm,comboBoxDeDd,comboBoxADd;
 	private JButton btnVolver, btnBuscar;
-	public JFrame frame;
+	private JFrame frame;
 	private JTextField textIdUsuario;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
 
 	/**
 	 * Launch the application.
@@ -98,7 +106,6 @@ public class usuarioEspecifico implements ActionListener{
 		btnVolver.setBorderPainted(false);
 		btnVolver.setBackground(new Color(171, 0, 51));
 		btnVolver.setBounds(10, 562, 139, 31);
-		btnVolver.addActionListener(this);
 		frame.getContentPane().add(btnVolver);
 		
 		btnBuscar = new JButton("Buscar");
@@ -108,74 +115,43 @@ public class usuarioEspecifico implements ActionListener{
 		btnBuscar.setBorderPainted(false);
 		btnBuscar.setBackground(new Color(171, 0, 51));
 		btnBuscar.setBounds(411, 277, 139, 31);
-		btnBuscar.addActionListener(this);
 		frame.getContentPane().add(btnBuscar);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(828, 189, 61, 19);
-		frame.getContentPane().add(textField);
+		JLabel lblDeAaaa = new JLabel("/ AAAA");
+		lblDeAaaa.setForeground(Color.WHITE);
+		lblDeAaaa.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblDeAaaa.setBounds(758, 185, 68, 24);
+		frame.getContentPane().add(lblDeAaaa);
 		
-		JLabel lblAaaa = new JLabel("/ AAAA");
-		lblAaaa.setForeground(Color.WHITE);
-		lblAaaa.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblAaaa.setBounds(758, 185, 68, 24);
-		frame.getContentPane().add(lblAaaa);
+		JLabel lblDeDd = new JLabel("/ DD");
+		lblDeDd.setForeground(Color.WHITE);
+		lblDeDd.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblDeDd.setBounds(636, 185, 68, 24);
+		frame.getContentPane().add(lblDeDd);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(687, 189, 61, 19);
-		frame.getContentPane().add(textField_1);
+		JLabel lblDeMm = new JLabel("MM");
+		lblDeMm.setForeground(Color.WHITE);
+		lblDeMm.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblDeMm.setBounds(531, 185, 68, 24);
+		frame.getContentPane().add(lblDeMm);
 		
-		JLabel lblMm = new JLabel("/ MM");
-		lblMm.setForeground(Color.WHITE);
-		lblMm.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblMm.setBounds(636, 185, 68, 24);
-		frame.getContentPane().add(lblMm);
+		JLabel lblAAaaa = new JLabel("/ AAAA");
+		lblAAaaa.setForeground(Color.WHITE);
+		lblAAaaa.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblAAaaa.setBounds(758, 243, 68, 24);
+		frame.getContentPane().add(lblAAaaa);
 		
-		JLabel lblDd = new JLabel("DD");
-		lblDd.setForeground(Color.WHITE);
-		lblDd.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblDd.setBounds(531, 185, 68, 24);
-		frame.getContentPane().add(lblDd);
+		JLabel lblADd = new JLabel("/ DD");
+		lblADd.setForeground(Color.WHITE);
+		lblADd.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblADd.setBounds(636, 243, 68, 24);
+		frame.getContentPane().add(lblADd);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(565, 189, 61, 19);
-		frame.getContentPane().add(textField_2);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(828, 247, 61, 19);
-		frame.getContentPane().add(textField_3);
-		
-		JLabel lblAaaa_1 = new JLabel("/ AAAA");
-		lblAaaa_1.setForeground(Color.WHITE);
-		lblAaaa_1.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblAaaa_1.setBounds(758, 243, 68, 24);
-		frame.getContentPane().add(lblAaaa_1);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(687, 247, 61, 19);
-		frame.getContentPane().add(textField_4);
-		
-		JLabel lblMm_1 = new JLabel("/ MM");
-		lblMm_1.setForeground(Color.WHITE);
-		lblMm_1.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblMm_1.setBounds(636, 243, 68, 24);
-		frame.getContentPane().add(lblMm_1);
-		
-		JLabel lblDd_1 = new JLabel("DD");
-		lblDd_1.setForeground(Color.WHITE);
-		lblDd_1.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblDd_1.setBounds(531, 243, 68, 24);
-		frame.getContentPane().add(lblDd_1);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(565, 247, 61, 19);
-		frame.getContentPane().add(textField_5);
+		JLabel lblAMm = new JLabel("MM");
+		lblAMm.setForeground(Color.WHITE);
+		lblAMm.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblAMm.setBounds(531, 243, 68, 24);
+		frame.getContentPane().add(lblAMm);
 		
 		JLabel lblDe = new JLabel("De:");
 		lblDe.setForeground(Color.WHITE);
@@ -188,21 +164,141 @@ public class usuarioEspecifico implements ActionListener{
 		lblA.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblA.setBounds(496, 238, 42, 31);
 		frame.getContentPane().add(lblA);
-	}
+		
 
+		comboBoxDeMm = new JComboBox();
+		comboBoxDeMm.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"}));
+		comboBoxDeMm.setForeground(Color.WHITE);
+		comboBoxDeMm.setBackground(new Color(34, 31, 32));
+		comboBoxDeMm.setBounds(566, 188, 60, 21);
+		frame.getContentPane().add(comboBoxDeMm);
+		comboBoxDeMm.addActionListener(this);
+		
+		comboBoxDeDd = new JComboBox();
+		comboBoxDeDd.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
+		comboBoxDeDd.setForeground(Color.WHITE);
+		comboBoxDeDd.setBackground(new Color(34, 31, 32));
+		comboBoxDeDd.setBounds(688, 188, 60, 21);
+		frame.getContentPane().add(comboBoxDeDd);
+
+		
+		comboBoxDeAaaa = new JComboBox();
+		comboBoxDeAaaa.setModel(new DefaultComboBoxModel(new String[] {"2020"}));
+		comboBoxDeAaaa.setForeground(Color.WHITE);
+		comboBoxDeAaaa.setBackground(new Color(34, 31, 32));
+		comboBoxDeAaaa.setBounds(829, 188, 60, 21);
+		frame.getContentPane().add(comboBoxDeAaaa);
+		
+		comboBoxAMm = new JComboBox();
+		comboBoxAMm.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"}));
+		comboBoxAMm.setForeground(Color.WHITE);
+		comboBoxAMm.setBackground(new Color(34, 31, 32));
+		comboBoxAMm.setBounds(566, 243, 60, 21);
+		frame.getContentPane().add(comboBoxAMm);
+		comboBoxAMm.addActionListener(this);
+		
+		comboBoxADd = new JComboBox();
+		comboBoxADd.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
+		comboBoxADd.setForeground(Color.WHITE);
+		comboBoxADd.setBackground(new Color(34, 31, 32));
+		comboBoxADd.setBounds(688, 243, 60, 21);
+		frame.getContentPane().add(comboBoxADd);
+
+		comboBoxAAaaa = new JComboBox();
+		comboBoxAAaaa.setModel(new DefaultComboBoxModel(new String[] {"2020"}));
+		comboBoxAAaaa.setForeground(Color.WHITE);
+		comboBoxAAaaa.setBackground(new Color(34, 31, 32));
+		comboBoxAAaaa.setBounds(829, 243, 60, 21);
+		frame.getContentPane().add(comboBoxAAaaa);
+		
+		
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(e.getSource()==btnBuscar) {
+		if(e.getSource()==comboBoxDeMm) {
 			
+			String deMm = (String) comboBoxDeMm.getSelectedItem();
+			
+			if(deMm == "02") {
+				if(contDe31==1 && contDe30==1) {
+					comboBoxDeDd.removeItem("30");
+					comboBoxDeDd.removeItem("31");
+					contDe30=0;
+					contDe31=0;
+				}
+				else if(contDe31==0 && contDe30==1) {
+					comboBoxDeDd.removeItem("30");
+					contDe30=0;
+				}	
+			}	
+			else if(deMm=="01" || deMm=="03" || deMm=="05" || deMm=="07" || deMm=="08" || deMm=="10" || deMm=="12") {
+				
+				if(contDe30==0 && contDe31==0) {
+					comboBoxDeDd.addItem("30");
+					comboBoxDeDd.addItem("31");
+					contDe30=1;
+					contDe31=1;
+				}
+				else if(contDe30==1 && contDe31==0) {
+					comboBoxDeDd.addItem("31");
+					contDe31=1;
+				}
+			}
+			else if(deMm=="04" || deMm=="06" || deMm=="09" || deMm=="11") {
+				
+				if(contDe30==0 && contDe31==0) {
+					comboBoxDeDd.addItem("30");
+					contDe30=1;
+				}
+				else if(contDe30==1 && contDe31==1) {
+					comboBoxDeDd.removeItem("31");
+					contDe31=0;
+				}
+			}
 		}
-		else if(e.getSource() == btnVolver){
-			Informe informe = new Informe();
-			informe.setVisible(true);
-			frame.dispose();
+		else if(e.getSource()==comboBoxAMm) {
+			
+			String aMm = (String) comboBoxAMm.getSelectedItem();
+			
+			if(aMm == "02") {
+				
+				if(contA31==1 && contA30==1) {
+					comboBoxADd.removeItem("30");
+					comboBoxADd.removeItem("31");
+					contA30=0;
+					contA31=0;
+				}
+				else if(contA31==0 && contA30==1) {
+					comboBoxADd.removeItem("30");
+					contA30=0;
+				}	
+			}	
+			else if(aMm=="01" || aMm=="03" || aMm=="05" || aMm=="07" || aMm=="08" || aMm=="10" || aMm=="12") {
+				
+				if(contA30==0 && contA31==0) {
+					comboBoxADd.addItem("30");
+					comboBoxADd.addItem("31");
+					contA30=1;
+					contA31=1;
+				}
+				else if(contA30==1 && contA31==0) {
+					comboBoxADd.addItem("31");
+					contA31=1;
+				}
+			}
+			else if(aMm=="04" || aMm=="06" || aMm=="09" || aMm=="11") {
+				
+				if(contA30==0 && contA31==0) {
+					comboBoxADd.addItem("30");
+					contA30=1;
+				}
+				else if(contA30==1 && contA31==1) {
+					comboBoxADd.removeItem("31");
+					contA31=0;
+				}
+			}
 		}
-		
-		
 	}
-	   
 }
