@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,6 +24,13 @@ public class eliminarFuncion implements ActionListener{
 	/**
 	 * Launch the application.
 	 */
+	
+	// CONECTA A LA BASE DE DATOS Y CONSIGUE EL CON
+    private Connection con = ConexionBD.conectar();
+    public PreparedStatement pstm = null;
+	ResultSet rs = null;
+	String query="";
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -99,9 +110,39 @@ public class eliminarFuncion implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		menuFunciones menuFunciones = new menuFunciones();
+		int opcion;
 		
 		if(e.getSource()==btnEliminar) {
-			int opcion = JOptionPane.showConfirmDialog(null, "Se ha eliminado exitosamente la funcion!. \n\n¿Quiere eliminar otra funcion?\n", "Eliminado", JOptionPane.YES_NO_OPTION);
+			
+			if(textNumero.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null,"Intreoducir bien el dato");
+			} else {
+				int sala = Integer.parseInt(textNumero.getText());
+				
+				try {
+					query= "SELECT * FROM Funcion WHERE Num_Sala = ?";
+					pstm = con.prepareStatement(query);
+	        		pstm.setInt(1,sala);
+	        		rs = pstm.executeQuery();
+	        		if(rs.next()) {
+	        			query ="DELETE FROM Funcion WHERE Num_Sala = ?";
+	        			pstm = con.prepareStatement(query);
+		        		pstm.setInt(1,sala);
+		        		pstm.execute();
+		        		opcion = JOptionPane.showConfirmDialog(null, "Se ha eliminado exitosamente!. \n\n�Quiere eliminar otra funcion?\n","Eliminado",JOptionPane.YES_NO_OPTION);
+	        		}
+	        		else {
+	        			JOptionPane.showMessageDialog(null, "No se encuentra la Funcion");
+	        		}
+					} catch (SQLException e1) {
+					
+				}
+				
+				
+			}
+			
+			opcion = JOptionPane.NO_OPTION;
+			
 			
 			if(opcion==JOptionPane.YES_OPTION) {
 				textNumero.setText("");
