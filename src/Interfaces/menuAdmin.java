@@ -136,8 +136,8 @@ public class menuAdmin implements ActionListener{
             frame.dispose();
         }
         else if(e.getSource()==btnInforme) {
-            Informe informe = new Informe();
-            informe.setVisible(true);
+        	Informe informe = new Informe();
+            informe.frame.setVisible(true);
             frame.dispose();
 
         }

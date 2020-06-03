@@ -190,7 +190,7 @@ public class editarFuncion implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		funciones funcion = new funciones();
+		menuFunciones menuFunciones = new menuFunciones();
 		
 		if(e.getSource()==btnActualizar) {
 			int opcion = JOptionPane.showConfirmDialog(null, "Se ha actualizado exitosamente!. \n\n¿Quiere actualizar otra funcion?\n", "Actualizado",JOptionPane.YES_NO_OPTION);
@@ -204,12 +204,12 @@ public class editarFuncion implements ActionListener{
 				textHoraMm.setText("");
 			}
 			else {
-				funcion.frame.setVisible(true);
+				menuFunciones.frame.setVisible(true);
 				frame.dispose();
 			}
 		}
 		else {
-			funcion.frame.setVisible(true);
+			menuFunciones.frame.setVisible(true);
 			frame.dispose();
 		}
 		

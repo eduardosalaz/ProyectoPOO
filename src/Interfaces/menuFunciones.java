@@ -110,8 +110,8 @@ public class menuFunciones implements ActionListener{
 			frame.dispose();
 		}
 		else if(e.getSource()==btnEditar) {
-			funciones funciones = new funciones();
-			funciones.frame.setVisible(true);
+			editarFuncion editarFuncion = new editarFuncion();
+			editarFuncion.frame.setVisible(true);
 		}
 		else if(e.getSource()==btnEliminar) {
 			eliminarFuncion eliminarFuncion = new eliminarFuncion();

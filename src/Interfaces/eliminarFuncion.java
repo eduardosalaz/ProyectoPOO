@@ -98,7 +98,7 @@ public class eliminarFuncion implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		funciones funcion = new funciones();
+		menuFunciones menuFunciones = new menuFunciones();
 		
 		if(e.getSource()==btnEliminar) {
 			int opcion = JOptionPane.showConfirmDialog(null, "Se ha eliminado exitosamente la funcion!. \n\n¿Quiere eliminar otra funcion?\n", "Eliminado", JOptionPane.YES_NO_OPTION);
@@ -107,12 +107,12 @@ public class eliminarFuncion implements ActionListener{
 				textNumero.setText("");
 			}
 			else {
-				funcion.frame.setVisible(true);
+				menuFunciones.frame.setVisible(true);
 				frame.dispose();
 			}
 		}
 		else {
-			funcion.frame.setVisible(true);
+			menuFunciones.frame.setVisible(true);
 			frame.dispose();
 		}
 	}
