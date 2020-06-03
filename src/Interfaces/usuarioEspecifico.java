@@ -23,16 +23,16 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-public class usuarioEspecifico extends JFrame implements ActionListener{
+public class usuarioEspecifico implements ActionListener{
 	int contDe30 = 1;
 	int contDe31 = 1;
 	int contA30 = 1;
 	int contA31 = 1;
 	private JComboBox comboBoxDeMm,comboBoxDeAaaa,comboBoxAAaaa,comboBoxAMm,comboBoxDeDd,comboBoxADd;
 	private JButton btnVolver, btnBuscar;
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField textIdUsuario;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -107,6 +107,7 @@ public class usuarioEspecifico extends JFrame implements ActionListener{
 		btnVolver.setBackground(new Color(171, 0, 51));
 		btnVolver.setBounds(10, 562, 139, 31);
 		frame.getContentPane().add(btnVolver);
+		btnVolver.addActionListener(this);
 		
 		btnBuscar = new JButton("Buscar");
 		btnBuscar.setForeground(Color.WHITE);
@@ -116,6 +117,7 @@ public class usuarioEspecifico extends JFrame implements ActionListener{
 		btnBuscar.setBackground(new Color(171, 0, 51));
 		btnBuscar.setBounds(411, 277, 139, 31);
 		frame.getContentPane().add(btnBuscar);
+		btnBuscar.addActionListener(this);
 		
 		JLabel lblDeAaaa = new JLabel("/ AAAA");
 		lblDeAaaa.setForeground(Color.WHITE);
@@ -300,5 +302,11 @@ public class usuarioEspecifico extends JFrame implements ActionListener{
 				}
 			}
 		}
+		else if(e.getSource()==btnVolver) {
+			Informe informe = new Informe();
+			informe.frame.setVisible(true);
+			frame.dispose();
+		}
 	}
 }
+
