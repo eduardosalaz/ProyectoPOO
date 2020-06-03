@@ -4,18 +4,24 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import static javax.swing.JOptionPane.showMessageDialog;
 import java.awt.event.ActionListener;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Despedir extends JFrame implements ActionListener {
 
-    private JPanel contentPane;
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
     private JTextField textField;
-    private String[] tipos = {"Admin", "Usuario"};
     private JButton btn_volver, btn_eliminar;
-
-    /**
-     * Launch the application.
-     */
+    private Connection con = ConexionBD.conectar();
+    public PreparedStatement pstm = null;
+	ResultSet rs = null;
+	String query="";
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -63,21 +69,6 @@ public class Despedir extends JFrame implements ActionListener {
         contentPane.add(textField);
         textField.setColumns(10);
 
-
-        JLabel lblNivel = new JLabel("Nivel:");
-        lblNivel.setForeground(Color.WHITE);
-        lblNivel.setFont(new Font("Arial", Font.PLAIN, 20));
-        lblNivel.setBounds(46, 131, 95, 25);
-        contentPane.add(lblNivel);
-
-        JComboBox comboBox = new JComboBox(tipos);
-        comboBox.setForeground(Color.WHITE);
-        comboBox.setBackground(new Color(46, 48, 48));
-        comboBox.setBounds(137, 136, 142, 20);
-        comboBox.setSelectedIndex(0);
-        comboBox.addActionListener(this);
-        contentPane.add(comboBox);
-
         btn_volver = new JButton("Volver");
         btn_volver.setFont(new Font("Arial", Font.BOLD, 20));
         btn_volver.setForeground(Color.WHITE);
@@ -103,6 +94,21 @@ public class Despedir extends JFrame implements ActionListener {
             dispose();
 
         }else if(e.getSource() == btn_eliminar){
+        	if(textField.getText().isEmpty())
+        	{
+        		showMessageDialog(null, "Introducir un nombre");
+        	}else {
+        		String nombre = textField.getText();
+        		try {
+            		query = "DELETE FROM Usuario WHERE Nombre = ? ";
+            		pstm = con.prepareStatement(query);
+            		pstm.setString(1, nombre);
+            		pstm.executeUpdate();
+            		showMessageDialog(null,"quitado con exito");
+            	} catch (SQLException e1) {
+            		
+            	}
+        	}
 
         }
 
