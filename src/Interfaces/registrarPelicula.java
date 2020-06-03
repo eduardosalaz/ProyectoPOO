@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,12 +20,28 @@ import javax.swing.JComboBox;
 public class registrarPelicula implements ActionListener{
 	private JButton btnVolver,btnRegistrar;
 	public JFrame frame;
+	private String[] clasificacion = {"AA", "A","B","B15","C","D"};
+	private String[] version = {"Subtitulada", "Doblada"};
 	private JTextField textNombre;
 	private JTextField textDuracion;
+	JComboBox comboBoxClasificacion;
+	JComboBox comboBoxVersion;
 	/**
 	 * Launch the application.
 	 */
+	
+	
+	// CONECTA A LA BASE DE DATOS Y CONSIGUE EL CON
+    private Connection con = ConexionBD.conectar();
+    public PreparedStatement pstm = null;
+	ResultSet rs = null;
+	String query="";
+	
 	public static void main(String[] args) {
+		
+		
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -34,16 +54,11 @@ public class registrarPelicula implements ActionListener{
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
+
 	public registrarPelicula() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initialize() {
 		frame = new JFrame();
@@ -107,7 +122,7 @@ public class registrarPelicula implements ActionListener{
 		lblDuracion.setBounds(551, 185, 170, 24);
 		frame.getContentPane().add(lblDuracion);
 		
-		JComboBox comboBoxClasificacion = new JComboBox();
+		comboBoxClasificacion = new JComboBox(clasificacion);
 		comboBoxClasificacion.setForeground(Color.WHITE);
 		comboBoxClasificacion.setBackground(new Color(34, 31, 32));
 		comboBoxClasificacion.setBounds(189, 273, 232, 21);
@@ -119,7 +134,7 @@ public class registrarPelicula implements ActionListener{
 		lblClasificacion.setBounds(69, 268, 170, 24);
 		frame.getContentPane().add(lblClasificacion);
 		
-		JComboBox comboBoxVersion = new JComboBox();
+		comboBoxVersion = new JComboBox(version);
 		comboBoxVersion.setForeground(Color.WHITE);
 		comboBoxVersion.setBackground(new Color(34, 31, 32));
 		comboBoxVersion.setBounds(628, 271, 239, 21);
@@ -136,6 +151,44 @@ public class registrarPelicula implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		menuFunciones menu = new menuFunciones();
 		if(e.getSource()==btnRegistrar) {
+			
+			if(textNombre.getText().isEmpty() || textDuracion.getText().isEmpty())
+			{
+				JOptionPane.showMessageDialog(null,"Llenar datos por favor.");
+			} else {
+        	int ID_Pelicula = Integer.parseInt(JOptionPane.showInputDialog("Introducir un ID para la pelicula por favor."));
+			String nombre = textNombre.getText();	
+			int duracion = Integer.parseInt(textDuracion.getText());
+			String clasificacion = (String) comboBoxClasificacion.getSelectedItem();
+			String version = (String) comboBoxVersion.getSelectedItem();
+			int versionBool;
+			if(version=="Subtitulada") {
+				versionBool=0;
+			} else {
+				versionBool=1;
+			}
+			try {
+				query = "INSERT INTO Pelicula (ID_Pelicula, Nombre, Clasificacion, Version, Duracion) VALUES (?, ?, ?, ?, ?)";
+        		pstm = con.prepareStatement(query);
+        		pstm.setInt(1, ID_Pelicula);
+        		pstm.setString(2,nombre);
+        		pstm.setString(3,clasificacion);
+        		pstm.setInt(4,versionBool);
+        		pstm.setInt(5,duracion);
+        		pstm.executeUpdate();
+        		JOptionPane.showMessageDialog(null,"introducido con exito.");
+				
+			} catch (SQLException e1) {
+				
+			}
+			
+			
+			
+			}
+			
+			
+			
+			
 			int opcion = JOptionPane.showConfirmDialog(null, "Se ha registrado exitosamente!. \n\n�Quiere registrar otro?\n","Registrado",JOptionPane.YES_NO_OPTION);
 			
 			if(opcion==JOptionPane.YES_OPTION) {

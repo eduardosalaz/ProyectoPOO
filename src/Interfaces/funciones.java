@@ -105,8 +105,8 @@ public class funciones implements ActionListener{
 			registrar.frame.setVisible(true);
 		}
 		else if(e.getSource()==btnEditar) {
-			//editarFuncion editar = new editarFuncion();
-			//editar.frame.setVisible(true);
+			editarFuncion editar = new editarFuncion();
+			editar.frame.setVisible(true);
 		}
 		else if(e.getSource()==btnEliminar) {
 			eliminarFuncion eliminar = new eliminarFuncion();

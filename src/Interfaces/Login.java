@@ -192,7 +192,7 @@ public class Login extends ConexionBD implements ActionListener {
 					//OBTENEMOS INFO NECESARIA
 					this.ID_USUARIO = valorUser;
 					this.USUARIO = rs.getString("Nombre");
-					showMessageDialog(null, "BIENVENIDO");
+					showMessageDialog(null, "BIENVENIDO "+USUARIO);
 					int nivelopc = Integer.parseInt(rs.getString("Admin"));
 					if (nivelopc==1)
 					{
