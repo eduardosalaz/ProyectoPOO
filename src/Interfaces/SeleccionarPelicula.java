@@ -5,6 +5,9 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
+
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class SeleccionarPelicula extends JFrame implements ActionListener {
 
@@ -15,6 +18,15 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
     public JButton btn_peli7_hora1, btn_peli7_hora2, btn_peli7_hora3,btn_peli8_hora1, btn_peli8_hora2, btn_peli8_hora3, btn_peli9_hora1, btn_peli9_hora2, btn_peli9_hora3;
     private static final long serialVersionUID = 1L;
     public JLayeredPane layeredPane;
+    //	BASE DE DATOS
+    Connection con = ConexionBD.conectar();
+    PreparedStatement pstm = null;
+    ResultSet rs = null;
+    Statement stm = null;
+    String query = "";
+    //ASIENTO SELECCIONADO POR EL BOTON
+    public static int sala_sel;
+    
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -27,7 +39,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
             }
         });
     }
-    public SeleccionarPelicula() {
+    public SeleccionarPelicula() throws SQLException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 960, 640);
         JPanel contentPane = new JPanel();
@@ -92,14 +104,9 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         btn_3.setBounds(529, 560, 90, 20);
         btn_3.addActionListener(this);
         contentPane.add(btn_3);
+        
 
         //Contenidos Panel1
-
-        JLabel lbl_peli1_img = new JLabel("Imagen Pel\u00EDcula 1");
-        lbl_peli1_img.setForeground(Color.BLACK);
-        lbl_peli1_img.setBackground(Color.YELLOW);
-        lbl_peli1_img.setBounds(10, 11, 100, 100);
-        panel1.add(lbl_peli1_img);
 
         JLabel lbl_peli1_nombre = new JLabel("Nombre Pel\u00EDcula 1");
         lbl_peli1_nombre.setForeground(Color.WHITE);
@@ -128,11 +135,6 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         lbl_peli1_horarios.setBounds(120, 64, 101, 23);
         panel1.add(lbl_peli1_horarios);
 
-        JLabel lbl_peli2_img = new JLabel("Imagen Pel\u00EDcula 2");
-        lbl_peli2_img.setForeground(Color.BLACK);
-        lbl_peli2_img.setBackground(Color.YELLOW);
-        lbl_peli2_img.setBounds(10, 137, 100, 100);
-        panel1.add(lbl_peli2_img);
 
         JLabel lbl_peli2_nombre = new JLabel("Nombre Pel\u00EDcula 2");
         lbl_peli2_nombre.setForeground(Color.WHITE);
@@ -161,11 +163,6 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         lbl_peli2_horarios.setBounds(120, 190, 101, 23);
         panel1.add(lbl_peli2_horarios);
 
-        JLabel lbl_peli3_img = new JLabel("Imagen Pel\u00EDcula 3");
-        lbl_peli3_img.setForeground(Color.BLACK);
-        lbl_peli3_img.setBackground(Color.YELLOW);
-        lbl_peli3_img.setBounds(10, 266, 100, 100);
-        panel1.add(lbl_peli3_img);
 
         JLabel lbl_peli3_nombre = new JLabel("Nombre Pel\u00EDcula 3");
         lbl_peli3_nombre.setForeground(Color.WHITE);
@@ -196,11 +193,6 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
 
         //Contenidos Panel2
 
-        JLabel lbl_peli4_img = new JLabel("Imagen Pel\u00EDcula 4");
-        lbl_peli4_img.setForeground(Color.BLACK);
-        lbl_peli4_img.setBackground(Color.YELLOW);
-        lbl_peli4_img.setBounds(10, 11, 100, 100);
-        panel2.add(lbl_peli4_img);
 
         JLabel lbl_peli4_nombre = new JLabel("Nombre Pel\u00EDcula 4");
         lbl_peli4_nombre.setForeground(Color.WHITE);
@@ -229,11 +221,6 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         lbl_peli4_horarios.setBounds(120, 64, 101, 23);
         panel2.add(lbl_peli4_horarios);
 
-        JLabel lbl_peli5_img = new JLabel("Imagen Pel\u00EDcula 5");
-        lbl_peli5_img.setForeground(Color.BLACK);
-        lbl_peli5_img.setBackground(Color.YELLOW);
-        lbl_peli5_img.setBounds(10, 137, 100, 100);
-        panel2.add(lbl_peli5_img);
 
         JLabel lbl_peli5_nombre = new JLabel("Nombre Pel\u00EDcula 5");
         lbl_peli5_nombre.setForeground(Color.WHITE);
@@ -261,12 +248,6 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         lbl_peli5_horarios.setFont(new Font("Arial", Font.PLAIN, 20));
         lbl_peli5_horarios.setBounds(120, 190, 101, 23);
         panel2.add(lbl_peli5_horarios);
-
-        JLabel lbl_peli6_img = new JLabel("Imagen Pel\u00EDcula 6");
-        lbl_peli6_img.setForeground(Color.BLACK);
-        lbl_peli6_img.setBackground(Color.YELLOW);
-        lbl_peli6_img.setBounds(10, 266, 100, 100);
-        panel2.add(lbl_peli6_img);
 
         JLabel lbl_peli6_nombre = new JLabel("Nombre Pel\u00EDcula 6");
         lbl_peli6_nombre.setForeground(Color.WHITE);
@@ -297,11 +278,6 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
 
         //Contenido Panel 3
 
-        JLabel lbl_peli7_img = new JLabel("Imagen Pel\u00EDcula 7");
-        lbl_peli7_img.setForeground(Color.BLACK);
-        lbl_peli7_img.setBackground(Color.YELLOW);
-        lbl_peli7_img.setBounds(10, 11, 100, 100);
-        panel3.add(lbl_peli7_img);
 
         JLabel lbl_peli7_nombre = new JLabel("Nombre Pel\u00EDcula 7");
         lbl_peli7_nombre.setForeground(Color.WHITE);
@@ -363,12 +339,6 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         lbl_peli8_horarios.setBounds(120, 190, 101, 23);
         panel3.add(lbl_peli8_horarios);
 
-        JLabel lbl_peli9_img = new JLabel("Imagen Pel\u00EDcula 9");
-        lbl_peli9_img.setForeground(Color.BLACK);
-        lbl_peli9_img.setBackground(Color.YELLOW);
-        lbl_peli9_img.setBounds(10, 266, 100, 100);
-        panel3.add(lbl_peli9_img);
-
         JLabel lbl_peli9_nombre = new JLabel("Nombre Pel\u00EDcula 9");
         lbl_peli9_nombre.setForeground(Color.WHITE);
         lbl_peli9_nombre.setFont(new Font("Arial", Font.BOLD, 22));
@@ -427,11 +397,192 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         btn_peli9_hora2.addActionListener(this);
         btn_peli9_hora3.addActionListener(this);
 
+        //CONTAR CUANTAS PELICULAS DISTINTAS HAY
+        query = "SELECT COUNT(DISTINCT ID_Peli) FROM Funcion;";
+        stm = con.createStatement();
+        rs = stm.executeQuery(query);
+        int cant_pelis = 0;
+		//Empezamos a contar
+		while(rs.next())
+		{
+			cant_pelis = rs.getInt(1); //devuelve el valor que tuvimos del result set
+		}
+        //SACAR LAS CLAVES DE LAS PELIS
+        query = "SELECT DISTINCT ID_Peli FROM Funcion";
+        stm = con.createStatement();
+        rs = stm.executeQuery(query);
+        int[] id_peliculas = new int[cant_pelis];
+		//Empezamos a contar
+        int i=0;
+		while(rs.next())
+		{
+			 id_peliculas[i]=rs.getInt("ID_Peli"); //devuelve el valor que tuvimos del result set
+			 i++;
+		}
+		//CONSIGUE EL NOMBRE DE LAS PELICULAS
+		String[] nom_peli = new String[10];
+		
+		for(i=0; i<cant_pelis; i++)
+		{
+		query = "SELECT Nombre FROM Pelicula WHERE ID_Pelicula=?";
+		pstm=con.prepareStatement(query);
+    	pstm.setInt(1, id_peliculas[i]);
+    	rs = pstm.executeQuery();
+    		while(rs.next())
+    		{
+    			nom_peli[i]=rs.getString(1);
+    		}
+		}
+		
+		
+		//DESACTIVACION DE FUNCIONES
+    	switch(cant_pelis)
+		{
+		case 0: showMessageDialog(null, "NO HAY FUNCIONES, CONTACTE A SU ADMINISTRADOR"); break;
+		case 1: desactivo1();
+		lbl_peli1_nombre.setText(nom_peli[0]);
+		
+        lbl_peli2_nombre.setVisible(false);
+        lbl_peli3_nombre.setVisible(false);
+        lbl_peli2_horarios.setVisible(false);
+        lbl_peli3_horarios.setVisible(false);
+        break;
+		case 2: desactivo2();
+		lbl_peli1_nombre.setText(nom_peli[0]);
+		lbl_peli2_nombre.setText(nom_peli[1]);
+        lbl_peli3_nombre.setVisible(false);
+        lbl_peli3_horarios.setVisible(false);
+		break;
+		case 3: 
+			desactivo3();
+			lbl_peli1_nombre.setText(nom_peli[0]);
+			lbl_peli2_nombre.setText(nom_peli[1]);
+			lbl_peli3_nombre.setText(nom_peli[2]);
+			break;
+		case 4:
+			desactivo4();
+			lbl_peli1_nombre.setText(nom_peli[0]);
+			lbl_peli2_nombre.setText(nom_peli[1]);
+			lbl_peli3_nombre.setText(nom_peli[2]);
+			lbl_peli4_nombre.setText(nom_peli[3]);
+			lbl_peli5_nombre.setVisible(false);
+			lbl_peli6_nombre.setVisible(false);
+			lbl_peli5_horarios.setVisible(false);
+			lbl_peli6_horarios.setVisible(false);
+		break;
+		case 5:
+			desactivo5();
+			lbl_peli1_nombre.setText(nom_peli[0]);
+			lbl_peli2_nombre.setText(nom_peli[1]);
+			lbl_peli3_nombre.setText(nom_peli[2]);
+			lbl_peli4_nombre.setText(nom_peli[3]);
+			lbl_peli5_nombre.setText(nom_peli[4]);
+			lbl_peli6_nombre.setVisible(false);
+			lbl_peli6_horarios.setVisible(false);
+		break;
+		case 6: 
+			lbl_peli1_nombre.setText(nom_peli[0]);
+			lbl_peli2_nombre.setText(nom_peli[1]);
+			lbl_peli3_nombre.setText(nom_peli[2]);
+			lbl_peli4_nombre.setText(nom_peli[3]);
+			lbl_peli5_nombre.setText(nom_peli[4]);
+			lbl_peli6_nombre.setText(nom_peli[5]);
+			btn_3.setVisible(false); break;
+		case 7:
+			desactivo7();
+			lbl_peli1_nombre.setText(nom_peli[0]);
+			lbl_peli2_nombre.setText(nom_peli[1]);
+			lbl_peli3_nombre.setText(nom_peli[2]);
+			lbl_peli4_nombre.setText(nom_peli[3]);
+			lbl_peli5_nombre.setText(nom_peli[4]);
+			lbl_peli6_nombre.setText(nom_peli[5]);
+			lbl_peli7_nombre.setText(nom_peli[6]);
+			lbl_peli8_nombre.setVisible(false);
+			lbl_peli9_nombre.setVisible(false);
+			lbl_peli8_horarios.setVisible(false);
+			lbl_peli9_horarios.setVisible(false);
+		break;
+    	case 8: 
+    		desactivo8();
+    		lbl_peli1_nombre.setText(nom_peli[0]);
+			lbl_peli2_nombre.setText(nom_peli[1]);
+			lbl_peli3_nombre.setText(nom_peli[2]);
+			lbl_peli4_nombre.setText(nom_peli[3]);
+			lbl_peli5_nombre.setText(nom_peli[4]);
+			lbl_peli6_nombre.setText(nom_peli[5]);
+			lbl_peli7_nombre.setText(nom_peli[6]);
+			lbl_peli8_nombre.setText(nom_peli[7]);
+    		lbl_peli9_nombre.setVisible(false);
+    		lbl_peli9_horarios.setVisible(false);
+    	break;
+    	case 9:
+    		desactivo8();
+    		lbl_peli1_nombre.setText(nom_peli[0]);
+			lbl_peli2_nombre.setText(nom_peli[1]);
+			lbl_peli3_nombre.setText(nom_peli[2]);
+			lbl_peli4_nombre.setText(nom_peli[3]);
+			lbl_peli5_nombre.setText(nom_peli[4]);
+			lbl_peli6_nombre.setText(nom_peli[5]);
+			lbl_peli7_nombre.setText(nom_peli[6]);
+			lbl_peli8_nombre.setText(nom_peli[7]);
+    		lbl_peli9_nombre.setText(nom_peli[8]);
+    		break;
+		}
+    	
+    	//DESACTIVACION DE HORARIOS
+    	//CONTAR CUANTOS HORARIOS TIENE CADA PELICULA
+    	int cont_horarios=0;
+    	int numero_peli=1;
+    	String nom_hor[] = new String[3];
+    	int j=0;
+    	for(i=0; i<id_peliculas.length; i++) {
+    	query = "SELECT Hora_Peli FROM Funcion WHERE ID_Peli=?";
+    	pstm=con.prepareStatement(query);
+    	pstm.setInt(1, id_peliculas[i]);
+    	rs = pstm.executeQuery();
+    	while(rs.next())
+    	{
+    		cont_horarios++;
+    		nom_hor[j]= rs.getString("Hora_Peli"); 
+    		j++;
+    	}
+    	System.out.println(cont_horarios);
+    	rs.first(); //REGRESA A LA PRIMERA COLUMNA
+    	//DEPENDE QUE PELI 
+    	switch(numero_peli)
+    	{ //DESACTIVA BOTONES DE HORARIO EN ESA PELI
+    	case 1:
+    		des_hor1(cont_horarios, nom_hor); 
+    		break;
+    	case 2:
+    		des_hor2(cont_horarios, nom_hor); 
+    		break;
+    	case 3: des_hor3(cont_horarios, nom_hor); break;
+    	case 4: des_hor4(cont_horarios, nom_hor); break;
+    	case 5: des_hor5(cont_horarios, nom_hor); break;
+    	case 6: des_hor6(cont_horarios, nom_hor); break;
+    	case 7: des_hor7(cont_horarios, nom_hor); break;
+    	case 8: des_hor8(cont_horarios, nom_hor); break;
+    	case 9: des_hor9(cont_horarios, nom_hor); break;
+    	}
+    	
+    	numero_peli++;
+    	cont_horarios=0; //REINICIO
+    	j=0;
+    	
+    	}
+    	
+    	
+ 
     }
 
-    @Override
+
+	
+	
+	@Override
     //TODO: Realizar la conexion a SQL para mostrar de manera actualizada los asientos de la siguiente interfaz.
     public void actionPerformed(ActionEvent e) {
+		String hor_sel = "";
         if(e.getSource()==btn_1){
             switchPane(panel1);
         }else if(e.getSource() == btn_2){
@@ -443,141 +594,197 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
             corteBoleto.setVisible(true);
             dispose();
         }else if(e.getSource() == btn_cambiarDulcería){
+        	hor_sel = btn_peli2_hora1.getText();
+        	obtener_sala(hor_sel);
             VentaDulceria ventaDulceria = new VentaDulceria();
             ventaDulceria.setVisible(true);
             dispose();
         }else if(e.getSource() == btn_peli1_hora1){
+        	hor_sel = btn_peli1_hora1.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
 
         }else if(e.getSource() == btn_peli1_hora2){
+        	hor_sel = btn_peli1_hora2.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli1_hora3){
+        	hor_sel = btn_peli1_hora3.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli2_hora1){
+        	hor_sel = btn_peli2_hora1.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli2_hora2){
+        	hor_sel = btn_peli2_hora2.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli2_hora3){
+        	hor_sel = btn_peli2_hora3.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli3_hora1){
+        	hor_sel = btn_peli3_hora1.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli3_hora2){
+        	hor_sel = btn_peli3_hora2.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli3_hora3){
+        	hor_sel = btn_peli3_hora3.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli4_hora1){
+        	hor_sel = btn_peli4_hora1.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli4_hora2){
+        	hor_sel = btn_peli4_hora2.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli4_hora3){
+        	hor_sel = btn_peli4_hora3.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli5_hora1){
+        	hor_sel = btn_peli5_hora1.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli5_hora2){
+        	hor_sel = btn_peli5_hora2.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli5_hora3){
+        	hor_sel = btn_peli5_hora3.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli6_hora1){
+        	hor_sel = btn_peli6_hora1.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli6_hora2){
+        	hor_sel = btn_peli6_hora2.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli6_hora3){
+        	hor_sel = btn_peli6_hora3.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli7_hora1){
+        	hor_sel = btn_peli7_hora1.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli7_hora2){
+        	hor_sel = btn_peli7_hora2.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli7_hora3){
+        	hor_sel = btn_peli7_hora3.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli8_hora1){
+        	hor_sel = btn_peli8_hora1.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli8_hora2){
+        	hor_sel = btn_peli8_hora2.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli8_hora3){
+        	hor_sel = btn_peli8_hora3.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli9_hora1){
+        	hor_sel = btn_peli9_hora1.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli9_hora2){
+        	hor_sel = btn_peli9_hora2.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli9_hora3){
+        	hor_sel = btn_peli9_hora3.getText();
+        	obtener_sala(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
@@ -585,10 +792,283 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
 
     }
 
-    public void switchPane(JPanel panel){
+    private void obtener_sala(String hor_sel) {
+		query = "SELECT Num_Sala FROM Funcion WHERE Hora_Peli=?";
+		try {
+			pstm = con.prepareStatement(query);
+			pstm.setString(1, hor_sel);
+			rs = pstm.executeQuery();
+			while(rs.next())
+			{
+				this.sala_sel = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void switchPane(JPanel panel){
         layeredPane.removeAll();
         layeredPane.add(panel);
         layeredPane.repaint();
         layeredPane.revalidate();
     }
-}
+    
+    
+    //DESACTIVAR TODO DE FUNCIONES
+	private void desactivo8() {
+		btn_peli9_hora1.setVisible(false);
+        btn_peli9_hora2.setVisible(false);
+        btn_peli9_hora3.setVisible(false);
+	}
+	private void desactivo7() {
+		btn_peli8_hora1.setVisible(false);
+        btn_peli8_hora2.setVisible(false);
+        btn_peli8_hora3.setVisible(false);
+        btn_peli9_hora1.setVisible(false);
+        btn_peli9_hora2.setVisible(false);
+        btn_peli9_hora3.setVisible(false);
+		
+	}
+	private void desactivo5() {
+		btn_peli6_hora1.setVisible(false);
+        btn_peli6_hora2.setVisible(false);
+        btn_peli6_hora3.setVisible(false);
+        btn_3.setVisible(false);
+	}
+	private void desactivo4() {
+		btn_peli5_hora1.setVisible(false);
+        btn_peli5_hora2.setVisible(false);
+        btn_peli5_hora3.setVisible(false);
+        btn_peli6_hora1.setVisible(false);
+        btn_peli6_hora2.setVisible(false);
+        btn_peli6_hora3.setVisible(false);
+        btn_3.setVisible(false);
+
+	}
+	private void desactivo3() {
+		btn_1.setVisible(false);
+		btn_2.setVisible(false);
+		btn_3.setVisible(false);
+	}
+	private void desactivo2() {
+		btn_peli3_hora1.setVisible(false);
+        btn_peli3_hora2.setVisible(false);
+        btn_peli3_hora3.setVisible(false);
+        btn_1.setVisible(false);
+		btn_2.setVisible(false);
+		btn_3.setVisible(false);
+	}
+	private void desactivo1() {
+
+		//DESHABILITA LO QUE NO
+		btn_peli2_hora1.setVisible(false);
+        btn_peli2_hora2.setVisible(false);
+        btn_peli2_hora3.setVisible(false);
+        btn_peli3_hora1.setVisible(false);
+        btn_peli3_hora2.setVisible(false);
+        btn_peli3_hora3.setVisible(false);
+        btn_1.setVisible(false);
+		btn_2.setVisible(false);
+		btn_3.setVisible(false);
+	}
+	
+	//DESACTIVACION DE BOTONES HORARIO
+	private void des_hor1(int cont_horarios, String[] nom_hor) {
+		switch (cont_horarios)
+		{
+		case 1: 
+			btn_peli1_hora1.setText(nom_hor[0]);
+			btn_peli1_hora2.setVisible(false);
+			btn_peli1_hora3.setVisible(false);
+			break;
+		case 2: 
+			btn_peli1_hora1.setText(nom_hor[0]);
+			btn_peli1_hora2.setText(nom_hor[1]);
+			btn_peli1_hora3.setVisible(false);
+			break;
+		case 3:
+			btn_peli1_hora1.setText(nom_hor[0]);
+			btn_peli1_hora2.setText(nom_hor[1]);
+			btn_peli1_hora3.setText(nom_hor[2]);
+			break;
+		}
+	}
+	
+	private void des_hor2(int cont_horarios, String[] nom_hor) {
+		switch (cont_horarios)
+		{
+		case 1: 
+			btn_peli2_hora1.setText(nom_hor[0]);
+			btn_peli2_hora2.setVisible(false);
+			btn_peli2_hora3.setVisible(false);
+			break;
+		case 2: 
+			btn_peli2_hora1.setText(nom_hor[0]);
+			btn_peli2_hora2.setText(nom_hor[1]);
+			btn_peli2_hora3.setVisible(false);
+			break;
+		case 3:
+			btn_peli2_hora1.setText(nom_hor[0]);
+			btn_peli2_hora2.setText(nom_hor[1]);
+			btn_peli2_hora3.setText(nom_hor[2]);
+			break;
+		}
+		
+	}
+	
+	private void des_hor3(int cont_horarios, String[] nom_hor) {
+		switch (cont_horarios)
+		{
+		case 1: 
+			btn_peli3_hora1.setText(nom_hor[0]);
+			btn_peli3_hora2.setVisible(false);
+			btn_peli3_hora3.setVisible(false);
+			break;
+		case 2: 
+			btn_peli3_hora1.setText(nom_hor[0]);
+			btn_peli3_hora2.setText(nom_hor[1]);
+			btn_peli3_hora3.setVisible(false);
+			break;
+		case 3:
+			btn_peli3_hora1.setText(nom_hor[0]);
+			btn_peli3_hora2.setText(nom_hor[1]);
+			btn_peli3_hora3.setText(nom_hor[2]);
+			break;
+		}
+		
+	}
+		
+	private void des_hor4(int cont_horarios, String[] nom_hor) {
+		switch (cont_horarios)
+		{
+		case 1: 
+			btn_peli4_hora1.setText(nom_hor[0]);
+			btn_peli4_hora2.setVisible(false);
+			btn_peli4_hora3.setVisible(false);
+			break;
+		case 2: 
+			btn_peli4_hora1.setText(nom_hor[0]);
+			btn_peli4_hora2.setText(nom_hor[1]);
+			btn_peli4_hora3.setVisible(false);
+			break;
+		case 3:
+			btn_peli4_hora1.setText(nom_hor[0]);
+			btn_peli4_hora2.setText(nom_hor[1]);
+			btn_peli4_hora3.setText(nom_hor[2]);
+			break;
+		}
+		
+	}
+	
+	private void des_hor5(int cont_horarios, String[] nom_hor) {
+		switch (cont_horarios)
+		{
+		case 1: 
+			btn_peli5_hora1.setText(nom_hor[0]);
+			btn_peli5_hora2.setVisible(false);
+			btn_peli5_hora3.setVisible(false);
+			break;
+		case 2: 
+			btn_peli5_hora1.setText(nom_hor[0]);
+			btn_peli5_hora2.setText(nom_hor[1]);
+			btn_peli5_hora3.setVisible(false);
+			break;
+		case 3:
+			btn_peli5_hora1.setText(nom_hor[0]);
+			btn_peli5_hora2.setText(nom_hor[1]);
+			btn_peli5_hora3.setText(nom_hor[2]);
+			break;
+		}
+		
+	}
+	
+	private void des_hor6(int cont_horarios, String[] nom_hor) {
+		switch (cont_horarios)
+		{
+		case 1: 
+			btn_peli6_hora1.setText(nom_hor[0]);
+			btn_peli6_hora2.setVisible(false);
+			btn_peli6_hora3.setVisible(false);
+			break;
+		case 2: 
+			btn_peli6_hora1.setText(nom_hor[0]);
+			btn_peli6_hora2.setText(nom_hor[1]);
+			btn_peli6_hora3.setVisible(false);
+			break;
+		case 3:
+			btn_peli6_hora1.setText(nom_hor[0]);
+			btn_peli6_hora2.setText(nom_hor[1]);
+			btn_peli6_hora3.setText(nom_hor[2]);
+			break;
+		}
+		
+	}
+	
+	private void des_hor7(int cont_horarios, String[] nom_hor) {
+		switch (cont_horarios)
+		{
+		case 1: 
+			btn_peli7_hora1.setText(nom_hor[0]);
+			btn_peli7_hora2.setVisible(false);
+			btn_peli7_hora3.setVisible(false);
+			break;
+		case 2: 
+			btn_peli7_hora1.setText(nom_hor[0]);
+			btn_peli7_hora2.setText(nom_hor[1]);
+			btn_peli7_hora3.setVisible(false);
+			break;
+		case 3:
+			btn_peli7_hora1.setText(nom_hor[0]);
+			btn_peli7_hora2.setText(nom_hor[1]);
+			btn_peli7_hora3.setText(nom_hor[2]);
+			break;
+		}
+		
+	}
+	
+	private void des_hor8(int cont_horarios, String[] nom_hor) {
+		switch (cont_horarios)
+		{
+		case 1: 
+			btn_peli8_hora1.setText(nom_hor[0]);
+			btn_peli8_hora2.setVisible(false);
+			btn_peli8_hora3.setVisible(false);
+			break;
+		case 2: 
+			btn_peli8_hora1.setText(nom_hor[0]);
+			btn_peli8_hora2.setText(nom_hor[1]);
+			btn_peli8_hora3.setVisible(false);
+			break;
+		case 3:
+			btn_peli8_hora1.setText(nom_hor[0]);
+			btn_peli8_hora2.setText(nom_hor[1]);
+			btn_peli8_hora3.setText(nom_hor[2]);
+			break;
+		}
+		
+	}
+	
+	private void des_hor9(int cont_horarios, String[] nom_hor) {
+		
+		
+		switch (cont_horarios)
+		{
+		case 1: 
+			btn_peli9_hora1.setText(nom_hor[0]);
+			btn_peli9_hora2.setVisible(false);
+			btn_peli9_hora3.setVisible(false);
+			break;
+		case 2: 
+			btn_peli9_hora1.setText(nom_hor[0]);
+			btn_peli9_hora2.setText(nom_hor[1]);
+			btn_peli9_hora3.setVisible(false);
+			break;
+		case 3:
+			btn_peli9_hora1.setText(nom_hor[0]);
+			btn_peli9_hora2.setText(nom_hor[1]);
+			btn_peli9_hora3.setText(nom_hor[2]);
+			break;
+		}
+		
+	}
