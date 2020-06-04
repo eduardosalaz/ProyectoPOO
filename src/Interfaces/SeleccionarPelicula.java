@@ -1072,3 +1072,4 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
 		}
 		
 	}
+}
