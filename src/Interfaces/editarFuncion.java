@@ -56,7 +56,7 @@ public class editarFuncion implements ActionListener {
     /**
      * Create the application.
      */
-    public editarFuncion1()
+    public editarFuncion()
     {
         initialize();
     }
