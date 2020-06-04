@@ -8,11 +8,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
 import java.awt.event.ActionEvent;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class rellenoInventario implements ActionListener{
 
@@ -24,6 +29,13 @@ public class rellenoInventario implements ActionListener{
     /**
      * Launch the application.
      */
+    
+    // CONECTA A LA BASE DE DATOS Y CONSIGUE EL CON
+    private Connection con = ConexionBD.conectar();
+    public PreparedStatement pstm = null;
+	ResultSet rs = null;
+	String query="";
+	
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -80,7 +92,7 @@ public class rellenoInventario implements ActionListener{
         textClave.setBounds(255, 135, 158, 19);
         frame.getContentPane().add(textClave);
 
-        JLabel lblClave = new JLabel("Clave del articulo:");
+        JLabel lblClave = new JLabel("ID del articulo:");
         lblClave.setForeground(Color.WHITE);
         lblClave.setFont(new Font("Arial", Font.PLAIN, 20));
         lblClave.setBounds(90, 135, 170, 16);
@@ -107,9 +119,6 @@ public class rellenoInventario implements ActionListener{
         frame.getContentPane().add(btnActualizar);
         btnActualizar.addActionListener(this);
 
-        JList list = new JList();
-        list.setBounds(90, 317, 765, 157);
-        frame.getContentPane().add(list);
     }
 
     @Override
@@ -122,6 +131,32 @@ public class rellenoInventario implements ActionListener{
 
         }
         else if(e.getSource()==btnActualizar) {
+        	
+        	if(textClave.getText().isEmpty() || textCantidad.getText().isEmpty())
+        	{
+        		JOptionPane.showMessageDialog(null, "Faltan datos.");
+        	} else {
+        	int id = Integer.parseInt(textClave.getText());	
+        	int cantidad = Integer.parseInt(textCantidad.getText());
+        	
+        	try {
+        		
+        		query="UPDATE `Producto Dulceria` SET `Existencias`= ? WHERE `ID_Producto`=?";
+        		pstm = con.prepareStatement(query);
+        		pstm.setInt(1,cantidad);
+        		pstm.setInt(2, id);
+        		pstm.executeUpdate();
+        		JOptionPane.showMessageDialog(null, "listo!");
+        		
+        	} catch (SQLException e1) {
+        		
+        	}
+        	
+        	
+        	}
+        	
+        	
+        	
             int opcion = JOptionPane.showConfirmDialog(null, "Actualizado correctamente!, quiere rellenar otro producto?","Actualizado",JOptionPane.YES_NO_OPTION);
 
             if(opcion == JOptionPane.YES_OPTION) {

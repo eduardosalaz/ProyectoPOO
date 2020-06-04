@@ -193,7 +193,6 @@ public class registrarNuevoProducto implements ActionListener{
         			pstm.setInt(6, 1);
         			pstm.executeUpdate();
         			JOptionPane.showMessageDialog(null, "listo, producto agregado");
-        			
         		} catch(SQLException e1) {
         			
         		}
