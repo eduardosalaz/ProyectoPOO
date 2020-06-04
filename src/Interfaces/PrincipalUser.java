@@ -93,6 +93,8 @@ public class PrincipalUser extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btn_dulceria){
             System.out.println("a la dulcería");
+            VentaDulceria ventaDulceria = new VentaDulceria();
+            ventaDulceria.setVisible(true);
             dispose();
         }else if(e.getSource() == btn_taquilla){
             System.out.println("a la taquilla");

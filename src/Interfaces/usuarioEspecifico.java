@@ -30,7 +30,7 @@ public class usuarioEspecifico implements ActionListener{
 	int contA31 = 1;
 	private JComboBox comboBoxDeMm,comboBoxDeAaaa,comboBoxAAaaa,comboBoxAMm,comboBoxDeDd,comboBoxADd;
 	private JButton btnVolver, btnBuscar;
-	private JFrame frame;
+	JFrame frame;
 	private JTextField textIdUsuario;
 
 	/**

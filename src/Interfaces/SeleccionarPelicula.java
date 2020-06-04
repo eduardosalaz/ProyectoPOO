@@ -443,7 +443,9 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
             corteBoleto.setVisible(true);
             dispose();
         }else if(e.getSource() == btn_cambiarDulcería){
-
+            VentaDulceria ventaDulceria = new VentaDulceria();
+            ventaDulceria.setVisible(true);
+            dispose();
         }else if(e.getSource() == btn_peli1_hora1){
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
