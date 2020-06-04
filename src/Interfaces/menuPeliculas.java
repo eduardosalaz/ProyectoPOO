@@ -55,7 +55,7 @@ public class menuPeliculas implements ActionListener{
 
 
 
-        JLabel lblMenuInventario = new JLabel("Men\u00FA PelÃ­culas");
+        JLabel lblMenuInventario = new JLabel("Men\u00FA Películas");
         lblMenuInventario.setForeground(Color.WHITE);
         lblMenuInventario.setFont(new Font("Arial", Font.BOLD, 40));
         lblMenuInventario.setBounds(337, 53, 309, 72);

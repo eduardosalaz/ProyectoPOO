@@ -70,7 +70,7 @@ public class menuFunciones implements ActionListener{
 		frame.getContentPane().add(btnVolver);
 		btnVolver.addActionListener(this);
 		
-		btnRegistrar = new JButton("Registrar nueva funciÃ³n");
+		btnRegistrar = new JButton("Registrar nueva función");
 		btnRegistrar.setForeground(Color.WHITE);
 		btnRegistrar.setFont(new Font("Arial", Font.PLAIN, 24));
 		btnRegistrar.setFocusPainted(false);
@@ -90,7 +90,7 @@ public class menuFunciones implements ActionListener{
 		frame.getContentPane().add(btnEditar);
 		btnEditar.addActionListener(this);
 		
-		btnEliminar = new JButton("Eliminar funciÃ³n");
+		btnEliminar = new JButton("Eliminar función");
 		btnEliminar.setForeground(Color.WHITE);
 		btnEliminar.setFont(new Font("Arial", Font.PLAIN, 24));
 		btnEliminar.setFocusPainted(false);
@@ -110,8 +110,8 @@ public class menuFunciones implements ActionListener{
 			frame.dispose();
 		}
 		else if(e.getSource()==btnEditar) {
-			funciones funciones = new funciones();
-			funciones.frame.setVisible(true);
+			editarFuncion editarFuncion = new editarFuncion();
+			editarFuncion.frame.setVisible(true);
 		}
 		else if(e.getSource()==btnEliminar) {
 			eliminarFuncion eliminarFuncion = new eliminarFuncion();
@@ -119,7 +119,7 @@ public class menuFunciones implements ActionListener{
 			frame.dispose();
 		}
 		else if(e.getSource() == btnVolver) {
-			menuAdmin menu = new menuAdmin();
+			menuPeliculas menu = new menuPeliculas();
 			menu.frame.setVisible(true);
 		}
 		

@@ -18,6 +18,7 @@ public class Inventario extends JFrame implements ActionListener {
     private JPanel contentPane;
     private JTable table;
     private JButton btn_volver;
+    public JFrame frame;
 
     /**
      * Launch the application.
@@ -26,8 +27,9 @@ public class Inventario extends JFrame implements ActionListener {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Inventario frame = new Inventario();
-                    frame.setVisible(true);
+                	Inventario window = new Inventario();
+                    window.frame.setVisible(true);
+                    
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -39,39 +41,41 @@ public class Inventario extends JFrame implements ActionListener {
      * Create the frame.
      */
     public Inventario() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 960, 460);
-        setSize(960, 640);
-        contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        getContentPane().setBackground(new Color(72,81,84));
-        getContentPane().setLayout(null);
+    	frame = new JFrame();
+		frame.setBounds(100, 100, 960, 640);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(960,640);
+		frame.getContentPane().setLayout(null);
+		frame.getContentPane().setBackground(new Color(72,81,84));
 
         JLabel lbl_inventario = new JLabel("Inventario");
         lbl_inventario.setForeground(Color.WHITE);
         lbl_inventario.setFont(new Font("Arial", Font.BOLD, 40));
         lbl_inventario.setBounds(376, 11, 191, 88);
-        getContentPane().add(lbl_inventario);
+        frame.getContentPane().add(lbl_inventario);
 
         btn_volver = new JButton("Volver");
         btn_volver.setForeground(Color.WHITE);
         btn_volver.setFont(new Font("Arial", Font.PLAIN, 20));
+        btn_volver.setFocusPainted(false);
+        btn_volver.setBorderPainted(false);
         btn_volver.setBackground(new Color(171, 0, 51));
-        btn_volver.setBounds(10, 546, 127, 44);
-        btn_volver.addActionListener(this);
-        getContentPane().add(btn_volver);
+        btn_volver.setBounds(10, 562, 139, 31);
+		frame.getContentPane().add(btn_volver);
+		btn_volver.addActionListener(this);
 
         table = new JTable();
         table.setBounds(10, 110, 924, 425);
-        getContentPane().add(table);
+        frame.getContentPane().add(table);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btn_volver){
             Informe informe = new Informe();
-            informe.setVisible(true);
-            dispose();
+            informe.frame.setVisible(true);
+            frame.dispose();
         }
     }
 }
+

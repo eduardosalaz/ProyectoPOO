@@ -189,7 +189,7 @@ public class registrarNuevaFuncion implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		funciones funcion = new funciones();
+		menuFunciones menuFunciones = new menuFunciones();
 		
 		if(e.getSource()==btnRegistrar) {
 			int opcion = JOptionPane.showConfirmDialog(null, "Se ha registrado correctamente la funcion!. \n\n�Quiere registrar otra funcion?\n","Registrado",JOptionPane.YES_NO_OPTION);
@@ -203,12 +203,12 @@ public class registrarNuevaFuncion implements ActionListener{
 				textHoraMm.setText("");
 			}
 			else {
-				funcion.frame.setVisible(true);
+				menuFunciones.frame.setVisible(true);
 				frame.dispose();
 			}
 		}
 		else {
-			funcion.frame.setVisible(true);
+			menuFunciones.frame.setVisible(true);
 			frame.dispose();
 		}
 	}

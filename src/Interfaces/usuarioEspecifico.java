@@ -30,9 +30,13 @@ public class usuarioEspecifico implements ActionListener{
 	int contA31 = 1;
 	private JComboBox comboBoxDeMm,comboBoxDeAaaa,comboBoxAAaaa,comboBoxAMm,comboBoxDeDd,comboBoxADd;
 	private JButton btnVolver, btnBuscar;
+<<<<<<< HEAD
 	JFrame frame;
+=======
+	public JFrame frame;
+>>>>>>> f71ab4f33303d008b91dc1ff648d6d80aa0b06e5
 	private JTextField textIdUsuario;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -107,6 +111,7 @@ public class usuarioEspecifico implements ActionListener{
 		btnVolver.setBackground(new Color(171, 0, 51));
 		btnVolver.setBounds(10, 562, 139, 31);
 		frame.getContentPane().add(btnVolver);
+		btnVolver.addActionListener(this);
 		
 		btnBuscar = new JButton("Buscar");
 		btnBuscar.setForeground(Color.WHITE);
@@ -116,6 +121,7 @@ public class usuarioEspecifico implements ActionListener{
 		btnBuscar.setBackground(new Color(171, 0, 51));
 		btnBuscar.setBounds(411, 277, 139, 31);
 		frame.getContentPane().add(btnBuscar);
+		btnBuscar.addActionListener(this);
 		
 		JLabel lblDeAaaa = new JLabel("/ AAAA");
 		lblDeAaaa.setForeground(Color.WHITE);
@@ -300,5 +306,11 @@ public class usuarioEspecifico implements ActionListener{
 				}
 			}
 		}
+		else if(e.getSource()==btnVolver) {
+			Informe informe = new Informe();
+			informe.frame.setVisible(true);
+			frame.dispose();
+		}
 	}
 }
+
