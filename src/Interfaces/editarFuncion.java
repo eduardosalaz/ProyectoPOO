@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,16 +20,32 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
+
+
 public class editarFuncion implements ActionListener{
 	private int cont30 = 1,cont31 = 1;
 	private JButton btnVolver,btnActualizar;
 	public JFrame frame;
 	private JTextField textIdPelicula;
+	private JTextField textIdFuncion;
 	private JComboBox comboBoxMm,comboBoxDd;
+	private JComboBox comboBoxAaaa;
+	private JSpinner spinner;
+	JComboBox<Integer> comboBoxNumero;
+	private JSpinner spinner_1;
 
+
+	
 	/**
 	 * Launch the application.
 	 */
+	
+	// CONECTA A LA BASE DE DATOS Y CONSIGUE EL CON
+    private Connection con = ConexionBD.conectar();
+    public PreparedStatement pstm = null;
+	ResultSet rs = null;
+	String query="";
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -90,10 +110,21 @@ public class editarFuncion implements ActionListener{
 		frame.getContentPane().add(btnActualizar);
 		btnActualizar.addActionListener(this);
 		
+		JLabel lblFuncion = new JLabel("ID Funcion a editar:");
+		lblFuncion.setForeground(Color.WHITE);
+		lblFuncion.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblFuncion.setBounds(36, 185, 200, 24);
+		frame.getContentPane().add(lblFuncion);
+		
+		textIdFuncion = new JTextField();
+		textIdFuncion.setColumns(10);
+		textIdFuncion.setBounds(220, 189, 226, 19);
+		frame.getContentPane().add(textIdFuncion);
+		
 		JLabel lblNumero = new JLabel("Numero de sala:");
 		lblNumero.setForeground(Color.WHITE);
 		lblNumero.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblNumero.setBounds(36, 185, 170, 24);
+		lblNumero.setBounds(450, 335, 170, 24);
 		frame.getContentPane().add(lblNumero);
 		
 		textIdPelicula = new JTextField();
@@ -107,10 +138,10 @@ public class editarFuncion implements ActionListener{
 		lblIdPelicula.setBounds(573, 185, 109, 24);
 		frame.getContentPane().add(lblIdPelicula);
 		
-		JComboBox comboBoxNumero = new JComboBox();
+		comboBoxNumero = new JComboBox();
 		comboBoxNumero.setForeground(Color.WHITE);
 		comboBoxNumero.setBackground(new Color(34, 31, 32));
-		comboBoxNumero.setBounds(196, 190, 287, 21);
+		comboBoxNumero.setBounds(600, 337, 287, 21);
 		frame.getContentPane().add(comboBoxNumero);
 		
 		JLabel lblFecha = new JLabel("Fecha:");
@@ -119,17 +150,6 @@ public class editarFuncion implements ActionListener{
 		lblFecha.setBounds(36, 268, 68, 24);
 		frame.getContentPane().add(lblFecha);
 		
-		JComboBox comboBoxEspecial = new JComboBox();
-		comboBoxEspecial.setForeground(Color.WHITE);
-		comboBoxEspecial.setBackground(new Color(34, 31, 32));
-		comboBoxEspecial.setBounds(670, 271, 239, 21);
-		frame.getContentPane().add(comboBoxEspecial);
-		
-		JLabel lblEspecial = new JLabel("Especial:");
-		lblEspecial.setForeground(Color.WHITE);
-		lblEspecial.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblEspecial.setBounds(573, 268, 170, 24);
-		frame.getContentPane().add(lblEspecial);
 		
 		JLabel lblMm = new JLabel("MM");
 		lblMm.setForeground(Color.WHITE);
@@ -182,19 +202,19 @@ public class editarFuncion implements ActionListener{
 		comboBoxDd.setBounds(265, 268, 63, 21);
 		frame.getContentPane().add(comboBoxDd);
 		
-		JComboBox comboBoxAaaa = new JComboBox();
+		comboBoxAaaa = new JComboBox();
 		comboBoxAaaa.setModel(new DefaultComboBoxModel(new String[] {"2020"}));
 		comboBoxAaaa.setForeground(Color.WHITE);
 		comboBoxAaaa.setBackground(new Color(34, 31, 32));
 		comboBoxAaaa.setBounds(406, 268, 63, 21);
 		frame.getContentPane().add(comboBoxAaaa);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(1, 1, 24, 1));
+		spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(1, 1, 23, 1));
 		spinner.setBounds(124, 354, 51, 20);
 		frame.getContentPane().add(spinner);
 		
-		JSpinner spinner_1 = new JSpinner();
+		spinner_1 = new JSpinner();
 		spinner_1.setModel(new SpinnerNumberModel(0, 0, 59, 1));
 		spinner_1.setBounds(238, 354, 51, 20);
 		frame.getContentPane().add(spinner_1);
@@ -203,6 +223,8 @@ public class editarFuncion implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		menuFunciones menuFunciones = new menuFunciones();
+		int opcion;
+		opcion = JOptionPane.NO_OPTION;
 		
 		
 		if(e.getSource()==comboBoxMm) {
@@ -250,7 +272,44 @@ public class editarFuncion implements ActionListener{
 			frame.dispose();
 		}
 		else if(e.getSource()==btnActualizar) {
-			int opcion = JOptionPane.showConfirmDialog(null, "Se ha actualizado exitosamente!. \n\n¿Quiere actualizar otra funcion?\n", "Actualizado",JOptionPane.YES_NO_OPTION);
+			
+			
+			if(textIdFuncion.getText().isEmpty() || textIdPelicula.getText().isEmpty())
+			{
+				JOptionPane.showMessageDialog(null, "Introducir los datos.");
+			} else {
+				int funcion = Integer.parseInt(textIdFuncion.getText());
+				int pelicula =Integer.parseInt(textIdPelicula.getText());
+				String sala = (String) comboBoxNumero.getSelectedItem();
+				String mes = (String) comboBoxMm.getSelectedItem();
+				String dia = (String) comboBoxDd.getSelectedItem();
+				String anio = (String) comboBoxAaaa.getSelectedItem();
+				int horas = (int) spinner.getValue();
+				int minutos = (int) spinner_1.getValue();
+				
+				String horaString = ""+horas+":"+minutos+":00";
+				String diaString = ""+anio+"-"+""+mes+"-"+dia;
+				
+				try {
+					query="UPDATE Funcion SET Num_Sala=?,ID_Peli=?,Fecha_Peli=?,Hora_Peli=? WHERE ID_Funcion=?";
+					pstm = con.prepareStatement(query);
+					pstm.setString(1,sala);
+					pstm.setInt(2,pelicula);
+					pstm.setString(3,diaString);
+					pstm.setString(4,horaString);
+					pstm.setInt(5,funcion);
+					pstm.executeUpdate();
+					opcion = JOptionPane.showConfirmDialog(null, "Se ha actualizado exitosamente!. \n\n¿Quiere actualizar otra funcion?\n", "Actualizado",JOptionPane.YES_NO_OPTION);
+					
+				} catch (SQLException e1) {
+					
+				}
+				
+				
+				
+			}
+			
+			
 			
 			if(opcion==JOptionPane.YES_OPTION) {
 				textIdPelicula.setText("");
