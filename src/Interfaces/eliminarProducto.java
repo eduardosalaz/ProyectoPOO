@@ -5,6 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class eliminarProducto implements ActionListener{
     JButton btnVolver,btnEliminar;
     public JFrame frame;
@@ -13,6 +18,14 @@ public class eliminarProducto implements ActionListener{
     /**
      * Launch the application..
      */
+    
+    
+ // CONECTA A LA BASE DE DATOS Y CONSIGUE EL CON
+    private Connection con = ConexionBD.conectar();
+    public PreparedStatement pstm = null;
+	ResultSet rs = null;
+	String query="";
+	
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -98,6 +111,26 @@ public class eliminarProducto implements ActionListener{
             frame.dispose();
         }
         else {
+        	
+        	if(textClave.getText().isEmpty())
+        	{
+        		JOptionPane.showMessageDialog(null, "Falta dato");
+        	} else {
+        		int id = Integer.parseInt(textClave.getText());
+        		
+        		try {
+        			
+        			query="DELETE FROM `Producto Dulceria` WHERE `ID_Producto`= ?";
+        			pstm = con.prepareStatement(query);
+        			pstm.setInt(1, id);
+        			pstm.executeUpdate();
+            		JOptionPane.showMessageDialog(null, "listo");
+
+        		} catch (SQLException e1) {
+        			
+        		}
+        		
+        	}     	
             int opcion=JOptionPane.showConfirmDialog(null, "El producto se ha eliminado exitosamente!, quiere eliminar otro producto?","Eliminado",JOptionPane.YES_NO_OPTION);
 
             if(opcion == JOptionPane.YES_OPTION) {
