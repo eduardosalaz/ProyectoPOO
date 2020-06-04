@@ -14,14 +14,27 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class registrarNuevoProducto implements ActionListener{
     JButton btnVolver,btnRegistrar;
     public JFrame frame;
-    private JTextField textPrecio;
+    private JTextField textPrecio,textTamano,textSabor,textNombre;
 
     /**
      * Launch the application.
      */
+    
+ // CONECTA A LA BASE DE DATOS Y CONSIGUE EL CON
+    private Connection con = ConexionBD.conectar();
+    public PreparedStatement pstm = null;
+	ResultSet rs = null;
+	String query="";
+    
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -64,7 +77,17 @@ public class registrarNuevoProducto implements ActionListener{
         lblRegistrar.setFont(new Font("Arial", Font.BOLD, 40));
         lblRegistrar.setBounds(231, 53, 511, 72);
         frame.getContentPane().add(lblRegistrar);
-
+        
+        JLabel lblNombre = new JLabel("Nombre del producto: ");
+        lblNombre.setForeground(Color.WHITE);
+        lblNombre.setFont(new Font("Arial", Font.PLAIN, 20));
+        lblNombre.setBounds(250, 270, 511, 72);
+        frame.getContentPane().add(lblNombre);
+        
+        textNombre = new JTextField();
+        textNombre.setBounds(450, 300, 237, 19);
+        frame.getContentPane().add(textNombre);
+        textNombre.setColumns(10);
 
         btnVolver = new JButton("Volver");
         btnVolver.setForeground(Color.WHITE);
@@ -86,7 +109,7 @@ public class registrarNuevoProducto implements ActionListener{
 
 
 
-        JLabel lblTamano = new JLabel("Tama\u00F1o:");
+        JLabel lblTamano = new JLabel("Tamano:");
         lblTamano.setForeground(Color.WHITE);
         lblTamano.setFont(new Font("Arial", Font.PLAIN, 20));
         lblTamano.setBounds(585, 137, 149, 16);
@@ -109,17 +132,15 @@ public class registrarNuevoProducto implements ActionListener{
         comboBoxTipo.setBackground(new Color(34,31,32));
         frame.getContentPane().add(comboBoxTipo);
 
-        JComboBox comboBoxTamano = new JComboBox();
-        comboBoxTamano.setBounds(666, 138, 189, 21);
-        comboBoxTamano.setBackground(new Color(34,31,32));
-        comboBoxTamano.setForeground(Color.WHITE);
-        frame.getContentPane().add(comboBoxTamano);
+        textTamano = new JTextField();
+        textTamano.setBounds(666, 138, 189, 21);
+        frame.getContentPane().add(textTamano);
+        textTamano.setColumns(10);
 
-        JComboBox comboBoxSabor = new JComboBox();
-        comboBoxSabor.setBounds(652, 240, 203, 21);
-        comboBoxSabor.setBackground(new Color(34,31,32));
-        comboBoxSabor.setForeground(Color.WHITE);
-        frame.getContentPane().add(comboBoxSabor);
+        textSabor = new JTextField();
+        textSabor.setBounds(652, 240, 203, 21);
+        frame.getContentPane().add(textSabor);
+        textSabor.setColumns(10);
 
         JLabel lblSabor = new JLabel("Sabor:");
         lblSabor.setForeground(Color.WHITE);
@@ -149,6 +170,37 @@ public class registrarNuevoProducto implements ActionListener{
             frame.dispose();
         }
         else if(e.getSource()==btnRegistrar) {
+
+        	if(textPrecio.getText().isEmpty() || textTamano.getText().isEmpty() || textSabor.getText().isEmpty() || textNombre.getText().isEmpty())
+        	{
+        		JOptionPane.showMessageDialog(null,"Faltan datos");
+        	} else {
+        		
+        		float precio = Float.parseFloat(textPrecio.getText());
+        		String tamano = textTamano.getText();
+        		String sabor = textSabor.getText();
+        		String nombre = textNombre.getText();
+        		int id = Integer.parseInt(JOptionPane.showInputDialog("Ingresar un id para el producto: "+nombre));
+        		
+        		try {
+        			query="INSERT INTO `Producto Dulceria` (`ID_Producto`, `Nombre_Producto`, `Tamaño`, `Precio`, `Sabor`, `Existencias`) VALUES (?, ?, ?, ?, ?, ?)";
+        			pstm = con.prepareStatement(query);
+        			pstm.setInt(1,id);
+        			pstm.setString(2,nombre);
+        			pstm.setString(3, tamano);
+        			pstm.setFloat(4, precio);
+        			pstm.setString(5, sabor);
+        			pstm.setInt(6, 1);
+        			pstm.executeUpdate();
+        			JOptionPane.showMessageDialog(null, "listo, producto agregado");
+        			
+        		} catch(SQLException e1) {
+        			
+        		}
+        		
+        		
+        		
+        	}
 
             int opcion = JOptionPane.showConfirmDialog(null, "Se ha registrado exitosamente el producto!, desdea agregar otro producto?","Registrado",JOptionPane.YES_NO_OPTION);
 

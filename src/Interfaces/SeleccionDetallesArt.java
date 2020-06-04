@@ -76,36 +76,36 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
         lbl_helados.setBounds(10, 228, 204, 61);
         contentPane.add(lbl_helados);
 
-        JLabel lbl_tamaño = new JLabel("Tama\u00F1o:");
-        lbl_tamaño.setForeground(Color.WHITE);
-        lbl_tamaño.setFont(new Font("Arial", Font.BOLD, 30));
-        lbl_tamaño.setBackground(Color.DARK_GRAY);
-        lbl_tamaño.setBounds(224, 84, 124, 61);
-        contentPane.add(lbl_tamaño);
+        JLabel lbl_tamano= new JLabel("Tama\u00F1o:");
+        lbl_tamano.setForeground(Color.WHITE);
+        lbl_tamano.setFont(new Font("Arial", Font.BOLD, 30));
+        lbl_tamano.setBackground(Color.DARK_GRAY);
+        lbl_tamano.setBounds(224, 84, 124, 61);
+        contentPane.add(lbl_tamano);
 
         combo_tam_refrescos = new JComboBox(tam);
         combo_tam_refrescos.setBounds(358, 101, 157, 26);
         combo_tam_refrescos.addActionListener(this);
         contentPane.add(combo_tam_refrescos);
 
-        JLabel lbl_tamaño2 = new JLabel("Tama\u00F1o:");
-        lbl_tamaño2.setForeground(Color.WHITE);
-        lbl_tamaño2.setFont(new Font("Arial", Font.BOLD, 30));
-        lbl_tamaño2.setBackground(Color.DARK_GRAY);
-        lbl_tamaño2.setBounds(224, 156, 124, 61);
-        contentPane.add(lbl_tamaño2);
+        JLabel lbl_tamano2 = new JLabel("Tama\u00F1o:");
+        lbl_tamano2.setForeground(Color.WHITE);
+        lbl_tamano2.setFont(new Font("Arial", Font.BOLD, 30));
+        lbl_tamano2.setBackground(Color.DARK_GRAY);
+        lbl_tamano2.setBounds(224, 156, 124, 61);
+        contentPane.add(lbl_tamano2);
 
         combo_tam_palomitas = new JComboBox(tam);
         combo_tam_palomitas.setBounds(358, 173, 157, 26);
         combo_tam_palomitas.addActionListener(this);
         contentPane.add(combo_tam_palomitas);
 
-        JLabel lbl_tamaño3 = new JLabel("Tama\u00F1o:");
-        lbl_tamaño3.setForeground(Color.WHITE);
-        lbl_tamaño3.setFont(new Font("Arial", Font.BOLD, 30));
-        lbl_tamaño3.setBackground(Color.DARK_GRAY);
-        lbl_tamaño3.setBounds(224, 228, 124, 61);
-        contentPane.add(lbl_tamaño3);
+        JLabel lbl_tamano3 = new JLabel("Tama\u00F1o:");
+        lbl_tamano3.setForeground(Color.WHITE);
+        lbl_tamano3.setFont(new Font("Arial", Font.BOLD, 30));
+        lbl_tamano3.setBackground(Color.DARK_GRAY);
+        lbl_tamano3.setBounds(224, 228, 124, 61);
+        contentPane.add(lbl_tamano3);
 
         combo_tam_helados = new JComboBox(tam);
         combo_tam_helados.setBounds(358, 245, 157, 26);

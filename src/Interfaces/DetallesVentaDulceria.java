@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class DetallesVentaDulceria extends JFrame implements ActionListener {
 
     private JPanel contentPane;
-    private JLabel lbl_articulos, lbl_tamaños, lbl_sabores, lbl_precios, lbl_preciototal;
+    private JLabel lbl_articulos, lbl_tamanos, lbl_sabores, lbl_precios, lbl_preciototal;
     private JButton btn_cancelar, btn_pagar, btn_volver;
 
 
@@ -63,10 +63,10 @@ public class DetallesVentaDulceria extends JFrame implements ActionListener {
         lbl_articulos.setBounds(263, -6, 203, 70);
         panel.add(lbl_articulos);
 
-        lbl_tamaños = new JLabel("A1, A2, A3, A4, A5\r\n");
-        lbl_tamaños.setFont(new Font("Arial", Font.BOLD, 15));
-        lbl_tamaños.setBounds(263, 77, 203, 70);
-        panel.add(lbl_tamaños);
+        lbl_tamanos = new JLabel("A1, A2, A3, A4, A5\r\n");
+        lbl_tamanos.setFont(new Font("Arial", Font.BOLD, 15));
+        lbl_tamanos.setBounds(263, 77, 203, 70);
+        panel.add(lbl_tamanos);
 
         JLabel lbl_tam = new JLabel("Tama\u00F1os");
         lbl_tam.setFont(new Font("Arial", Font.BOLD, 20));
