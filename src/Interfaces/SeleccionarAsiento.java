@@ -55,6 +55,8 @@ public class SeleccionarAsiento extends JFrame implements ActionListener, Change
     public PreparedStatement pstm = null;
     ResultSet rs = null;
     String query="";
+    //GUARDA LA SALA ESCOGIDA EN SELECCION DE PELICULA
+    int sala = SeleccionarPelicula.sala_sel;
     
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -75,9 +77,9 @@ public class SeleccionarAsiento extends JFrame implements ActionListener, Change
     	
        
     	try {
-    		query = "SELECT Asiento FROM Asiento WHERE Disponibilidad = 0 AND Num_Sala=1";
+    		query = "SELECT Asiento FROM Asiento WHERE Disponibilidad = 0 AND Num_Sala=?";
         	pstm = con.prepareStatement(query);
-        	
+        	pstm.setInt(1, sala);
         	rs = pstm.executeQuery();
         	
         	
@@ -1210,11 +1212,23 @@ public class SeleccionarAsiento extends JFrame implements ActionListener, Change
 			
     	}
     	else if(e.getSource()==btn_continuar){
-    		
-    	}
-    	else if(e.getSource()==btn_volver) {
-    		
-    	}
+            VentaBoleto ventaboleto = new VentaBoleto();
+            ventaboleto.setVisible(true);
+            dispose();
+
+        }
+        else if(e.getSource()==btn_volver) {
+            try {
+                SeleccionarPelicula seleccionarPelicula = new SeleccionarPelicula();
+                seleccionarPelicula.setVisible(true);
+                dispose();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+
+
+        }
     	else {
     		
     		boolean boton = false;
@@ -1284,6 +1298,7 @@ public class SeleccionarAsiento extends JFrame implements ActionListener, Change
             				       	}
         					}
         					else {
+        						
         						
             					}   
         					}		
