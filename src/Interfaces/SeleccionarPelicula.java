@@ -24,9 +24,9 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
     ResultSet rs = null;
     Statement stm = null;
     String query = "";
-    //ASIENTO SELECCIONADO POR EL BOTON
+    //SALA SELECCIONADA
     public static int sala_sel;
-    
+    public static int funcion;
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -595,13 +595,13 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
             dispose();
         }else if(e.getSource() == btn_cambiarDulcería){
         	hor_sel = btn_peli2_hora1.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             VentaDulceria ventaDulceria = new VentaDulceria();
             ventaDulceria.setVisible(true);
             dispose();
         }else if(e.getSource() == btn_peli1_hora1){
         	hor_sel = btn_peli1_hora1.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
@@ -609,182 +609,182 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
 
         }else if(e.getSource() == btn_peli1_hora2){
         	hor_sel = btn_peli1_hora2.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli1_hora3){
         	hor_sel = btn_peli1_hora3.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli2_hora1){
         	hor_sel = btn_peli2_hora1.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli2_hora2){
         	hor_sel = btn_peli2_hora2.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli2_hora3){
         	hor_sel = btn_peli2_hora3.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli3_hora1){
         	hor_sel = btn_peli3_hora1.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli3_hora2){
         	hor_sel = btn_peli3_hora2.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli3_hora3){
         	hor_sel = btn_peli3_hora3.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli4_hora1){
         	hor_sel = btn_peli4_hora1.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli4_hora2){
         	hor_sel = btn_peli4_hora2.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli4_hora3){
         	hor_sel = btn_peli4_hora3.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli5_hora1){
         	hor_sel = btn_peli5_hora1.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli5_hora2){
         	hor_sel = btn_peli5_hora2.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli5_hora3){
         	hor_sel = btn_peli5_hora3.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli6_hora1){
         	hor_sel = btn_peli6_hora1.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli6_hora2){
         	hor_sel = btn_peli6_hora2.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli6_hora3){
         	hor_sel = btn_peli6_hora3.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli7_hora1){
         	hor_sel = btn_peli7_hora1.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli7_hora2){
         	hor_sel = btn_peli7_hora2.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli7_hora3){
         	hor_sel = btn_peli7_hora3.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli8_hora1){
         	hor_sel = btn_peli8_hora1.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli8_hora2){
         	hor_sel = btn_peli8_hora2.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli8_hora3){
         	hor_sel = btn_peli8_hora3.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli9_hora1){
         	hor_sel = btn_peli9_hora1.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli9_hora2){
         	hor_sel = btn_peli9_hora2.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
 
         }else if(e.getSource() == btn_peli9_hora3){
         	hor_sel = btn_peli9_hora3.getText();
-        	obtener_sala(hor_sel);
+        	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
             dispose();
@@ -792,21 +792,26 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
 
     }
 
-    private void obtener_sala(String hor_sel) {
-		query = "SELECT Num_Sala FROM Funcion WHERE Hora_Peli=?";
+    private void obtener_sala_y_funcion(String hor_sel) {
+		query = "SELECT Num_Sala, ID_Funcion FROM Funcion WHERE Hora_Peli=?";
 		try {
 			pstm = con.prepareStatement(query);
 			pstm.setString(1, hor_sel);
 			rs = pstm.executeQuery();
 			while(rs.next())
 			{
-				this.sala_sel = rs.getInt(1);
+				this.sala_sel = rs.getInt("Num_Sala");
+				this.funcion = rs.getInt("ID_Funcion");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(sala_sel);
+		System.out.println(funcion);
 	}
+    
+    
 	public void switchPane(JPanel panel){
         layeredPane.removeAll();
         layeredPane.add(panel);

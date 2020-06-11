@@ -43,10 +43,10 @@ public class SeleccionarAsiento extends JFrame implements ActionListener, Change
     private BotonPersonalizado btn_J1, btn_J2, btn_J3, btn_J4, btn_J5, btn_J6, btn_J7, btn_J8, btn_J9, btn_J10;
     
     ArrayList<BotonPersonalizado> botones = new ArrayList<BotonPersonalizado>();
-    ArrayList<String> botonesSeleccionados = new ArrayList<String>();
+    static ArrayList<String> botonesSeleccionados = new ArrayList<String>();
     ArrayList<String> asientosPreSeleccionados = new ArrayList<String>();
     ArrayList<String> asientosName = new ArrayList<String>();
-    ArrayList<Integer> precios = new ArrayList<Integer>();
+    static ArrayList<Integer> precios = new ArrayList<Integer>();
 
     /**
      * Launch the application.
