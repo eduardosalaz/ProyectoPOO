@@ -31,6 +31,8 @@ public class VentaBoleto extends JFrame implements ActionListener {
     Date date = new Date();
     //OTROS
     int niño=0, adulto=0, vip=0, opc=0, total=0, cont_total=0;
+    
+    
     /**
      * Launch the application.
      */
@@ -255,13 +257,14 @@ public class VentaBoleto extends JFrame implements ActionListener {
 		int id_venta_boleto = conseguir_ID_VentaBoleto() + 1;
 		System.out.println("ID VENTA BOLETO "+id_venta_boleto);
 		//INSERTAR A VENTA DE BOLETO
-		query ="INSERT INTO `Venta Boleto`(`ID_VentaBoleto`, `ID_Usuario`, `Fecha`, `Costo_Total`) "
-				+ "VALUES (?,?,?,?)";
+		query ="INSERT INTO `Venta Boleto`(`ID_VentaBoleto`, `ID_Usuario`, `Fecha`, `Hora`, `Costo_Total`) "
+				+ "VALUES (?,?,?,?,?)";
 		pstm = con.prepareStatement(query);
 		pstm.setInt(1, id_venta_boleto);
 		pstm.setInt(2, Login.ID_USUARIO);
 		pstm.setString(3, obtener_fecha());
-		pstm.setInt(4, total);
+		pstm.setString(4, obtener_hora());
+		pstm.setInt(5, total);
 		pstm.executeUpdate();
 		
 		//INSERTAR A DETALLES VENTA DE VOLETO
@@ -279,6 +282,13 @@ public class VentaBoleto extends JFrame implements ActionListener {
     	}catch(SQLException e) {
     		e.printStackTrace();	
     	}
+	}
+
+	private String obtener_hora() {
+		String hora;
+		DateFormat hourdateFormat = new SimpleDateFormat("HH:mm:ss");
+		hora = hourdateFormat.format(date);
+		return hora;
 	}
 
 	private int conseguir_ID_VentaBoleto() {
@@ -304,7 +314,7 @@ public class VentaBoleto extends JFrame implements ActionListener {
 
 	private String obtener_fecha() {
 		String fecha;
-		DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		fecha = hourdateFormat.format(date);
 		return fecha;
 	}
