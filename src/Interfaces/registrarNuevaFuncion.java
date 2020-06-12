@@ -298,7 +298,12 @@ public class registrarNuevaFuncion implements ActionListener{
 			else {
 				JOptionPane.showMessageDialog(null,"No se encuentra el ID introducido");
 			}
-		} 
+			rs.close();
+			rs2.close();
+			rs3.close();
+       	 pstm.close();
+       	 con.close();
+		}
 		catch(SQLException e) {
 			
 		e.printStackTrace();

@@ -5,12 +5,18 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -21,12 +27,20 @@ public class usuarioEspecifico implements ActionListener{
 	int contDe31 = 1;
 	int contA30 = 1;
 	int contA31 = 1;
-	private JComboBox comboBoxDeMm,comboBoxDeAaaa,comboBoxAAaaa,comboBoxAMm,comboBoxDeDd,comboBoxADd;
+	private JComboBox comboBoxDeMm,comboBoxDeAaaa,comboBoxDeDd;
 	private JButton btnVolver, btnBuscar;
 	public JFrame frame;
 	DefaultListModel lista;
 	
 	private JTextField textIdUsuario;
+	
+	Connection con = ConexionBD.conectar();
+    PreparedStatement pstm = null;
+    ResultSet rs = null;
+    Statement stm = null;
+    String query = "";
+    String fecha;
+	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -55,6 +69,15 @@ public class usuarioEspecifico implements ActionListener{
 		lblUsuarioEspecifico.setForeground(Color.WHITE);
 		lblUsuarioEspecifico.setFont(new Font("Arial", Font.BOLD, 40));
 		lblUsuarioEspecifico.setBounds(255, 50, 423, 72);
+		
+		JList list = new JList();
+		list.setBounds(153, 445, 96, -77);
+		frame.getContentPane().add(list);
+		
+		lista = new DefaultListModel();
+		list.setModel(lista);
+        list.setBounds(10, 280, 924, 270);
+        frame.getContentPane().add(list);
 
 		frame.getContentPane().add(lblUsuarioEspecifico);
 		frame.getContentPane().setBackground(new Color(72,81,84));
@@ -65,19 +88,13 @@ public class usuarioEspecifico implements ActionListener{
 		lblIdUsuario.setBounds(58, 193, 149, 16);
 		frame.getContentPane().add(lblIdUsuario);
 		
-		JLabel lblRango = new JLabel("Rango de d\u00EDas");
+		JLabel lblRango = new JLabel("dia a ver:");
 		lblRango.setForeground(Color.WHITE);
 		lblRango.setFont(new Font("Arial", Font.BOLD, 20));
 		lblRango.setBounds(636, 132, 149, 31);
 		frame.getContentPane().add(lblRango);
 		
-		JList list = new JList();
-		list.setBounds(153, 445, 96, -77);
-		frame.getContentPane().add(list);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(58, 334, 831, 167);
-		frame.getContentPane().add(scrollPane);
+
 		
 		textIdUsuario = new JTextField();
 		textIdUsuario.setBounds(163, 195, 229, 19);
@@ -100,7 +117,7 @@ public class usuarioEspecifico implements ActionListener{
 		btnBuscar.setFocusPainted(false);
 		btnBuscar.setBorderPainted(false);
 		btnBuscar.setBackground(new Color(171, 0, 51));
-		btnBuscar.setBounds(411, 277, 139, 31);
+		btnBuscar.setBounds(411, 237, 139, 31);
 		frame.getContentPane().add(btnBuscar);
 		btnBuscar.addActionListener(this);
 		
@@ -122,35 +139,11 @@ public class usuarioEspecifico implements ActionListener{
 		lblDeMm.setBounds(531, 185, 68, 24);
 		frame.getContentPane().add(lblDeMm);
 		
-		JLabel lblAAaaa = new JLabel("/ AAAA");
-		lblAAaaa.setForeground(Color.WHITE);
-		lblAAaaa.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblAAaaa.setBounds(758, 243, 68, 24);
-		frame.getContentPane().add(lblAAaaa);
-		
-		JLabel lblADd = new JLabel("/ DD");
-		lblADd.setForeground(Color.WHITE);
-		lblADd.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblADd.setBounds(636, 243, 68, 24);
-		frame.getContentPane().add(lblADd);
-		
-		JLabel lblAMm = new JLabel("MM");
-		lblAMm.setForeground(Color.WHITE);
-		lblAMm.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblAMm.setBounds(531, 243, 68, 24);
-		frame.getContentPane().add(lblAMm);
-		
 		JLabel lblDe = new JLabel("De:");
 		lblDe.setForeground(Color.WHITE);
 		lblDe.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblDe.setBounds(496, 180, 42, 31);
 		frame.getContentPane().add(lblDe);
-		
-		JLabel lblA = new JLabel("A:");
-		lblA.setForeground(Color.WHITE);
-		lblA.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblA.setBounds(496, 238, 42, 31);
-		frame.getContentPane().add(lblA);
 		
 		comboBoxDeMm = new JComboBox();
 		comboBoxDeMm.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"}));
@@ -174,30 +167,9 @@ public class usuarioEspecifico implements ActionListener{
 		comboBoxDeAaaa.setBackground(new Color(34, 31, 32));
 		comboBoxDeAaaa.setBounds(829, 188, 60, 21);
 		frame.getContentPane().add(comboBoxDeAaaa);
-		
-		comboBoxAMm = new JComboBox();
-		comboBoxAMm.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"}));
-		comboBoxAMm.setForeground(Color.WHITE);
-		comboBoxAMm.setBackground(new Color(34, 31, 32));
-		comboBoxAMm.setBounds(566, 243, 60, 21);
-		frame.getContentPane().add(comboBoxAMm);
-		comboBoxAMm.addActionListener(this);
-		
-		comboBoxADd = new JComboBox();
-		comboBoxADd.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
-		comboBoxADd.setForeground(Color.WHITE);
-		comboBoxADd.setBackground(new Color(34, 31, 32));
-		comboBoxADd.setBounds(688, 243, 60, 21);
-		frame.getContentPane().add(comboBoxADd);
+	
+        lista.addElement("Fecha                                  Hora                            			ID_Usuario                  			              ID Venta Realizada                                Monto pagado en la venta");
 
-		comboBoxAAaaa = new JComboBox();
-		comboBoxAAaaa.setModel(new DefaultComboBoxModel(new String[] {"2020"}));
-		comboBoxAAaaa.setForeground(Color.WHITE);
-		comboBoxAAaaa.setBackground(new Color(34, 31, 32));
-		comboBoxAAaaa.setBounds(829, 243, 60, 21);
-		frame.getContentPane().add(comboBoxAAaaa);
-		
-		
 	}
 	
 	@Override
@@ -243,53 +215,82 @@ public class usuarioEspecifico implements ActionListener{
 					contDe31=0;
 				}
 			}
-		}
-		else if(e.getSource()==comboBoxAMm) {
-			
-			String aMm = (String) comboBoxAMm.getSelectedItem();
-			
-			if(aMm == "02") {
-				
-				if(contA31==1 && contA30==1) {
-					comboBoxADd.removeItem("30");
-					comboBoxADd.removeItem("31");
-					contA30=0;
-					contA31=0;
-				}
-				else if(contA31==0 && contA30==1) {
-					comboBoxADd.removeItem("30");
-					contA30=0;
-				}	
-			}	
-			else if(aMm=="01" || aMm=="03" || aMm=="05" || aMm=="07" || aMm=="08" || aMm=="10" || aMm=="12") {
-				
-				if(contA30==0 && contA31==0) {
-					comboBoxADd.addItem("30");
-					comboBoxADd.addItem("31");
-					contA30=1;
-					contA31=1;
-				}
-				else if(contA30==1 && contA31==0) {
-					comboBoxADd.addItem("31");
-					contA31=1;
-				}
-			}
-			else if(aMm=="04" || aMm=="06" || aMm=="09" || aMm=="11") {
-				
-				if(contA30==0 && contA31==0) {
-					comboBoxADd.addItem("30");
-					contA30=1;
-				}
-				else if(contA30==1 && contA31==1) {
-					comboBoxADd.removeItem("31");
-					contA31=0;
-				}
-			}
-		}
-		else if(e.getSource()==btnVolver) {
+		} else if(e.getSource()==btnVolver) {
 			Informe informe = new Informe();
 			informe.frame.setVisible(true);
 			frame.dispose();
+			
+		}else if(e.getSource()==btnBuscar) {
+			if(textIdUsuario.getText().isEmpty())
+			{
+				JOptionPane.showMessageDialog(null, "Tienes que introducir un Id para ver.");
+			}else {
+				int Id = Integer.parseInt(textIdUsuario.getText());
+				
+				int dia= comboBoxDeDd.getSelectedIndex()+1;
+				int mes= comboBoxDeMm.getSelectedIndex()+1;
+				int anio= comboBoxDeAaaa.getSelectedIndex();
+				String diaStr=null;
+				String mesStr=null;
+				if(dia<10)
+				{
+					diaStr="0"+dia;
+				}else {
+					
+				}
+				if(mes<10)
+				{
+					mesStr="0"+mes;
+				}else {
+					
+				}
+				if(diaStr!=null && mesStr!=null)
+				{
+					fecha="2020"+"-"+mesStr+"-"+diaStr;
+				}else if(diaStr!=null && mesStr==null){
+					fecha="2020"+"-"+mes+"-"+diaStr;	
+				}else if(mesStr!=null && diaStr==null){
+					fecha="2020"+"-"+mesStr+"-"+dia;
+				}else if(mesStr==null && diaStr==null){
+					fecha="2020"+"-"+mes+"-"+dia;
+				}
+				try {
+	        		query = "SELECT * FROM `Venta Boleto` WHERE `Fecha` = ? AND `ID_Usuario`= ? ";
+	            	pstm = con.prepareStatement(query);
+	            	pstm.setString(1,fecha);
+	            	pstm.setInt(2,Id);
+	            	rs = pstm.executeQuery(); 
+	            	while(rs.next()) {
+	            		int venta = rs.getInt("ID_VentaBoleto"); 
+	            		int dinero = rs.getInt("Costo_Total");
+	            		String hora = rs.getString("Hora");
+	            		
+	            		lista.addElement(" ");
+	                	lista.addElement(fecha+"	                  					"+hora+"		                         						"+Id+"                                      "+venta+"                                                                               "+dinero);
+	                	lista.addElement("_________________________________________________________________________________________________________________________________");
+	            	}
+	            	query = "SELECT * FROM `Venta Dulceria` WHERE `Fecha_VentaDulc` = ? AND `ID_Usuario`= ? ";
+	            	pstm = con.prepareStatement(query);
+	            	pstm.setString(1,fecha);
+	            	pstm.setInt(2,Id);
+	            	rs = pstm.executeQuery(); 
+	            	while(rs.next()) {
+	            		int venta = rs.getInt("ID_VentaDulceria"); 
+	            		int dinero = rs.getInt("Costo_Total_Dulc");
+	            		String hora = rs.getString("Hora_VentaDulc");
+	            		
+	            		lista.addElement(" ");
+	                	lista.addElement(fecha+"	                  					"+hora+"		                         						"+Id+"                                      "+venta+"                                                                               "+dinero);
+	                	lista.addElement("_________________________________________________________________________________________________________________________________");
+	            	}
+	            } catch (SQLException e1) {	
+	            }
+				
+				
+			}
+			
+			
+		}else {
 		}
 	}
 }

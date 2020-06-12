@@ -134,6 +134,9 @@ public class eliminarFuncion implements ActionListener{
 	        		else {
 	        			JOptionPane.showMessageDialog(null, "No se encuentra la Funcion");
 	        		}
+	        		rs.close();
+	            	 pstm.close();
+	            	 con.close();
 					} catch (SQLException e1) {
 					
 				}

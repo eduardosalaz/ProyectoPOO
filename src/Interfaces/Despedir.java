@@ -105,6 +105,8 @@ public class Despedir extends JFrame implements ActionListener {
             		pstm.setString(1, nombre);
             		pstm.executeUpdate();
             		showMessageDialog(null,"quitado con exito");
+               	 pstm.close();
+               	 con.close();
             	} catch (SQLException e1) {
             		
             	}

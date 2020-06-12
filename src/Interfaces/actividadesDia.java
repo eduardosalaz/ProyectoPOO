@@ -245,9 +245,9 @@ public class actividadesDia implements ActionListener {
                 	lista.addElement("_________________________________________________________________________________________________________________________________");
             	}
             	
-            	
-            	
-            	
+            	 rs.close();
+            	 pstm.close();
+            	 con.close();
             } catch (SQLException e1) {	
             }
 		}
