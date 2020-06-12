@@ -324,7 +324,7 @@ public class SeleccionarAsiento extends JFrame implements ActionListener, Change
 
         //FILA A
 
-        InputStream stream = getClass().getResourceAsStream("/img/fondo1.png");
+        InputStream stream = getClass().getResourceAsStream("/images/fondo1.png");
         icon = null;
 		try {
 			icon = new ImageIcon(ImageIO.read(stream));
@@ -333,7 +333,7 @@ public class SeleccionarAsiento extends JFrame implements ActionListener, Change
 			e.printStackTrace();
 		}
         
-		stream2 = getClass().getResourceAsStream("/img/fondo2.png");
+		stream2 = getClass().getResourceAsStream("/images/fondo2.png");
         icon2 = null;
 		try {
 			icon2 = new ImageIcon(ImageIO.read(stream2));
@@ -1266,8 +1266,7 @@ public class SeleccionarAsiento extends JFrame implements ActionListener, Change
                     		pstm.executeUpdate();
                     	
                     		JOptionPane.showMessageDialog(null,"Agregado con exito.");
-
-
+                    		
                     	} catch (SQLException e1) {
                     		
                     	}
@@ -1307,6 +1306,12 @@ public class SeleccionarAsiento extends JFrame implements ActionListener, Change
         						
         						
             					}   
+            					try {
+            						con.close();
+            					} catch (SQLException e1) {
+            						// TODO Auto-generated catch block
+            						e1.printStackTrace();
+            					}
         					}		
         				}
         			}

@@ -98,7 +98,7 @@ public class Login extends ConexionBD implements ActionListener {
         frameLog.getContentPane().add(panel_red);
 
         Image img;
-        img = new ImageIcon(Login.class.getResource("/../img/logoRED.png")).getImage();
+        img = new ImageIcon(Login.class.getResource("/images/logoRED.png")).getImage();
         JLabel lbl_img_login = new JLabel("");
         panel_red.add(lbl_img_login);
         lbl_img_login.setIcon(new ImageIcon(img));
