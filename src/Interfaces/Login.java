@@ -213,6 +213,9 @@ public class Login extends ConexionBD implements ActionListener {
 				showMessageDialog(null, "NO EXISTE TAL USUARIO");
 				pase = false;
 			}
+			rs.close();
+       	 pstm.close();
+       	 con.close();
 		} catch (SQLException e1)
 		{
 			e1.printStackTrace();	

@@ -141,7 +141,9 @@ public class Inventario extends JFrame implements ActionListener {
             	
             	
             	
-            	
+            	rs.close();
+           	 pstm.close();
+           	 con.close();
             } catch (SQLException e1) {	
             }
         }

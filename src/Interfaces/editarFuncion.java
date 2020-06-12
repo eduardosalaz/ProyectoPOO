@@ -260,6 +260,8 @@ public class editarFuncion implements ActionListener {
                     pstm.executeUpdate();
                     opcion = JOptionPane.showConfirmDialog(null, "Se ha actualizado exitosamente!. \n\n¿Quiere actualizar otra funcion?\n", "Actualizado",JOptionPane.YES_NO_OPTION);
 
+               	 pstm.close();
+               	 con.close();
                 } catch (SQLException e1) {
 
                 }

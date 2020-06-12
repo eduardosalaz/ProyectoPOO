@@ -146,7 +146,9 @@ public class rellenoInventario implements ActionListener{
         		pstm.setInt(2, id);
         		pstm.executeUpdate();
         		JOptionPane.showMessageDialog(null, "listo!");
-        		
+
+           	 pstm.close();
+           	 con.close();
         	} catch (SQLException e1) {
         		
         	}

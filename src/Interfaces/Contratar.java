@@ -186,6 +186,9 @@ public class Contratar extends JFrame implements ActionListener{
                 		pstm.setString(6,direccion);
                 		pstm.executeUpdate();
                 		showMessageDialog(null,"Empujado con exito");
+                		
+                   	 pstm.close();
+                   	 con.close();
                 	} catch (SQLException e1) {
                 		
                 	}

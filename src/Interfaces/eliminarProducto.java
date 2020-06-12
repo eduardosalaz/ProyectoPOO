@@ -125,7 +125,9 @@ public class eliminarProducto implements ActionListener{
         			pstm.setInt(1, id);
         			pstm.executeUpdate();
             		JOptionPane.showMessageDialog(null, "listo");
-
+            		rs.close();
+               	 pstm.close();
+               	 con.close();
         		} catch (SQLException e1) {
         			
         		}

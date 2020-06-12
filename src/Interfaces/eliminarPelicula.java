@@ -133,7 +133,9 @@ public class eliminarPelicula implements ActionListener{
 	        		} else {
 	        			JOptionPane.showMessageDialog(null, "No se encuentra pelicula");
 	        		}
-					
+	        		rs.close();
+	            	 pstm.close();
+	            	 con.close();
 				} catch (SQLException e1) {
 					
 				}

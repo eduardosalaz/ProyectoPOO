@@ -1266,7 +1266,8 @@ public class SeleccionarAsiento extends JFrame implements ActionListener, Change
                     		pstm.executeUpdate();
                     	
                     		JOptionPane.showMessageDialog(null,"Agregado con exito.");
-                    		
+
+
                     	} catch (SQLException e1) {
                     		
                     	}

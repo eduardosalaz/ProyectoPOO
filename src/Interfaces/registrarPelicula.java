@@ -177,7 +177,8 @@ public class registrarPelicula implements ActionListener{
         		pstm.setInt(5,duracion);
         		pstm.executeUpdate();
         		JOptionPane.showMessageDialog(null,"introducido con exito.");
-				
+           	 pstm.close();
+           	 con.close();
 			} catch (SQLException e1) {
 				
 			}
