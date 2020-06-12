@@ -5,6 +5,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class DetallesVentaDulceria extends JFrame implements ActionListener {
 
@@ -17,7 +21,10 @@ public class DetallesVentaDulceria extends JFrame implements ActionListener {
     private JButton btn_cancelar, btn_pagar, btn_volver;
     JList list = new JList();
     DefaultListModel lista;
-
+    private Connection con = ConexionBD.conectar();
+    public PreparedStatement pstm = null;
+    ResultSet rs = null;
+    String query="";
     /**
      * Launch the application.
      */
@@ -39,6 +46,7 @@ public class DetallesVentaDulceria extends JFrame implements ActionListener {
      */
     public DetallesVentaDulceria() {
     	
+    	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 960, 640);
         contentPane = new JPanel();
@@ -58,59 +66,7 @@ public class DetallesVentaDulceria extends JFrame implements ActionListener {
         list.setBounds(10, 250, 924, 290);
         getContentPane().add(list);
         list.setVisibleRowCount(4);
-        lista.addElement("Nombre                                                                                           Tamanio                                Precio                                Sabor                                                         Existencias");
-    
-
-        JLabel lbl_art = new JLabel("Art\u00EDculos:");
-        lbl_art.setFont(new Font("Arial", Font.BOLD, 20));
-        lbl_art.setBounds(10, 11, 203, 33);
-        
-
-        lbl_articulos = new JLabel("A1, A2, A3, A4, A5\r\n");
-        lbl_articulos.setFont(new Font("Arial", Font.BOLD, 15));
-        lbl_articulos.setBounds(263, -6, 203, 70);
-        
-
-        lbl_tamanos = new JLabel("A1, A2, A3, A4, A5\r\n");
-        lbl_tamanos.setFont(new Font("Arial", Font.BOLD, 15));
-        lbl_tamanos.setBounds(263, 77, 203, 70);
-       
-
-        JLabel lbl_tam = new JLabel("Tama\u00F1os");
-        lbl_tam.setFont(new Font("Arial", Font.BOLD, 20));
-        lbl_tam.setBounds(10, 94, 203, 33);
-      
-
-        lbl_sabores = new JLabel("A1, A2, A3, A4, A5\r\n");
-        lbl_sabores.setFont(new Font("Arial", Font.BOLD, 15));
-        lbl_sabores.setBounds(263, 158, 203, 70);
-       
-
-        JLabel lbl_sab = new JLabel("Sabores");
-        lbl_sab.setFont(new Font("Arial", Font.BOLD, 20));
-        lbl_sab.setBounds(10, 175, 203, 33);
-       
-
-        lbl_precios = new JLabel("A1, A2, A3, A4, A5\r\n");
-        lbl_precios.setFont(new Font("Arial", Font.BOLD, 15));
-        lbl_precios.setBounds(263, 239, 203, 70);
-        
-
-        JLabel lbl_prec = new JLabel("Precios:");
-        lbl_prec.setFont(new Font("Arial", Font.BOLD, 20));
-        lbl_prec.setBounds(10, 256, 203, 33);
-       
-
-        lbl_preciototal = new JLabel("A1, A2, A3, A4, A5\r\n");
-        lbl_preciototal.setFont(new Font("Arial", Font.BOLD, 15));
-        lbl_preciototal.setBounds(263, 303, 203, 70);
-      
-
-        JLabel lbl_prectot = new JLabel("Precio total:");
-        lbl_prectot.setFont(new Font("Arial", Font.BOLD, 20));
-        lbl_prectot.setBounds(10, 320, 203, 33);
-      
-
+        lista.addElement("Nombre                                                                                           Tamanio                                Precio                                Sabor                                                         Cantidad");
 
         btn_cancelar = new JButton("Cancelar Compra\r\n");
         btn_cancelar.setBounds(234, 495, 201, 40);
@@ -137,7 +93,7 @@ public class DetallesVentaDulceria extends JFrame implements ActionListener {
 
         contentPane.add(btn_volver);
 
-
+        inicializacion();
     }
 
     @Override
@@ -159,6 +115,63 @@ public class DetallesVentaDulceria extends JFrame implements ActionListener {
     }
     
     private void inicializacion() {
+    	SeleccionDetallesArt articulo = new SeleccionDetallesArt();
+    	if(articulo.cantR!=0) {
+	    	try {
+	    		query = "SELECT Nombre_Producto,Precio FROM `Producto Dulceria` WHERE Tamaño = ? AND Sabor=?";
+	    		pstm = con.prepareStatement(query);
+	        	pstm.setString(1, articulo.refresco.get(0));
+	        	pstm.setString(2, articulo.refresco.get(1));
+	        	rs = pstm.executeQuery();
+	        	rs.next();
+	        	lista.addElement(rs.getString(1)+"                                                                                           "+articulo.refresco.get(0)+"                                "+rs.getInt(2)+"                                "+articulo.refresco.get(1)+"                                                         "+articulo.cantR);
+	        	
+	        	
+	        } catch (SQLException e1) {
+	        	
+	        
+	        	
+	        		
+	        }
+    	}
+    	if(articulo.cantP!=0) {
+    		
+    	
+	    	try {
+	    		query = "SELECT Nombre_Producto,Precio FROM `Producto Dulceria` WHERE Tamaño = ? AND Sabor=?";
+	    		pstm = con.prepareStatement(query);
+	        	pstm.setString(1, articulo.palomita.get(0));
+	        	pstm.setString(2, articulo.palomita.get(1));
+	        	rs = pstm.executeQuery();
+	        	rs.next();
+	        	lista.addElement(rs.getString(1)+"                                                                                           "+articulo.palomita.get(0)+"                                "+rs.getInt(2)+"                                "+articulo.palomita.get(1)+"                                                         "+articulo.cantR);
+	        	
+	        	
+	        } catch (SQLException e1) {
+	        	
+	        
+	        	
+	        		
+	        }
+    	}
+    	if(articulo.cantH!=0) {
+	    	try {
+	    		query = "SELECT Nombre_Producto,Precio FROM `Producto Dulceria` WHERE Tamaño = ? AND Sabor=?";
+	    		pstm = con.prepareStatement(query);
+	        	pstm.setString(1, articulo.helado.get(0));
+	        	pstm.setString(2, articulo.helado.get(1));
+	        	rs = pstm.executeQuery();
+	        	rs.next();
+	        	lista.addElement(rs.getString(1)+"                                                                                           "+articulo.helado.get(0)+"                                "+rs.getInt(2)+"                                "+articulo.helado.get(1)+"                                                         "+articulo.cantR);
+	        	
+	        	
+	        } catch (SQLException e1) {
+	        	
+	        
+	        	
+	        		
+	        }
+    	}
     	
     }
 }

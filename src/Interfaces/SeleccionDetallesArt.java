@@ -28,16 +28,25 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
     private JButton btnVolver, btnCancelarCompra, btnPagar;
     private JLabel lbl_precioR, lbl_precioP, lbl_precioH;
     private String tam[] = {"Chico", "Mediano", "Grande"};
+  
     String saborP[];
     String saborH[];
     String saborR[];
+
+    int cantR = VentaDulceria.cantidadR;
     int cantP = VentaDulceria.cantidadP;
     int cantH = VentaDulceria.cantidadH;
-    int cantR = VentaDulceria.cantidadR;
+
     ArrayList<String> a = new ArrayList<String>();
     ArrayList<String> a1 = new ArrayList<String>();
     ArrayList<String> b = new ArrayList<String>();
+    ArrayList<String> b1 = new ArrayList<String>();
     ArrayList<String> c = new ArrayList<String>();
+    ArrayList<String> c1 = new ArrayList<String>();
+    public static ArrayList<String> refresco = new ArrayList<String>();
+    public static ArrayList<String> palomita = new ArrayList<String>();
+    public static ArrayList<String> helado = new ArrayList<String>();
+    
     private JSpinner spinner_refrescos, spinner_palomitas, spinner_helados;
     
     
@@ -82,23 +91,23 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
                 
                 String palabra = rs.getString(1);
                 a.add(palabra);
-                b.add(palabra);
+                a1.add(palabra);
                 
                 
             }
    
             for(int i=0;i<a.size();i++) {
             	int cont=0;
-            	for(int j=0;j<b.size();j++) {
+            	for(int j=0;j<a1.size();j++) {
             		
-            		if(b.get(j).equals(a.get(i))) {
+            		if(a1.get(j).equals(a.get(i))) {
             			
             			if(cont==0) {
             				cont++;
             			}
             			else {
             				
-            				b.remove(j);
+            				a1.remove(j);
             				j--;
             			}
             		}
@@ -106,10 +115,10 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
             	}
             }
             
-            for(int i=0;i<b.size();i++) {
-            	System.out.println(b.get(i) + "-----------------");
+            for(int i=0;i<a1.size();i++) {
+            	System.out.println(a1.get(i) + "-----------------");
             }
-        	saborR = b.toArray(new String[a.size()]);
+        	saborR = a1.toArray(new String[a1.size()]);
         	
         }catch(Exception e) {
         	e.printStackTrace();
@@ -120,10 +129,38 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
         	rs = pstm.executeQuery();
         	while(rs.next())
             {
-                b.add(rs.getString("Sabor"));
+                
+                
+                String palabra = rs.getString(1);
+                b.add(palabra);
+                b1.add(palabra);
+                
+                
             }
-        	
-        	saborP = b.toArray(new String[b.size()]);
+   
+            for(int i=0;i<b.size();i++) {
+            	int cont=0;
+            	for(int j=0;j<b1.size();j++) {
+            		
+            		if(b1.get(j).equals(b.get(i))) {
+            			
+            			if(cont==0) {
+            				cont++;
+            			}
+            			else {
+            				
+            				b1.remove(j);
+            				j--;
+            			}
+            		}
+            		
+            	}
+            }
+            
+            for(int i=0;i<b1.size();i++) {
+            	System.out.println(b1.get(i) + "-----------------");
+            }
+        	saborP = b1.toArray(new String[b1.size()]);
         }catch(Exception e) {
         	e.printStackTrace();
         }
@@ -133,13 +170,39 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
         	rs = pstm.executeQuery();
         	while(rs.next())
             {
-                c.add(rs.getString("Sabor"));
+                
+                
+                String palabra = rs.getString(1);
+                c.add(palabra);
+                c1.add(palabra);
+                
+                
             }
-        	
-        	saborH = c.toArray(new String[c.size()]);
-        	for(int j =0; j<saborH.length; j++) {
-        		System.out.println(saborH[j] + "**************");
-        }
+   
+            for(int i=0;i<c.size();i++) {
+            	int cont=0;
+            	for(int j=0;j<c1.size();j++) {
+            		
+            		if(c1.get(j).equals(c.get(i))) {
+            			
+            			if(cont==0) {
+            				cont++;
+            			}
+            			else {
+            				
+            				c1.remove(j);
+            				j--;
+            			}
+            		}
+            		
+            	}
+            }
+            
+            for(int i=0;i<c1.size();i++) {
+            	System.out.println(c1.get(i) + "-----------------");
+            }
+        	saborH = c1.toArray(new String[c1.size()]);
+        
         }catch(Exception e) {
         	e.printStackTrace();
         }
@@ -251,10 +314,8 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
         
         
         
-        for(int j =0; j<saborP.length; j++) {
-    		System.out.println(saborP[j]+"///////////");
-    }
-        
+      
+            
         /*spinner_palomitas = new JSpinner();
         SpinnerListModel sabP = new SpinnerListModel(saborP);
         spinner_palomitas.setModel(sabP);
@@ -318,12 +379,27 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
         btnPagar.setBackground(new Color(171, 0, 51));
         btnPagar.setBounds(503, 364, 238, 50);
         btnPagar.addActionListener(this);
-        contentPane.add(btnPagar);
+        contentPane.add(btnPagar);     
         
-       
-        
-        
-        
+        if(cantR == 0) {
+        	combo_tam_refrescos.setEnabled(false);
+        	combo_sabor_refrescos.setEnabled(false);
+        }
+        if (cantP == 0) {
+        	combo_tam_palomitas.setEnabled(false);
+        	combo_sabor_palomitas.setEnabled(false);
+        }
+        if (cantH == 0) {
+        	combo_tam_helados.setEnabled(false);
+        	combo_sabor_helados.setEnabled(false);
+        }
+        if(cantR==0 && cantP==0 && cantH==0) {
+        	btnPagar.setEnabled(false);
+        }
+
+
+
+    
     }
 
     @Override
@@ -339,35 +415,19 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
             dispose();
 
         } else if (e.getSource() == btnPagar) {
+        	
+        	refresco.add((String) combo_tam_refrescos.getSelectedItem());
+        	refresco.add((String) combo_sabor_refrescos.getSelectedItem());
+        	
+        	palomita.add((String) combo_tam_palomitas.getSelectedItem());
+        	palomita.add((String) combo_sabor_palomitas.getSelectedItem());
+        	
+        	helado.add((String) combo_tam_helados.getSelectedItem());
+        	helado.add((String) combo_sabor_helados.getSelectedItem());
+             
             DetallesVentaDulceria detallesVentaDulceria = new DetallesVentaDulceria();
             detallesVentaDulceria.setVisible(true);
-        }else if(e.getSource() == combo_tam_helados){
-            try {
-            	String tamaH = (String) combo_tam_helados.getSelectedItem();
-            	query="SELECT Precio FROM `Producto Dulceria` WHERE Nombre_Producto = 'Helado' AND Tamaño = " + tamaH;
-            	pstm = con.prepareStatement(query);
-            	rs = pstm.executeQuery();
-            	while(rs.next())
-                {
-                    String lbl = rs.getString("Precio");
-                    lbl_precioH.setText(lbl);
-                  
-                }
-
-            }catch(Exception e1) {
-            	e1.printStackTrace();
-            }
-
-        }else if(e.getSource() == combo_tam_palomitas){
-
-        }else if(e.getSource() == combo_tam_refrescos){
-
-        }else if(e.getSource() == combo_sabor_helados){
-
-        }else if(e.getSource() == combo_sabor_palomitas){
-
-        }else if (e.getSource() == combo_sabor_refrescos){
-
+            dispose();
         }
     }
 

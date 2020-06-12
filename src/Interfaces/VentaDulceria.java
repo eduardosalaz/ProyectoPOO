@@ -191,6 +191,7 @@ public class VentaDulceria extends JFrame implements ActionListener, ChangeListe
         	}else {
         		SeleccionDetallesArt seleccionDetallesArt = new SeleccionDetallesArt();
                 seleccionDetallesArt.setVisible(true);
+                dispose();
         	}
             
 
@@ -230,6 +231,7 @@ public class VentaDulceria extends JFrame implements ActionListener, ChangeListe
             mostrarWarning(cantidadR);
 
         }
+        
     }
     public void mostrarWarning (int cantidad){
         if(cantidad == 10){
