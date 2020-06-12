@@ -129,10 +129,12 @@ public class Login extends ConexionBD implements ActionListener {
     			{
                     menuAdmin menuAdmin = new menuAdmin();
                     menuAdmin.frame.setVisible(true);
+                    cerrarcon();
     			} else {
     				
                     PrincipalUser principalUser = new PrincipalUser();
                     principalUser.setVisible(true);
+                    cerrarcon();
     			}
     				
     		}else {
@@ -158,7 +160,6 @@ public class Login extends ConexionBD implements ActionListener {
 					cont_int = 5;
 					}
     			
-    			
     		}
     	}
     }
@@ -166,6 +167,16 @@ public class Login extends ConexionBD implements ActionListener {
 
 
     
+	private void cerrarcon() {
+		try {
+			con.close();
+			pstm.close();
+			rs.close();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();}
+		
+	}
 	private void loginSQL() {
 		
 		//EMPEZAMOS LA COMPROBACION
@@ -213,16 +224,14 @@ public class Login extends ConexionBD implements ActionListener {
 				showMessageDialog(null, "NO EXISTE TAL USUARIO");
 				pase = false;
 			}
-			rs.close();
-       	 pstm.close();
-       	 con.close();
 		} catch (SQLException e1)
 		{
 			e1.printStackTrace();	
 		}
 		this.permiso = pase;
 		this.TYPE_USER = nivel;
+		}
 	}
 	
-}
+
 //.

@@ -1,5 +1,7 @@
 package Interfaces;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 import java.sql.*;
 
 public class ConexionBD 
@@ -15,9 +17,10 @@ public class ConexionBD
 	public static String servidor= "jdbc:mysql://remotemysql.com:3306/zSuTM1gvH0";
 	public static String usuario ="zSuTM1gvH0";
 	public static String contrasena= "Q8XYDv9Lmv";
+	public static Connection con = null;
 	
 	public static Connection conectar() {
-		Connection con = null;
+		
 		try
 		{
 		 con = DriverManager.getConnection(servidor, usuario, contrasena);

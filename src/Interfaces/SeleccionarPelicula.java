@@ -11,7 +11,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 public class SeleccionarPelicula extends JFrame implements ActionListener {
 
-    private JButton btn_1, btn_2, btn_3, btn_cambiarDulcerÃ­a, btn_corteBoleto;
+    private JButton btn_1, btn_2, btn_3, btn_cambiarDulcería, btn_corteBoleto;
     private JPanel panel1, panel2, panel3;
     public JButton btn_peli1_hora1, btn_peli1_hora2, btn_peli1_hora3, btn_peli2_hora1, btn_peli2_hora2, btn_peli2_hora3, btn_peli3_hora1, btn_peli3_hora2, btn_peli3_hora3;
     public JButton btn_peli4_hora1, btn_peli4_hora2, btn_peli4_hora3, btn_peli5_hora1, btn_peli5_hora2, btn_peli5_hora3, btn_peli6_hora1, btn_peli6_hora2, btn_peli6_hora3;
@@ -75,11 +75,11 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         lbl_titulo.setBounds(194, 11, 555, 57);
         contentPane.add(lbl_titulo);
 
-        btn_cambiarDulcerÃ­a = new JButton("Cambiar a Dulcer\u00EDa");
-        btn_cambiarDulcerÃ­a.setFont(new Font("Arial Black", Font.BOLD, 12));
-        btn_cambiarDulcerÃ­a.setBackground(new Color(171, 0 ,51));
-        btn_cambiarDulcerÃ­a.setBounds(10, 558, 175, 32);
-        contentPane.add(btn_cambiarDulcerÃ­a);
+        btn_cambiarDulcería = new JButton("Cambiar a Dulcer\u00EDa");
+        btn_cambiarDulcería.setFont(new Font("Arial Black", Font.BOLD, 12));
+        btn_cambiarDulcería.setBackground(new Color(171, 0 ,51));
+        btn_cambiarDulcería.setBounds(10, 558, 175, 32);
+        contentPane.add(btn_cambiarDulcería);
 
         btn_corteBoleto = new JButton("Corte de Boleto");
         btn_corteBoleto.setFont(new Font("Arial Black", Font.BOLD, 12));
@@ -87,7 +87,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         btn_corteBoleto.setBounds(759, 558, 175, 32);
         contentPane.add(btn_corteBoleto);
 
-        btn_1 = new JButton("PÃ¡gina 1");
+        btn_1 = new JButton("Página 1");
         btn_1.setBounds(329, 560, 90, 20);
         btn_1.setBackground(new Color(255,255,255));
         btn_1.addActionListener(this);
@@ -368,7 +368,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
 
         //Se me olvidaron los action listeners.
         btn_corteBoleto.addActionListener(this);
-        btn_cambiarDulcerÃ­a.addActionListener(this);
+        btn_cambiarDulcería.addActionListener(this);
         btn_peli1_hora1.addActionListener(this);
         btn_peli1_hora2.addActionListener(this);
         btn_peli1_hora3.addActionListener(this);
@@ -590,20 +590,24 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         }else if(e.getSource() == btn_3){
             switchPane(panel3);
         }else if(e.getSource() == btn_corteBoleto){
+        	CorteBoleto.opc_corte=false;
             CorteBoleto corteBoleto = new CorteBoleto();
             corteBoleto.setVisible(true);
+            cerrar_conexion();
             dispose();
-        }else if(e.getSource() == btn_cambiarDulcerÃ­a){
+        }else if(e.getSource() == btn_cambiarDulcería){
         	hor_sel = btn_peli2_hora1.getText();
         	obtener_sala_y_funcion(hor_sel);
             VentaDulceria ventaDulceria = new VentaDulceria();
             ventaDulceria.setVisible(true);
+            cerrar_conexion();
             dispose();
         }else if(e.getSource() == btn_peli1_hora1){
         	hor_sel = btn_peli1_hora1.getText();
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
 
@@ -612,6 +616,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli1_hora3){
@@ -619,6 +624,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli2_hora1){
@@ -626,6 +632,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli2_hora2){
@@ -633,6 +640,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli2_hora3){
@@ -640,6 +648,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli3_hora1){
@@ -647,6 +656,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli3_hora2){
@@ -654,6 +664,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli3_hora3){
@@ -661,6 +672,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli4_hora1){
@@ -668,6 +680,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli4_hora2){
@@ -675,6 +688,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli4_hora3){
@@ -682,6 +696,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli5_hora1){
@@ -689,6 +704,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli5_hora2){
@@ -696,6 +712,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli5_hora3){
@@ -710,6 +727,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli6_hora2){
@@ -717,6 +735,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli6_hora3){
@@ -724,6 +743,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli7_hora1){
@@ -731,6 +751,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli7_hora2){
@@ -738,6 +759,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli7_hora3){
@@ -745,6 +767,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli8_hora1){
@@ -752,6 +775,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli8_hora2){
@@ -759,6 +783,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli8_hora3){
@@ -766,6 +791,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli9_hora1){
@@ -773,6 +799,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli9_hora2){
@@ -780,6 +807,7 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
 
         }else if(e.getSource() == btn_peli9_hora3){
@@ -787,12 +815,24 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
         	obtener_sala_y_funcion(hor_sel);
             SeleccionarAsiento seleccionarAsiento = new SeleccionarAsiento();
             seleccionarAsiento.setVisible(true);
+            cerrar_conexion();
             dispose();
         }
 
     }
 
-    private void obtener_sala_y_funcion(String hor_sel) {
+    private void cerrar_conexion() {
+    	try {
+            rs.close(); //SI UTILIZAS RS
+pstm.close(); //SI UTILIZAS PREPARE STATEMENT
+con.close(); //ESTE SI A HUEVO
+        } catch (SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+		
+	}
+	private void obtener_sala_y_funcion(String hor_sel) {
 		query = "SELECT Num_Sala, ID_Funcion FROM Funcion WHERE Hora_Peli=?";
 		try {
 			pstm = con.prepareStatement(query);

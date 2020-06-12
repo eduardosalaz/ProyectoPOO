@@ -179,6 +179,7 @@ public class VentaBoleto extends JFrame implements ActionListener {
         lbl_detallesCategorias.setText(categoria);
         
         lbl_Precio.setText("$"+String.valueOf(total));;
+        
     }
 
     @Override
@@ -212,6 +213,8 @@ public class VentaBoleto extends JFrame implements ActionListener {
             seleccionarPelicula.setVisible(true);
             dispose();
         }
+
+        
     }
 
 	private void pasarDB() {
@@ -282,6 +285,14 @@ public class VentaBoleto extends JFrame implements ActionListener {
     	}catch(SQLException e) {
     		e.printStackTrace();	
     	}
+		try {
+			con.close();
+			pstm.close();
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private String obtener_hora() {
