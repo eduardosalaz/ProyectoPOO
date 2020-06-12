@@ -182,16 +182,17 @@ public class Login extends ConexionBD implements ActionListener {
 			//VALIDACION DE USUARIO
 			if(rs.next())
 			{	
-				query = "SELECT *  FROM Usuario WHERE Contrasena = ?";
+				query = "SELECT *  FROM Usuario WHERE ID_Usuario=? AND Contrasena = ?";
 				pstm = con.prepareStatement(query);
-				pstm.setString(1, valorPass);
+				pstm.setInt(1, valorUser);
+				pstm.setString(2, valorPass);
 				rs = pstm.executeQuery();
 				//VALIDACION DE CONTRASENA
 				if(rs.next())
 				{	
 					//OBTENEMOS INFO NECESARIA
-					Login.ID_USUARIO = valorUser;
-					Login.USUARIO = rs.getString("Nombre");
+					this.ID_USUARIO = valorUser;
+					this.USUARIO = rs.getString("Nombre");
 					showMessageDialog(null, "BIENVENIDO "+USUARIO);
 					int nivelopc = Integer.parseInt(rs.getString("Admin"));
 					if (nivelopc==1)
@@ -217,7 +218,7 @@ public class Login extends ConexionBD implements ActionListener {
 			e1.printStackTrace();	
 		}
 		this.permiso = pase;
-		Login.TYPE_USER = nivel;
+		this.TYPE_USER = nivel;
 	}
 	
 }
