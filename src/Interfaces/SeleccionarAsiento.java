@@ -1163,6 +1163,9 @@ public class SeleccionarAsiento extends JFrame implements ActionListener, Change
         botones.add(btn_J9);
         botones.add(btn_J10);
 
+        System.out.println("Sala:"+SeleccionarPelicula.sala_sel);
+		System.out.println("Funcion"+SeleccionarPelicula.funcion);
+		
         for(BotonPersonalizado boton: botones){
             boton.addActionListener(this);
         }
@@ -1257,7 +1260,8 @@ public class SeleccionarAsiento extends JFrame implements ActionListener, Change
         				nomAsiento = i.getName();
         				btn_agregarAsiento.setEnabled(true);
             			try {
-            				String SQL_UPDATE = "UPDATE Asiento SET Disponibilidad='"+0+"' WHERE Asiento='"+nomAsiento+"'" ;
+            				String SQL_UPDATE = "UPDATE Asiento SET Disponibilidad=0 WHERE Asiento='"+nomAsiento+"' AND Num_Sala="+sala;
+            				System.out.println("Query de agregando: "+SQL_UPDATE);
                     		pstm = con.prepareStatement(SQL_UPDATE);
                     		pstm.executeUpdate();
                     	
@@ -1288,8 +1292,9 @@ public class SeleccionarAsiento extends JFrame implements ActionListener, Change
             						i.setIcon(icon);
             						botonesSeleccionados.remove(i.getName());
             						try {
-            								String SQL_UPDATE = "UPDATE Asiento SET Disponibilidad='"+1+"' WHERE Asiento='"+nomAsiento+"'" ;
-            				       		pstm = con.prepareStatement(SQL_UPDATE);
+            								String SQL_UPDATE = "UPDATE Asiento SET Disponibilidad=1 WHERE Asiento='"+nomAsiento+"' AND Num_Sala="+sala;
+            								System.out.println("Query de eliminando: "+SQL_UPDATE);
+            								pstm = con.prepareStatement(SQL_UPDATE);
             				       		pstm.executeUpdate();
             				       	
             				       		JOptionPane.showMessageDialog(null,"Eliminado con exito.");
