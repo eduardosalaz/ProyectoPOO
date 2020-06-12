@@ -4,6 +4,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,15 +18,29 @@ import javax.swing.JButton;
 
 public class SeleccionDetallesArt extends JFrame implements ActionListener {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+    private JPanel contentPane;
     private JComboBox combo_tam_refrescos, combo_tam_palomitas, combo_tam_helados, combo_sabor_refrescos, combo_sabor_palomitas, combo_sabor_helados;
     private JButton btnVolver, btnCancelarCompra, btnPagar;
     private JLabel lbl_precio1, lbl_precio2, lbl_precio3;
     private String tam[] = {"Chico", "Mediano", "Grande"};
+    public String saborP[];
+    public String saborH[];
+    public String saborR[];
+    int cantP = VentaDulceria.cantidadP;
+    int cantH = VentaDulceria.cantidadH;
+    int cantR = VentaDulceria.cantidadR;
+    ArrayList<String> a = new ArrayList<String>();
+    ArrayList<String> b = new ArrayList<String>();
+    ArrayList<String> c = new ArrayList<String>();
+    
+    
+    // CONECTA A LA BASE DE DATOS Y CONSIGUE EL CON
+ 	private Connection con = ConexionBD.conectar();
+ 	public PreparedStatement pstm = null;
+ 	ResultSet rs = null;
+ 	String query="";
+    
+    
     //TODO: ARRAYS DE LOS DEMAS.
 
     /**
@@ -44,7 +62,63 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
     /**
      * Create the frame.
      */
+    
     public SeleccionDetallesArt() {
+    	
+    	try {
+        	query="SELECT Sabor FROM `Producto Dulceria` WHERE Nombre_Producto = 'Refresco' ";
+        	pstm = con.prepareStatement(query);
+        	rs = pstm.executeQuery();
+        	while(rs.next())
+            {
+                a.add(rs.getString("Sabor"));
+            }
+        	
+        	String[] saborR = a.toArray(new String[a.size()]);
+        	for(int j =0; j<saborR.length; j++) {
+        		System.out.println(saborR[j]);
+        	}
+        }catch(Exception e) {
+        	e.printStackTrace();
+        }
+        try {
+        	query="SELECT Sabor FROM `Producto Dulceria` WHERE Nombre_Producto = 'Palomitas' ";
+        	pstm = con.prepareStatement(query);
+        	rs = pstm.executeQuery();
+        	while(rs.next())
+            {
+                b.add(rs.getString("Sabor"));
+            }
+        	
+        	String[] saborP = b.toArray(new String[b.size()]);
+        	for(int j =0; j<saborP.length; j++) {
+        		System.out.println(saborP[j]);
+        }
+        }catch(Exception e) {
+        	e.printStackTrace();
+        }
+        try {
+        	query="SELECT Sabor FROM `Producto Dulceria` WHERE Nombre_Producto = 'Helado' ";
+        	pstm = con.prepareStatement(query);
+        	rs = pstm.executeQuery();
+        	while(rs.next())
+            {
+                c.add(rs.getString("Sabor"));
+            }
+        	
+        	String[] saborH = c.toArray(new String[c.size()]);
+        	for(int j =0; j<saborH.length; j++) {
+        		System.out.println(saborH[j]);
+        }
+        }catch(Exception e) {
+        	e.printStackTrace();
+        }
+    	
+    	
+    	
+    	
+    	
+    	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 960, 640);
         contentPane = new JPanel();
@@ -123,7 +197,7 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
         lbl_sabor.setBounds(525, 84, 95, 61);
         contentPane.add(lbl_sabor);
 
-        combo_sabor_refrescos = new JComboBox();
+        combo_sabor_refrescos = new JComboBox<String>(saborR);
         combo_sabor_refrescos.setBounds(630, 101, 157, 26);
         combo_sabor_refrescos.addActionListener(this);
         contentPane.add(combo_sabor_refrescos);
@@ -135,7 +209,7 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
         lbl_sabor2.setBounds(525, 156, 95, 61);
         contentPane.add(lbl_sabor2);
 
-        combo_sabor_palomitas = new JComboBox();
+        combo_sabor_palomitas = new JComboBox<String>(saborP);
         combo_sabor_palomitas.setBounds(630, 173, 157, 26);
         combo_sabor_palomitas.addActionListener(this);
         contentPane.add(combo_sabor_palomitas);
@@ -147,7 +221,7 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
         lbl_sabor3.setBounds(525, 228, 95, 61);
         contentPane.add(lbl_sabor3);
 
-        combo_sabor_helados = new JComboBox();
+        combo_sabor_helados = new JComboBox<String>(saborH);
         combo_sabor_helados.setBounds(630, 245, 157, 26);
         combo_sabor_helados.addActionListener(this);
         contentPane.add(combo_sabor_helados);
@@ -193,6 +267,21 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
         btnPagar.setBounds(503, 364, 238, 50);
         btnPagar.addActionListener(this);
         contentPane.add(btnPagar);
+        
+        if(cantR == 0) {
+        	combo_tam_refrescos.setEnabled(false);
+        	combo_sabor_refrescos.setEnabled(false);
+        }if (cantP == 0) {
+        	combo_tam_palomitas.setEnabled(false);
+        	combo_sabor_palomitas.setEnabled(false);
+        }if (cantH == 0) {
+        	combo_tam_helados.setEnabled(false);
+        	combo_sabor_helados.setEnabled(false);
+        }
+        
+        
+        
+        
     }
 
     @Override
