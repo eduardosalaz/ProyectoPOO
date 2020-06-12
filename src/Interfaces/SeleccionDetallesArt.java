@@ -4,49 +4,25 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerListModel;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 public class SeleccionDetallesArt extends JFrame implements ActionListener {
 
-    private JPanel contentPane;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
     private JComboBox combo_tam_refrescos, combo_tam_palomitas, combo_tam_helados, combo_sabor_refrescos, combo_sabor_palomitas, combo_sabor_helados;
     private JButton btnVolver, btnCancelarCompra, btnPagar;
-    private JLabel lbl_precioR, lbl_precioP, lbl_precioH;
+    private JLabel lbl_precio1, lbl_precio2, lbl_precio3;
     private String tam[] = {"Chico", "Mediano", "Grande"};
-    String saborP[];
-    String saborH[];
-    String saborR[];
-    int cantP = VentaDulceria.cantidadP;
-    int cantH = VentaDulceria.cantidadH;
-    int cantR = VentaDulceria.cantidadR;
-    ArrayList<String> a = new ArrayList<String>();
-    ArrayList<String> b = new ArrayList<String>();
-    ArrayList<String> c = new ArrayList<String>();
-    private JSpinner spinner_refrescos, spinner_palomitas, spinner_helados;
-    
-    
-    // CONECTA A LA BASE DE DATOS Y CONSIGUE EL CON
- 	private Connection con = ConexionBD.conectar();
- 	public PreparedStatement pstm = null;
- 	ResultSet rs = null;
- 	String query="";
-    
-    
     //TODO: ARRAYS DE LOS DEMAS.
 
     /**
@@ -68,61 +44,7 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
     /**
      * Create the frame.
      */
-    
     public SeleccionDetallesArt() {
-    	
-    	try {
-        	query="SELECT Sabor FROM `Producto Dulceria` WHERE Nombre_Producto = 'Refresco' ";
-        	pstm = con.prepareStatement(query);
-        	rs = pstm.executeQuery();
-        	while(rs.next())
-            {
-                a.add(rs.getString("Sabor"));
-            }
-        	
-        	saborR = a.toArray(new String[a.size()]);
-        	for(int j =0; j<saborR.length; j++) {
-        		System.out.println(saborR[j]);
-        	}
-        }catch(Exception e) {
-        	e.printStackTrace();
-        }
-        try {
-        	query="SELECT Sabor FROM `Producto Dulceria` WHERE Nombre_Producto = 'Palomitas' ";
-        	pstm = con.prepareStatement(query);
-        	rs = pstm.executeQuery();
-        	while(rs.next())
-            {
-                b.add(rs.getString("Sabor"));
-            }
-        	
-        	saborP = b.toArray(new String[b.size()]);
-        }catch(Exception e) {
-        	e.printStackTrace();
-        }
-        try {
-        	query="SELECT Sabor FROM `Producto Dulceria` WHERE Nombre_Producto = 'Helado' ";
-        	pstm = con.prepareStatement(query);
-        	rs = pstm.executeQuery();
-        	while(rs.next())
-            {
-                c.add(rs.getString("Sabor"));
-            }
-        	
-        	saborH = c.toArray(new String[c.size()]);
-        	for(int j =0; j<saborH.length; j++) {
-        		System.out.println(saborH[j]);
-        }
-        }catch(Exception e) {
-        	e.printStackTrace();
-        }
-
-    	
-    	
-    	
-    	
-    	
-    	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 960, 640);
         contentPane = new JPanel();
@@ -201,12 +123,10 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
         lbl_sabor.setBounds(525, 84, 95, 61);
         contentPane.add(lbl_sabor);
 
-        
-        combo_sabor_refrescos = new JComboBox<String>(saborR);
+        combo_sabor_refrescos = new JComboBox();
         combo_sabor_refrescos.setBounds(630, 101, 157, 26);
         combo_sabor_refrescos.addActionListener(this);
         contentPane.add(combo_sabor_refrescos);
-        
 
         JLabel lbl_sabor2 = new JLabel("Sabor:");
         lbl_sabor2.setForeground(Color.WHITE);
@@ -215,27 +135,10 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
         lbl_sabor2.setBounds(525, 156, 95, 61);
         contentPane.add(lbl_sabor2);
 
-        
-        combo_sabor_palomitas = new JComboBox<String>(saborP);
+        combo_sabor_palomitas = new JComboBox();
         combo_sabor_palomitas.setBounds(630, 173, 157, 26);
         combo_sabor_palomitas.addActionListener(this);
         contentPane.add(combo_sabor_palomitas);
-        
-        
-        
-        
-        for(int j =0; j<saborP.length; j++) {
-    		System.out.println(saborP[j]);
-    }
-        
-        /*spinner_palomitas = new JSpinner();
-        SpinnerListModel sabP = new SpinnerListModel(saborP);
-        spinner_palomitas.setModel(sabP);
-        spinner_palomitas.setBounds(630, 173, 157, 26);
-        spinner_palomitas.addChangeListener(this);
-        getContentPane().add(spinner_palomitas);
-		*/
-
 
         JLabel lbl_sabor3 = new JLabel("Sabor:");
         lbl_sabor3.setForeground(Color.WHITE);
@@ -244,30 +147,28 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
         lbl_sabor3.setBounds(525, 228, 95, 61);
         contentPane.add(lbl_sabor3);
 
-        
-        combo_sabor_helados = new JComboBox<String>(saborH);
+        combo_sabor_helados = new JComboBox();
         combo_sabor_helados.setBounds(630, 245, 157, 26);
         combo_sabor_helados.addActionListener(this);
         contentPane.add(combo_sabor_helados);
-		
 
-        lbl_precioR = new JLabel("$$$$");
-        lbl_precioR.setForeground(Color.BLACK);
-        lbl_precioR.setFont(new Font("Arial", Font.BOLD, 30));
-        lbl_precioR.setBounds(860, 98, 74, 32);
-        contentPane.add(lbl_precioR);
+        lbl_precio1 = new JLabel("$$$$");
+        lbl_precio1.setForeground(Color.WHITE);
+        lbl_precio1.setFont(new Font("Arial", Font.BOLD, 30));
+        lbl_precio1.setBounds(860, 98, 74, 32);
+        contentPane.add(lbl_precio1);
 
-        lbl_precioP = new JLabel("$$$$");
-        lbl_precioP.setForeground(Color.WHITE);
-        lbl_precioP.setFont(new Font("Arial", Font.BOLD, 30));
-        lbl_precioP.setBounds(860, 167, 74, 32);
-        contentPane.add(lbl_precioP);
+        lbl_precio2 = new JLabel("$$$$");
+        lbl_precio2.setForeground(Color.WHITE);
+        lbl_precio2.setFont(new Font("Arial", Font.BOLD, 30));
+        lbl_precio2.setBounds(860, 167, 74, 32);
+        contentPane.add(lbl_precio2);
 
-        lbl_precioH= new JLabel("$$$$");
-        lbl_precioH.setForeground(Color.RED);
-        lbl_precioH.setFont(new Font("Arial", Font.BOLD, 30));
-        lbl_precioH.setBounds(860, 239, 74, 32);
-        contentPane.add(lbl_precioH);
+        lbl_precio3 = new JLabel("$$$$");
+        lbl_precio3.setForeground(Color.WHITE);
+        lbl_precio3.setFont(new Font("Arial", Font.BOLD, 30));
+        lbl_precio3.setBounds(860, 239, 74, 32);
+        contentPane.add(lbl_precio3);
 
         btnVolver = new JButton("Volver");
         btnVolver.setForeground(Color.WHITE);
@@ -292,21 +193,6 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
         btnPagar.setBounds(503, 364, 238, 50);
         btnPagar.addActionListener(this);
         contentPane.add(btnPagar);
-        
-        if(cantR == 0) {
-        	combo_tam_refrescos.setEnabled(false);
-        	combo_sabor_refrescos.setEnabled(false);
-        }if (cantP == 0) {
-        	combo_tam_palomitas.setEnabled(false);
-        	combo_sabor_palomitas.setEnabled(false);
-        }if (cantH == 0) {
-        	combo_tam_helados.setEnabled(false);
-        	combo_sabor_helados.setEnabled(false);
-        }
-        
-        
-        
-        
     }
 
     @Override
@@ -325,21 +211,6 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
             DetallesVentaDulceria detallesVentaDulceria = new DetallesVentaDulceria();
             detallesVentaDulceria.setVisible(true);
         }else if(e.getSource() == combo_tam_helados){
-            try {
-            	String tamaH = (String) combo_tam_helados.getSelectedItem();
-            	query="SELECT Precio FROM `Producto Dulceria` WHERE Nombre_Producto = 'Helado' AND Tamaño = " + tamaH;
-            	pstm = con.prepareStatement(query);
-            	rs = pstm.executeQuery();
-            	while(rs.next())
-                {
-                    String lbl = rs.getString("Precio");
-                    lbl_precioH.setText(lbl);
-                  
-                }
-
-            }catch(Exception e1) {
-            	e1.printStackTrace();
-            }
 
         }else if(e.getSource() == combo_tam_palomitas){
 
@@ -353,5 +224,4 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
 
         }
     }
-
 }
