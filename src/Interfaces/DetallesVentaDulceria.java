@@ -24,6 +24,7 @@ public class DetallesVentaDulceria extends JFrame implements ActionListener {
     private Connection con = ConexionBD.conectar();
     public PreparedStatement pstm = null;
     ResultSet rs = null;
+    
     String query="";
     /**
      * Launch the application.

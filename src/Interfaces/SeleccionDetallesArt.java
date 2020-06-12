@@ -8,9 +8,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerListModel;
@@ -20,6 +22,12 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class SeleccionDetallesArt extends JFrame implements ActionListener {
 
@@ -28,15 +36,17 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
     private JButton btnVolver, btnCancelarCompra, btnPagar;
     private JLabel lbl_precioR, lbl_precioP, lbl_precioH;
     private String tam[] = {"Chico", "Mediano", "Grande"};
-  
+    Date date = new Date();
     String saborP[];
     String saborH[];
     String saborR[];
-
+    String fecha;
+    String hora;
     int cantR = VentaDulceria.cantidadR;
     int cantP = VentaDulceria.cantidadP;
     int cantH = VentaDulceria.cantidadH;
-
+    public int precioR,precioP,precioH;
+    
     ArrayList<String> a = new ArrayList<String>();
     ArrayList<String> a1 = new ArrayList<String>();
     ArrayList<String> b = new ArrayList<String>();
@@ -428,7 +438,68 @@ public class SeleccionDetallesArt extends JFrame implements ActionListener {
             DetallesVentaDulceria detallesVentaDulceria = new DetallesVentaDulceria();
             detallesVentaDulceria.setVisible(true);
             dispose();
+            int id = Integer.parseInt(JOptionPane.showInputDialog("Introducir ID de la venta"));
+            obtener_fecha();
+            
+            try {
+            	query = "SELECT Precio FROM `Producto Dulceria` WHERE Tamaño = ? AND Sabor=?";
+	    		pstm = con.prepareStatement(query);
+	        	pstm.setString(1, refresco.get(0));
+	        	pstm.setString(2, refresco.get(1));
+	        	rs = pstm.executeQuery();
+	        	rs.next();
+            	
+	        	precioR = rs.getInt(1);
+	        	int totalR = precioR*cantR;
+	        	
+	        	query = "SELECT Precio FROM `Producto Dulceria` WHERE Tamaño = ? AND Sabor=?";
+	    		pstm = con.prepareStatement(query);
+	        	pstm.setString(1, palomita.get(0));
+	        	pstm.setString(2, palomita.get(1));
+	        	rs = pstm.executeQuery();
+	        	rs.next();
+            	
+	        	precioP = rs.getInt(1);
+	        	int totalP = precioP*cantP;
+	        	
+	        	query = "SELECT Precio FROM `Producto Dulceria` WHERE Tamaño = ? AND Sabor=?";
+	    		pstm = con.prepareStatement(query);
+	        	pstm.setString(1, helado.get(0));
+	        	pstm.setString(2, helado.get(1));
+	        	rs = pstm.executeQuery();
+	        	rs.next();
+            	
+	        	precioH = rs.getInt(1);
+	        	int totalH = precioH*cantH;
+	        	
+	        	int total = totalR+totalP+totalH;
+            	query="INSERT INTO `Venta Dulceria` (`ID_VentaDulceria`, `ID_Usuario`, `Fecha_VentaDulc`, `Hora_VentaDulc`, `Costo_Total_Dulc`) VALUES (?,?,?,?,?)";
+            	pstm=con.prepareStatement(query);
+            	pstm.setInt(1, id);
+            	pstm.setInt(2, Login.ID_USUARIO);
+            	pstm.setString(3,fecha);
+            	pstm.setString(4, hora);
+            	pstm.setInt(5, total);
+            	pstm.executeUpdate();
+            	JOptionPane.showMessageDialog(null, "Venta agregada con exito.");
+            	
+            }catch(SQLException e1) {
+            	
+            }
         }
     }
+    
+    private String obtener_fecha() {
+        
+        DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        fecha = hourdateFormat.format(date);
+        return fecha;
+    }
 
+    private String obtener_hora() {
+        String hora;
+        DateFormat hourdateFormat = new SimpleDateFormat("HH:mm:ss");
+        hora = hourdateFormat.format(date);
+        return hora;
+    }
 }
