@@ -7,18 +7,20 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class VentaDulceria extends JFrame implements ActionListener, ChangeListener {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+    private JPanel contentPane;
     private JButton btn_confirmar, btn_cambiar, btn_corteDulceria;
     private JSpinner spinner_refrescos, spinner_palomitas, spinner_helados;
+    public static int cantidadP, cantidadR, cantidadH;
+    
 
+    
     /**
      * Launch the application.
      */
@@ -34,6 +36,10 @@ public class VentaDulceria extends JFrame implements ActionListener, ChangeListe
             }
         });
     }
+
+    /**
+     * Create the frame.
+     */
     public VentaDulceria() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 960, 460);
@@ -180,8 +186,13 @@ public class VentaDulceria extends JFrame implements ActionListener, ChangeListe
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btn_confirmar) {
-            SeleccionDetallesArt seleccionDetallesArt = new SeleccionDetallesArt();
-            seleccionDetallesArt.setVisible(true);
+        	if(cantidadH == 0 && cantidadP == 0 && cantidadR == 0) {
+        		JOptionPane.showMessageDialog(null, "No se pueden comprar 0 artículos");
+        	}else {
+        		SeleccionDetallesArt seleccionDetallesArt = new SeleccionDetallesArt();
+                seleccionDetallesArt.setVisible(true);
+        	}
+            
 
         } else if (e.getSource() == btn_cambiar) {
             SeleccionarPelicula seleccionarPelicula = null;
@@ -204,25 +215,25 @@ public class VentaDulceria extends JFrame implements ActionListener, ChangeListe
     @Override
     public void stateChanged(ChangeEvent e) {
         if (e.getSource() == spinner_helados) {
-            int cantidad = (Integer) spinner_helados.getValue();
-            System.out.println(cantidad);
-            mostrarWarning(cantidad);
+            cantidadH = (Integer) spinner_helados.getValue();
+            System.out.println(cantidadH);
+            mostrarWarning(cantidadH);
 
         } else if (e.getSource() == spinner_palomitas) {
-            int cantidad = (Integer) spinner_palomitas.getValue();
-            System.out.println(cantidad);
-            mostrarWarning(cantidad);
+            cantidadP = (Integer) spinner_palomitas.getValue();
+            System.out.println(cantidadP);
+            mostrarWarning(cantidadP);
 
         } else if (e.getSource() == spinner_refrescos) {
-            int cantidad = (Integer) spinner_refrescos.getValue();
-            System.out.println(cantidad);
-            mostrarWarning(cantidad);
+            cantidadR = (Integer) spinner_refrescos.getValue();
+            System.out.println(cantidadR);
+            mostrarWarning(cantidadR);
 
         }
     }
     public void mostrarWarning (int cantidad){
         if(cantidad == 10){
-            JOptionPane.showMessageDialog(null, "Límite alcanzado");
+            JOptionPane.showMessageDialog(null, "Limite alcanzado");
         }
     }
 }
