@@ -33,7 +33,7 @@ public class Inventario extends JFrame implements ActionListener {
     public PreparedStatement pstm = null;
     ResultSet rs = null;
     String query="";
-    JScrollPane jp = new JScrollPane(list);
+    
     
     /**
      * Launch the application.
@@ -100,16 +100,14 @@ public class Inventario extends JFrame implements ActionListener {
 		frame.getContentPane().add(btn_volver);
 		btn_volver.addActionListener(this);
 		
-		frame.getContentPane().add(jp);
+	
         
 		lista = new DefaultListModel();
 		list.setModel(lista);
         list.setBounds(10, 250, 924, 290);
         frame.getContentPane().add(list);
-        list.add(jp);
-     
         list.setVisibleRowCount(4);
-        lista.addElement("Nombre                                Tamanio                                Precio                                Sabor                                Existencias");
+        lista.addElement("Nombre                                Tamanio                                Precio                                Sabor                               ");
     }
 
     @Override

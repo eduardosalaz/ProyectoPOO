@@ -65,21 +65,21 @@ public class VentaDulceria extends JFrame implements ActionListener, ChangeListe
         lbl_refrescos.setForeground(Color.WHITE);
         lbl_refrescos.setBackground(Color.DARK_GRAY);
         lbl_refrescos.setFont(new Font("Arial", Font.BOLD, 30));
-        lbl_refrescos.setBounds(10, 112, 276, 61);
+        lbl_refrescos.setBounds(10, 112, 300, 61);
         getContentPane().add(lbl_refrescos);
 
         JLabel lbl_palomitas = new JLabel("Palomitas:             >");
         lbl_palomitas.setForeground(Color.WHITE);
         lbl_palomitas.setBackground(Color.DARK_GRAY);
         lbl_palomitas.setFont(new Font("Arial", Font.BOLD, 30));
-        lbl_palomitas.setBounds(10, 184, 276, 61);
+        lbl_palomitas.setBounds(10, 184, 300, 61);
         getContentPane().add(lbl_palomitas);
 
         JLabel lbl_helados = new JLabel("Helados:                >");
         lbl_helados.setForeground(Color.WHITE);
         lbl_helados.setBackground(Color.DARK_GRAY);
         lbl_helados.setFont(new Font("Arial", Font.BOLD, 30));
-        lbl_helados.setBounds(10, 256, 276, 61);
+        lbl_helados.setBounds(10, 256, 300, 61);
         getContentPane().add(lbl_helados);
 
         spinner_refrescos = new JSpinner();
