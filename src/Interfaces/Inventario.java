@@ -11,20 +11,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 
 public class Inventario extends JFrame implements ActionListener {
 
-    private JPanel contentPane;
-    JList list = new JList();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	JList list = new JList();
     private JButton btn_volver, btnBuscar;
     public JFrame frame;
     private JTextField textIdProducto;
@@ -109,7 +109,7 @@ public class Inventario extends JFrame implements ActionListener {
         list.add(jp);
      
         list.setVisibleRowCount(4);
-        lista.addElement("Nombre                                Tama√±o                                Precio                                Sabor                                Existencias");
+        lista.addElement("Nombre                                Tamanio                                Precio                                Sabor                                Existencias");
     }
 
     @Override
@@ -129,7 +129,7 @@ public class Inventario extends JFrame implements ActionListener {
             	
             	if(rs.next()) {
             		String nom = rs.getString("Nombre_Producto");
-            		String tam = rs.getString("Tama√±o");
+            		String tam = rs.getString("TamaÒo"); //SI NO DICE TAMA—O, CORREGIRLO, TIENE QUE SER CON —.
             		String prec = rs.getString("Precio");
             		String sabor = rs.getString("Sabor");
             		String exis = rs.getString("Existencias");
@@ -142,11 +142,7 @@ public class Inventario extends JFrame implements ActionListener {
             	
             	
             	
-            } catch (SQLException e1) {
-            	
-            
-            	
-            		
+            } catch (SQLException e1) {	
             }
         }
     }

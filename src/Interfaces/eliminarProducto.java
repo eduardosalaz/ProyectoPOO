@@ -49,7 +49,7 @@ public class eliminarProducto implements ActionListener{
     /**
      * Initialize the contents of the frame.
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({ })
     private void initialize() {
         frame = new JFrame();
         frame.getContentPane().setFocusable(false);

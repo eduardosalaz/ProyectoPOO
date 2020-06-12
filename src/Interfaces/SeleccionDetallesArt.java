@@ -14,7 +14,11 @@ import javax.swing.JButton;
 
 public class SeleccionDetallesArt extends JFrame implements ActionListener {
 
-    private JPanel contentPane;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
     private JComboBox combo_tam_refrescos, combo_tam_palomitas, combo_tam_helados, combo_sabor_refrescos, combo_sabor_palomitas, combo_sabor_helados;
     private JButton btnVolver, btnCancelarCompra, btnPagar;
     private JLabel lbl_precio1, lbl_precio2, lbl_precio3;

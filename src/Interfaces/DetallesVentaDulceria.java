@@ -8,7 +8,11 @@ import java.awt.event.ActionListener;
 
 public class DetallesVentaDulceria extends JFrame implements ActionListener {
 
-    private JPanel contentPane;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
     private JLabel lbl_articulos, lbl_tamanos, lbl_sabores, lbl_precios, lbl_preciototal;
     private JButton btn_cancelar, btn_pagar, btn_volver;
 

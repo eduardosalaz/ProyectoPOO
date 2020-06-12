@@ -1,15 +1,17 @@
 package Interfaces;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Informe extends JFrame implements ActionListener {
 
-    private JPanel contentPane;
-    private JButton btn_actDia, btn_inventario, btn_usuarioEsp, btn_volver;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JButton btn_actDia, btn_inventario, btn_usuarioEsp, btn_volver;
     public JFrame frame;
     /**
      * Launch the application.

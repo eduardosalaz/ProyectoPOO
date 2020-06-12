@@ -800,8 +800,8 @@ public class SeleccionarPelicula extends JFrame implements ActionListener {
 			rs = pstm.executeQuery();
 			while(rs.next())
 			{
-				this.sala_sel = rs.getInt("Num_Sala");
-				this.funcion = rs.getInt("ID_Funcion");
+				SeleccionarPelicula.sala_sel = rs.getInt("Num_Sala");
+				SeleccionarPelicula.funcion = rs.getInt("ID_Funcion");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

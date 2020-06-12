@@ -14,10 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class eliminarPelicula implements ActionListener{
@@ -58,7 +54,7 @@ public class eliminarPelicula implements ActionListener{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ })
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setFocusable(false);

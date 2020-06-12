@@ -172,7 +172,7 @@ public class Login extends ConexionBD implements ActionListener {
 		boolean nivel = false;
 		boolean pase = false;
 		try {
-			//CONSEGUIMOS LO QUE SE ESCRIBÍO	
+			//CONSEGUIMOS LO QUE SE ESCRIBÃ�O	
 			String valorPass = new String(pass_password.getPassword()); //se tiene que convertir a String, sino regresa char
 			int valorUser = Integer.parseInt(txt_user.getText());
 			query = "SELECT * FROM Usuario WHERE ID_Usuario = ?";
@@ -190,8 +190,8 @@ public class Login extends ConexionBD implements ActionListener {
 				if(rs.next())
 				{	
 					//OBTENEMOS INFO NECESARIA
-					this.ID_USUARIO = valorUser;
-					this.USUARIO = rs.getString("Nombre");
+					Login.ID_USUARIO = valorUser;
+					Login.USUARIO = rs.getString("Nombre");
 					showMessageDialog(null, "BIENVENIDO "+USUARIO);
 					int nivelopc = Integer.parseInt(rs.getString("Admin"));
 					if (nivelopc==1)
@@ -217,7 +217,7 @@ public class Login extends ConexionBD implements ActionListener {
 			e1.printStackTrace();	
 		}
 		this.permiso = pase;
-		this.TYPE_USER = nivel;
+		Login.TYPE_USER = nivel;
 	}
 	
 }

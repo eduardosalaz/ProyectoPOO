@@ -11,19 +11,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class editarFuncion implements ActionListener {
-    private int cont30 = 1,cont31 = 1;
     private JButton btnVolver,btnActualizar;
-    private JFrame frame;
+    public JFrame frame;
     private JTextField textIdPelicula;
     private JTextField textIdFuncion;
-    private JSpinner spinner_horas, spinner_dia, spinner_año, spinner_minutos, spinner_mes, spinner_sala;
+    private JSpinner spinner_horas, spinner_dia, spinner_anio, spinner_minutos, spinner_mes, spinner_sala;
     private String[] meses = new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
-    private String[] salas = new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09"};
     private String[] dias = new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14",
     "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"};
-    private String[] horas = new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14",
-            "15", "16", "17", "18", "19", "20", "21", "22", "23"};
-    private String[] año = new String[] {"2020"};
+    private String[] anio = new String[] {"2020"};
     private String[] minutos = new String[]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14",
             "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34"
     , "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"};
@@ -64,7 +60,7 @@ public class editarFuncion implements ActionListener {
     /**
      * Initialize the contents of the frame.
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({ })
     private void initialize() {
         frame = new JFrame();
         frame.getContentPane().setFocusable(false);
@@ -198,12 +194,12 @@ public class editarFuncion implements ActionListener {
         ((JSpinner.DefaultEditor) spinner_dia.getEditor()).getTextField().setEditable(false);
         frame.getContentPane().add(spinner_dia);
 
-        spinner_año = new JSpinner();
-        SpinnerModel model_año = new SpinnerListModel(año);
-        spinner_año.setModel(model_año);
-        spinner_año.setBounds(424, 268, 51, 20);
-        ((JSpinner.DefaultEditor) spinner_año.getEditor()).getTextField().setEditable(false);
-        frame.getContentPane().add(spinner_año);
+        spinner_anio = new JSpinner();
+        SpinnerModel model_anio = new SpinnerListModel(anio);
+        spinner_anio.setModel(model_anio);
+        spinner_anio.setBounds(424, 268, 51, 20);
+        ((JSpinner.DefaultEditor) spinner_anio.getEditor()).getTextField().setEditable(false);
+        frame.getContentPane().add(spinner_anio);
 
         spinner_sala = new JSpinner();
         spinner_sala.setModel(new SpinnerNumberModel(1, 1, 9, 1));
@@ -246,7 +242,7 @@ public class editarFuncion implements ActionListener {
                 int sala = (int) spinner_sala.getValue();
                 String mes = (String) spinner_mes.getValue();
                 String dia = (String) spinner_dia.getValue();
-                String anio = (String) spinner_año.getValue();
+                String anio = (String) spinner_anio.getValue();
                 int horas = (int) spinner_horas.getValue();
                 int minutos = (int) spinner_minutos.getValue();
 

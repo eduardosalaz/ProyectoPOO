@@ -3,6 +3,7 @@ package Interfaces;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -112,7 +113,13 @@ public class CorteBoleto extends JFrame implements ActionListener {
         if(e.getSource() == btn_ingresar){
             JOptionPane.showMessageDialog(null, "OK GOOD NICE");
         }else if(e.getSource() == btn_Volver){
-            SeleccionarPelicula seleccionarPelicula = new SeleccionarPelicula();
+            SeleccionarPelicula seleccionarPelicula = null;
+			try {
+				seleccionarPelicula = new SeleccionarPelicula();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             seleccionarPelicula.setVisible(true);
             dispose();
         }

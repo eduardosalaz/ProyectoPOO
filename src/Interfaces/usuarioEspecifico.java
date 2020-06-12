@@ -1,13 +1,10 @@
 package Interfaces;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,13 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 
 public class usuarioEspecifico implements ActionListener{
 	int contDe30 = 1;
@@ -30,16 +23,11 @@ public class usuarioEspecifico implements ActionListener{
 	int contA31 = 1;
 	private JComboBox comboBoxDeMm,comboBoxDeAaaa,comboBoxAAaaa,comboBoxAMm,comboBoxDeDd,comboBoxADd;
 	private JButton btnVolver, btnBuscar;
-<<<<<<< HEAD
-	JFrame frame;
-=======
 	public JFrame frame;
->>>>>>> f71ab4f33303d008b91dc1ff648d6d80aa0b06e5
-	private JTextField textIdUsuario;
+	DefaultListModel lista;
 	
-	/**
-	 * Launch the application.
-	 */
+	private JTextField textIdUsuario;
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -52,17 +40,10 @@ public class usuarioEspecifico implements ActionListener{
 			}
 		});
 	}
-
-	/**
-	 * Create the application.
-	 */
 	public usuarioEspecifico() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 960, 640);
@@ -171,7 +152,6 @@ public class usuarioEspecifico implements ActionListener{
 		lblA.setBounds(496, 238, 42, 31);
 		frame.getContentPane().add(lblA);
 		
-
 		comboBoxDeMm = new JComboBox();
 		comboBoxDeMm.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"}));
 		comboBoxDeMm.setForeground(Color.WHITE);
@@ -313,4 +293,3 @@ public class usuarioEspecifico implements ActionListener{
 		}
 	}
 }
-

@@ -1,8 +1,6 @@
 package Interfaces;
 
 
-import static javax.swing.JOptionPane.showMessageDialog;
-
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -13,15 +11,12 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
 public class PrincipalUser extends JFrame implements ActionListener {
     
-	private Connection con = ConexionBD.conectar();
-
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
     
     private JButton btn_taquilla, btn_dulceria;
     private JPanel contentPane;
@@ -99,7 +94,13 @@ public class PrincipalUser extends JFrame implements ActionListener {
         }else if(e.getSource() == btn_taquilla){
             System.out.println("a la taquilla");
             dispose();
-            SeleccionarPelicula seleccionarPelicula = new SeleccionarPelicula();
+            SeleccionarPelicula seleccionarPelicula = null;
+			try {
+				seleccionarPelicula = new SeleccionarPelicula();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             seleccionarPelicula.setVisible(true);
         }
 

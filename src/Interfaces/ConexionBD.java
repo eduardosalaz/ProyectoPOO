@@ -1,7 +1,5 @@
 package Interfaces;
 
-import static javax.swing.JOptionPane.showMessageDialog;
-
 import java.sql.*;
 
 public class ConexionBD 

@@ -8,7 +8,11 @@ import java.awt.event.ActionListener;
 
 public class CorteDulceria extends JFrame implements ActionListener{
 
-    private JPanel contentPane;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
     private JTextField txt_supervisor;
     private JPasswordField pass_password;
     private JButton btn_ingresar, btn_volver;

@@ -39,7 +39,7 @@ public class menuAdmin implements ActionListener{
     /**
      * Initialize the contents of the frame..
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({ })
     private void initialize() {
         frame = new JFrame();
         frame.getContentPane().setFocusable(false);
@@ -53,7 +53,7 @@ public class menuAdmin implements ActionListener{
 
 
 
-        JLabel lblRegistrar = new JLabel("Registrar nuevo producto");
+        JLabel lblRegistrar = new JLabel("Bienvenido!");
         lblRegistrar.setForeground(Color.WHITE);
         lblRegistrar.setFont(new Font("Arial", Font.BOLD, 40));
         lblRegistrar.setBounds(232, 32, 511, 72);

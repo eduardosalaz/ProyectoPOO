@@ -42,7 +42,7 @@ public class menuPeliculas implements ActionListener{
      * Create the application.
      * @wbp.parser.entryPoint
      */
-    @SuppressWarnings({ "rawtypes", "unchecked", "unused" })
+    @SuppressWarnings({  })
     private void initialize() {
         frame = new JFrame();
         frame.setBounds(100, 100, 960, 640);

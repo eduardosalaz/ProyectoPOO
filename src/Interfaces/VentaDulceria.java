@@ -7,10 +7,15 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class VentaDulceria extends JFrame implements ActionListener, ChangeListener {
 
-    private JPanel contentPane;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
     private JButton btn_confirmar, btn_cambiar, btn_corteDulceria;
     private JSpinner spinner_refrescos, spinner_palomitas, spinner_helados;
 
@@ -29,10 +34,6 @@ public class VentaDulceria extends JFrame implements ActionListener, ChangeListe
             }
         });
     }
-
-    /**
-     * Create the frame.
-     */
     public VentaDulceria() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 960, 460);
@@ -183,7 +184,13 @@ public class VentaDulceria extends JFrame implements ActionListener, ChangeListe
             seleccionDetallesArt.setVisible(true);
 
         } else if (e.getSource() == btn_cambiar) {
-            SeleccionarPelicula seleccionarPelicula = new SeleccionarPelicula();
+            SeleccionarPelicula seleccionarPelicula = null;
+			try {
+				seleccionarPelicula = new SeleccionarPelicula();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             seleccionarPelicula.setVisible(true);
             dispose();
         } else if (e.getSource() == btn_corteDulceria) {
